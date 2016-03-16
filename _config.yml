@@ -2,8 +2,8 @@
 title: Felinesoft Front-End Guidelines
 email: 
 description: Last updated 11 March 2016.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+baseurl: "/FSFrontEndDocs/" # the subpath of your site, e.g. /blog/
+url: "http://querkmachine.github.io" # the base hostname & protocol for your site
 pemalink: /:title
 
 # Build settings

@@ -1,0 +1,44 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Typography
+$font-family: Helvetica, Arial, sans-serif;
+$font-size: 18px;
+$font-leading: 1.5;
+
+// Colours
+$color-primary: #3f51b5;
+$color-primary-dark: #303f9f;
+$color-primary-light: #c5cae9;
+$color-secondary: #ff5722;
+$color-tertiary: #333;
+
+$color-divider: #b6b6b6;
+$color-text-primary: #212121;
+$color-text-secondary: #727272;
+
+// EM calculator functions
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+@function convert-to-em($value, $base-value: $font-size)  {
+    $value: strip-unit($value) / strip-unit($base-value) * 1em;
+    @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+    @return $value;
+}
+@function em-calc($values, $base-value: $font-size) {
+    $max: length($values);
+    @if $max == 1 { @return convert-to-em(nth($values, 1), $base-value); }
+    $emValues: ();
+    @for $i from 1 through $max {
+        $emValues: append($emValues, convert-to-em(nth($values, $i), $base-value));
+    }
+    @return $emValues;
+}
+
+@import
+    "layout",
+    "syntax-highlighting"
+;

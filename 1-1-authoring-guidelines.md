@@ -6,6 +6,7 @@ title: Authoring guidelines
 Formatting is the most basic means of maintaining uniformity in project code. A misplaced bracket or oddly intended line can turn functional code into an illegible mess, and worse still can lead to your fancy new JavaScript function breaking absolutely everything. [It happens to the best of us.](http://embeddedgurus.com/barr-code/2014/03/apples-gotofail-ssl-security-bug-was-easily-preventable/)
 
 At the most basic level we expect:
+
 * four (4) space indents, no tabs;
 * sensible line lengths;
 * multi-line code;

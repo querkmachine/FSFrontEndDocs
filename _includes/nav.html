@@ -1,12 +1,12 @@
 {% assign currentpage = page.url | remove: 'index.html' %}
 <ul class="navigation" id="navigation" role="navigation">
-    {% for page in site.pages %}
-        {% unless page.exclude_from_nav %}
-            {% if page.title %}
-                <li class="navigation__item{% if page.url == currentpage %} navigation__item--current{% endif %}">
-                    <a class="navigation__link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-                </li>
-            {% endif %}
-        {% endunless %}
-    {% endfor %}
+	{% for page in site.pages %}
+		{% unless page.exclude_from_nav %}
+			{% if page.title %}
+				<li class="navigation__item{% if page.url == currentpage %} navigation__item--current{% endif %}">
+					<a class="navigation__link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+				</li>
+			{% endif %}
+		{% endunless %}
+	{% endfor %}
 </ul>

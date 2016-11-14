@@ -4,9 +4,9 @@
 @charset "utf-8";
 
 // Typography
-$font-family: Helvetica, Arial, sans-serif;
-$font-size: 17px;
-$font-leading: 1.882352941;
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-size: 16px;
+$font-leading: 1.8;
 
 // Colours
 $color-primary: #3f51b5;
@@ -21,24 +21,24 @@ $color-text-secondary: #727272;
 
 // EM calculator functions
 @function strip-unit($num) {
-    @return $num / ($num * 0 + 1);
+	@return $num / ($num * 0 + 1);
 }
 @function convert-to-em($value, $base-value: $font-size)  {
-    $value: strip-unit($value) / strip-unit($base-value) * 1em;
-    @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
-    @return $value;
+	$value: strip-unit($value) / strip-unit($base-value) * 1em;
+	@if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+	@return $value;
 }
 @function em-calc($values, $base-value: $font-size) {
-    $max: length($values);
-    @if $max == 1 { @return convert-to-em(nth($values, 1), $base-value); }
-    $emValues: ();
-    @for $i from 1 through $max {
-        $emValues: append($emValues, convert-to-em(nth($values, $i), $base-value));
-    }
-    @return $emValues;
+	$max: length($values);
+	@if $max == 1 { @return convert-to-em(nth($values, 1), $base-value); }
+	$emValues: ();
+	@for $i from 1 through $max {
+		$emValues: append($emValues, convert-to-em(nth($values, $i), $base-value));
+	}
+	@return $emValues;
 }
 
 @import
-    "layout",
-    "syntax-highlighting"
+	"layout",
+	"syntax-highlighting"
 ;

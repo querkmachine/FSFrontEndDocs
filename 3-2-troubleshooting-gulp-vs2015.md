@@ -5,7 +5,7 @@ title: The “OMG Microsoft Why” guide to making Node and Gulp work properly i
 
 The version of Node bundled in Visual Studio 2015 is *ancient*. Even with all of the updates, the most recent version of their IDE comes with Node version 0.10.31, released July 2013. 
 
-This causes problems. Problems like how Node 0.10.31 is so old it doesn’t support the ECMAScript 2015 JavaScript standard (commonly known as ES6). Basically, you’ll want to fix this problem, and this document tries to help you do that.
+This causes problems. Problems like how Node 0.10.31 is so old it doesn’t support the ECMAScript 2015 JavaScript standard (commonly known as ES2015 or ES6). Basically, you’ll want to fix this problem, and this document tries to help you do that.
 
 There’s also supplementary issues with using Node in Visual Studio unrelated to version, such as environmental binding. I’ll try to help you fix those too.
 
@@ -13,7 +13,7 @@ All this stuff is dramatically easier if you’re on macOS or Linux. But then ag
 
 ## I get some error about `const` or something? What’s up with that?
 
-`const` is an ES2015 feature, and you’re getting this error because VS2015 uses Node 0.10.31, and that’s so hella old it doesn’t understand ES2015. 
+`const` is an ES2015 feature for—unsurprisingly—a constant. You’re getting this error because VS2015 uses Node 0.10.31, and that’s so hella old it doesn’t understand ES2015. 
 
 You’ll need to install a more up-to-date version of Node.
 

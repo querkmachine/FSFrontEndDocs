@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: default
 title: In the beginning&hellip;
 exclude_from_nav: true
 ---

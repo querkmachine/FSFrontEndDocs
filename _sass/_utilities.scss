@@ -1,0 +1,79 @@
+// Space and Size ---------------------------------------------
+
+.narrow { padding: 0                              !important; }
+.inner { padding: .8rem 1rem .7rem                !important; }
+.inner-wide { padding: 1.6rem 2rem 1.4rem         !important; }
+
+.m-t-0 { margin-top: 0                            !important; }
+.m-t-1 { margin-top: 1rem                         !important; }
+.m-t-2 { margin-top: 2rem                         !important; }
+.m-t-3 { margin-top: 3rem                         !important; }
+
+.m-b-0 { margin-bottom: 0                         !important; }
+.m-b-1 { margin-bottom: 1rem                      !important; }
+.m-b-2 { margin-bottom: 2rem                      !important; }
+.m-b-3 { margin-bottom: 3rem                      !important; }
+
+.pull-left { float: left                          !important; }
+.pull-right { float: right                        !important; }
+
+.full-width { width: 100%                         !important; }
+
+
+// Hiding -----------------------------------------------------
+
+.invisible { visibility: hidden                   !important; }
+
+.hidden { display: none                           !important; }
+
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+@media #{$large} {
+  .hidden-if-large { display: none                !important; }
+}
+
+@media #{$medium} {
+  .hidden-if-medium { display: none               !important; }
+}
+
+@media #{$small} {
+  .hidden-if-small { display: none                !important; }
+}
+
+@media print {
+  .hidden-if-print { display: none                !important; }
+}
+
+
+// Text -------------------------------------------------------
+
+.lead {
+  margin-bottom: 1.25em;
+  font-size: 1.25em;
+}
+
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-left     { text-align: left; }
+.text-center   { text-align: center; }
+.text-right    { text-align: right; }
+
+.text-muted   { color: $grey; }
+.text-primary { color: $blue; }
+.text-success { color: $green; }
+.text-info    { color: $cyan; }
+.text-warning { color: $orange; }
+.text-error   { color: $red; }
+
+.text-bold { font-weight: bold; }
+.text-italic { font-style: italic; }

@@ -3,9 +3,9 @@ layout: default
 title: Progressive enhancement
 ---
 
-Progressive enhancement. What is there to say about progressive enhancement other than it is *absolutely the only way in which 99% of websites should work*. 
+Progressive enhancement. What is there to say about progressive enhancement other than it is <mark>absolutely the only way in which 99% of websites should work</mark>. 
 
-To build with progressive enhancement is to automatically include accessibility, search engine optimisation and the mobile web. Progressively enhanced websites are inherently more stable, with fewer bottlenecks and dependencies to accessing the important stuff—the content. 
+To build with progressive enhancement is to automatically include accessibility, search engine optimisation and the mobile web. Progressively enhanced websites are inherently more stable, with fewer bottlenecks and dependencies to accessing the really important stuff: the content. 
 
 Use [Modernizr](https://modernizr.com/) to feature detect any complex functionality. A List Apart has a short series of articles from 2008 on [understanding](http://alistapart.com/article/understandingprogressiveenhancement), [implementing](http://alistapart.com/article/progressiveenhancementwithcss), and [working with JavaScript](http://alistapart.com/article/progressiveenhancementwithjavascript) whilst working with progressive enhancement.
 

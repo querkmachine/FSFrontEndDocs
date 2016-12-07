@@ -5,15 +5,15 @@ title: The “OMG Microsoft Why” guide to making Node and Gulp work properly i
 
 The version of Node bundled in Visual Studio 2015 is *ancient*. Even with all of the updates, the most recent version of their IDE comes with Node version 0.10.31, released July 2013. 
 
-This causes problems. Problems like how Node 0.10.31 is so old it doesn’t support the ECMAScript 2015 JavaScript standard (commonly known as ES2015 or ES6). Basically, you’ll want to fix this problem, and this document tries to help you do that.
+This causes problems. Problems like how Node 0.10.31 is so old it doesn’t support the ECMAScript 2015 JavaScript standard (commonly known as ES2015 or ES6). Basically, <mark>you’ll want to fix this problem</mark>, and this document tries to help you do that.
 
 There’s also supplementary issues with using Node in Visual Studio unrelated to version, such as environmental binding. I’ll try to help you fix those too.
 
-All this stuff is dramatically easier if you’re on macOS or Linux. But then again those systems don’t yet have Visual Studio, so you probably have no reason to be reading this. 
+All this stuff is dramatically easier if you’re on macOS or Linux. But then again those systems <del>don’t yet have Visual Studio</del> ([Macs almost do](https://www.visualstudio.com/vs/visual-studio-mac/)), so you probably have no reason to be reading this. 
 
 ## I get some error about `const` or something? What’s up with that?
 
-`const` is an ES2015 feature for—unsurprisingly—a constant. You’re getting this error because VS2015 uses Node 0.10.31, and that’s so hella old it doesn’t understand ES2015. 
+`const` is an ES2015 feature for—unsurprisingly—a constant. You’re getting this error because the version of Node it uses is so hella old it doesn’t understand ES2015. 
 
 You’ll need to install a more up-to-date version of Node.
 
@@ -25,7 +25,7 @@ Install it as you would normally.
 
 ### Step two: Configure ‘External Web Tools’ in Visual Studio
 
-Go to Tools -> Options. Then, on the tree on the left, navigate to Projects and Solutions -> External Web Tools.
+Go to `Tools > Options`. Then on the tree on the left, navigate to `Projects and Solutions > External Web Tools`.
 
 Click the button of a folder with a little star next to it. This will insert a text input into the list below it.
 
@@ -43,7 +43,7 @@ Ah yes, that’s the other problem with using Gulp in Visual Studio.
 
 Some npm modules need to be built according to the environment they’re running on—Windows, Mac, Linux, etc., as well as what version of Gulp is in use. 
 
-This build is done at the point the module is installed by VS2015, and not during any build/rebuild/clean action. This means that if the Node packages are installed by VS *before* upgrading Node (as above), then the packages will have been built for the environment in Visual Studio, NOT the environment you’ve just created by upgrading Node. 
+&zwnj;<mark>This is done at the point the module is installed by VS2015</mark>, and not during any build/rebuild/clean action. This means that if the Node packages are installed by VS *before* upgrading Node (as above), then the packages will have been built for the environment in Visual Studio, NOT the environment you’ve just created by upgrading Node. 
 
 As it happens, Visual Studio (seemingly) has a tendency to mis-represent what environment it is anyway and will always say that Gulp is running on a 32-bit version of Windows, even when that’s not the case. This will make `node-sass` confused and angry, and it will refuse to work for you as a result. You should probably…
 
@@ -63,6 +63,6 @@ In the same command line, run the command `npm uninstall gulp-sass --save-dev`, 
 
 ## Hang on, I’m getting something about ‘gifcicle’, ‘jpegtran’, ‘optipng’ or ‘svgo’.
 
-These are all image compression engines which are dependencies of `gulp-imagemin`. These can fail for a few reasons.
+These are all image compression engines which are dependencies of `gulp-imagemin`. The installation of these can fail for a few reasons.
 
 Fix it by uninstalling and reinstalling gulp-imagemin `npm uninstall gulp-imagemin --save-dev` followed by `npm install gulp-imagemin --save-dev`.

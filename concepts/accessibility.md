@@ -5,23 +5,25 @@ title: Accessibility
 
 When some people think of web accessibility they think of high contrast colour schemes and screen readers. Those are important, of course, but <mark>the discipline of accessibility is much further reaching than that</mark>. Dyslexia, motor issues and autism all things that can affect website designs too, and they are just as important to accommodate as the blind and hard of sight. 
 
-For website projects we aim to, as much as is practical, fulfil the requirements of [<abbr title="Web Content Accessibility Group">WCAG</abbr> 2.0 Level AA](https://www.wuhcag.com/wcag-checklist/). Some projects in fact require this level of support for legal reasons, so it's a good idea to get into the practice of coding for it. 
+For website projects we aim to, as much as is practical, fulfil the requirements of [<abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.0 Level AA](https://www.wuhcag.com/wcag-checklist/). Some projects, in fact, require this level of support for legal reasons, so it's a good idea to get into the practice of coding for it. 
 
 Some quick wins to achieving Level AA compatibility: 
 
 * Write semantic and logically ordered HTML
 * Don't rely solely on colour to convey information
 * Don't hijack or override browser functionality, keyboard behaviour, or mouse behaviour
-* Give interactible elements (links, buttons, inputs) clear focus states
+* Give interactive elements (links, buttons, inputs) clear focus states
 * Always associate form inputs with labels
-* Provide skiplinks for screenreaders.
+* Provide skip links for screen readers.
 * Add `alt` text to images
-* Don't use `!important`, allow user-defined stylesheets to make things work for them
+* Don't use `!important`, allow user-defined stylesheets to override your styles
 
 ## Additional considerations
 
 The Government Digital Service put together [a helpful set of posters](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/) on the dos and don'ts of accessible design. 
-Given we don't control the content on many of our projects a lot of them are outside of our jurisdiction (though feel free to point out to clients that their copy is badly made).
+Given we don't control the content on many of our projects a lot of them are outside of our jurisdiction (though feel free to point out to clients that their copy is badly written).
+
+Below is a summary of other issues you may need to address.
 
 ### For users on the autistic spectrum
 
@@ -36,25 +38,25 @@ The focus here is to remove distracting elements and make it easy to focus on co
 Screen reader users typically navigate using only the keyboard and with specialised software. Screen readers tend to summarise the contents of a page into a list of headers, so users may never 'see' or interact with the majority of the page contents.
 
 * Provide text alternatives to images, video, audio and other media
-* Output code in a linear, logical manner
+* Write code in a linear, logical manner that makes sense when read aloud
 * Build and test for keyboard-only usage
 * Use descriptive UI labelling and headers
 * Don't rely solely on appearance to determine content hierarchy
-* Don't rely on other document text formats to convey information (PDFs, Word documents)
+* Don't rely on other text document formats to convey information (PDFs, Word documents, etc.)
 
 ### For users with low vision
 
 Not all users of screen readers are blind, not all who don't use screen readers aren't. The focus here is in contrast, visibility and making sure things can get big. 
 
-* Use strongly contrasting colours and a reasonable default font size (minimum of 16px on all screen sizes)
-* Ensure all copy is visible without scrolling horizontally, when the page is zoomed in 200%
+* Use strongly contrasting colours and a reasonable default font size (recommend a minimum of 16px for body copy on all screen sizes)
+* Ensure all copy is visible without scrolling horizontally when the page is zoomed in 200%
 
 ### For users with physical or motor disabilities
 
 Make common actions simple to perform and easy to find. 
 
-* Make actionable elements large, and put sufficient space between them
 * Design with touch screens and speech navigation in mind
+* Make actionable elements large and put sufficient space between them
 * Don't require significant amounts of typing or scrolling to achieve common actions
 
 ### For users who are deaf or hard of hearing
@@ -69,11 +71,11 @@ Don't rely on audio for things!
 
 Typography and the formatting of text plays a large part in things being difficult to read. Underlines, italics and capitalisation change the shape of letters, making life harder for dyslexic people. 
 
-* Use images and diagrams to convey complex information
+* Use images and diagrams to convey complex information or instructions, don't rely on text
 * Keep text left aligned
 * Keep content short and to the point
 * Don't use underlines, italics or capitals for emphasis
-* Don't force users to remember informaton
+* Don't force users to remember information
 * Don't rely on accurate spelling to achieve tasks
 
 ## Testing for accessibility

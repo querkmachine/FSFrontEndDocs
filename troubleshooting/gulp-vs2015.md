@@ -19,7 +19,7 @@ You’ll need to install a more up-to-date version of Node.
 
 ### Step one: Download and install Node
 
-Go to the [Node website](https://nodejs.org/) and download the most recent version of Node. The ‘Current’ release will do. At time of writing, that’s Node 7.0.0.
+Go to the [Node website](https://nodejs.org/) and download the most recent version of Node. The ‘Current’ release will do. At the time of writing, that’s Node 7.0.0.
 
 Install it as you would normally. 
 
@@ -31,25 +31,25 @@ Click the button of a folder with a little star next to it. This will insert a t
 
 In the input, type the name of the folder where Node has been installed. This will typically be something like `C:\Program Files\nodejs`. You may need to use Explorer to find this. 
 
-Click off the input but stay on the new list item. Then click the button with an up arrow as many times as necessary to bring the list item to the top of the list. This makes Visual Studio prioritise it over the built in version of Node. 
+Click off the input but stay on the new list item. Then click the button with an up arrow as many times as necessary to bring the list item to the top of the list. This makes Visual Studio prioritise it over the built-in version of Node. 
 
 ### Step three: Re-do the Gulp
 
-You might need to close and re-open Visual Studio for this, but run the Gulp in the Task Runner Explorer again. Hopefully it should work, but if not…
+You might need to close and re-open Visual Studio for this, but run the Gulp in the Task Runner Explorer again. Hopefully, it should work, but if not…
 
 ## Apparently `node-sass` needs rebuilding? What what?
 
-Ah yes, that’s the other problem with using Gulp in Visual Studio. 
+Ah yes, that’s another problem with using Gulp in Visual Studio. 
 
 Some npm modules need to be built according to the environment they’re running on—Windows, Mac, Linux, etc., as well as what version of Gulp is in use. 
 
 &zwnj;<mark>This is done at the point the module is installed by VS2015</mark>, and not during any build/rebuild/clean action. This means that if the Node packages are installed by VS *before* upgrading Node (as above), then the packages will have been built for the environment in Visual Studio, NOT the environment you’ve just created by upgrading Node. 
 
-As it happens, Visual Studio (seemingly) has a tendency to mis-represent what environment it is anyway and will always say that Gulp is running on a 32-bit version of Windows, even when that’s not the case. This will make `node-sass` confused and angry, and it will refuse to work for you as a result. You should probably…
+As it happens, Visual Studio (seemingly) has a tendency to misrepresent what environment it is anyway and will always say that Gulp is running on a 32-bit version of Windows, even when that’s not the case. This will make `node-sass` confused and angry, and it will refuse to work for you as a result. You should probably…
 
 ### Step one: Try doing what it says
 
-VS2015 doesn’t have a built in command line that can interact with Gulp, so you’ll need to hit the start menu and open ‘Command line with Node’.
+VS2015 doesn’t have a built-in command line that can interact with Gulp, so you’ll need to hit the start menu and open ‘Command line with Node’.
 
 In the command line, navigate to the directory where `Gulpfile.js` file is and run `npm rebuild node-sass`. 
 

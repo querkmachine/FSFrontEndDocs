@@ -3,7 +3,7 @@ layout: default
 title: Browser and device support
 ---
 
-Browser support requirements differ depending on the needs of the project, however we typically build only for browsers that are still officially supported by their vendors. (This means you don't need to support IE8 anymore, thank god.)
+Browser support requirements differ depending on the needs of the project, however, we typically build only for browsers that are still officially supported by their vendors. (This means you don't need to support IE8 anymore, thank god.)
 
 |  |IE 9|IE 10|IE 11|Edge|Chrome|Firefox|Safari|
 |:-|:----:|:-----:|:-----:|:-----:|:----:|:-----:|:----:|
@@ -47,7 +47,7 @@ These are the devices we currently have available to test. <mark>This list is in
 
 ### Kim's Device Lab
 
-These devices belong to Kim and not FelineSoft, however are available for internal testing purposes. Note that not all devices may be available at any one time.
+These devices belong to Kim and not FelineSoft, however, are available for internal testing purposes. Note that not all devices may be available at any one time.
 
 |Manufacturer|Model|Operating system|Released|
 |:-----------|:----|:---------------|:-------|

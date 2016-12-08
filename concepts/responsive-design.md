@@ -3,9 +3,9 @@ layout: default
 title: Responsive design
 ---
 
-It’s rare nowadays that we get any project that isn’t going to be responsive, so in all likeliness you’re going to be coding one. There’s plenty of stuff on the web already about how to do responsive design properly, so we’ll just talk about how we do it. 
+It’s rare nowadays that we get any project that isn’t going to be responsive, so in all likeliness, you’re going to be coding one. There’s plenty of stuff on the web already about how to do responsive design properly, so we’ll just talk about how we do it. 
 
-&zwnj;<mark>We are mobile first.</mark> This means we build things for small screened, low-capability devices first before progressively adding functionality and ever-larger images for higher power devices. Mobile first has a ton of advantages:
+&zwnj;<mark>We are mobile first.</mark> This means we build things for small screened, low-capability devices first before progressively adding functionality and ever-larger images for higher power devices. Mobile first has a tonne of advantages:
 
 * It’s easier to develop something simple and make it progressively more complex than it is to make something that’s already complex simpler;
 * It puts greater focus on building and perfecting the product’s core functionality; 

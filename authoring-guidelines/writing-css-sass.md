@@ -102,7 +102,7 @@ Colour values should be written in hexadecimal; shortened and lowercase where po
 Do not use the default colour values that exist in CSS except for debugging or rapid prototyping purposes. They’re semantically inconsistent (`gray` is darker than `darkgray`, for example) and sometimes even render differently between browsers. They’re not to be trusted.
 
 ## Vendor prefixes
-&zwnj;<mark>Do not write vendor prefixes into code</mark>, instead use a tool like [Autoprefixer](https://github.com/postcss/autoprefixer) to add these programatically. This makes the code easier to scan and allows us to configure browser support from the Gulp configuration like a boss. 
+&zwnj;<mark>Do not write vendor prefixes into code</mark>, instead use a tool like [Autoprefixer](https://github.com/postcss/autoprefixer) to add these programmatically. This makes the code easier to scan and allows us to configure browser support from the Gulp configuration like a boss. 
 
 If you're in an environment where Autoprefixer isn't available, then you may write vendor prefixes into your code.
 
@@ -133,7 +133,7 @@ Sass has two main methods of creating [DRY-ness](https://en.wikipedia.org/wiki/D
 |Simple to debug|Yep|Nope|
 |Keeps selectors sensibly grouped|Yep|Nope|
 |Maintains the cascade as written|Yep|Nope|
-|Smaller filesize (when gzipped)|Yep|Nope|
+|Smaller file size (when gzipped)|Yep|Nope|
 
 And if that hastily made table doesn't convince you, maybe the words of two of the world's foremost Sass-masters will:
 

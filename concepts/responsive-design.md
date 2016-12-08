@@ -15,4 +15,4 @@ It’s rare nowadays that we get any project that isn’t going to be responsive
 
 CSS breakpoints should be mobile first, with breakpoints for larger resolutions afterwards. If you still need to support a browser that doesn't support media queries (may god have mercy on your soul) then use feature detection to serve those browsers different CSS. 
 
-Conditional <mark>JavaScript should be initialised depending on the breakpoint</mark>. Use something like [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to determine the user’s screen resolution and conditionally initialise or destroy JS functions. 
+&zwnj;<mark>JavaScript which only applies to certain breakpoints should be initialised on that breakpoint</mark>. Use something like [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to determine the user’s screen resolution and conditionally initialise or destroy JS functions. 

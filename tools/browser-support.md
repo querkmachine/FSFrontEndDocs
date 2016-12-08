@@ -3,6 +3,8 @@ layout: default
 title: Browser and device support
 ---
 
+## Browser support
+
 Browser support requirements differ depending on the needs of the project, however, we typically build only for browsers that are still officially supported by their vendors. (This means you don't need to support IE8 anymore, thank god.)
 
 |  |IE 9|IE 10|IE 11|Edge|Chrome|Firefox|Safari|
@@ -15,6 +17,12 @@ Browser support requirements differ depending on the needs of the project, howev
 |Mac OS 10.10 | | | | |✓|✓|✓|
 |Mac OS 10.11 | | | | |✓|✓|✓|
 
+### Browser testing
+
+We use [Browserstack](http://browserstack.com) for browser testing. You'll have to ask the QA team for access credentials.
+
+## Device support
+
 Our device testing methods are a lot more freeform. We have a number of devices which can be found both in the device drawer and with Kim, but don’t worry about finding every edge case yourself—that’s a job that the QA team will carry out for you.
 
 As a standard we support the following mobile operating systems:
@@ -24,15 +32,11 @@ As a standard we support the following mobile operating systems:
 * Windows Phone 8 and above (IE only)
 * Windows 10 Mobile and above (Edge only) 
 
-## Browser testing
-
-We use [Browserstack](http://browserstack.com) for browser testing. You'll have to ask the QA team for access credentials.
-
-## Device testing
+### Device testing
 
 These are the devices we currently have available to test. <mark>This list is incomplete. The devices and OS versions may not be accurate.</mark>
 
-### FelineSoft Device Lab
+#### FelineSoft Device Lab
 
 |Manufacturer|Model|Operating system|Released|
 |:-----------|:----|:---------------|:-------|
@@ -45,7 +49,7 @@ These are the devices we currently have available to test. <mark>This list is in
 |Google/Asus|Nexus 7|Android x.x|2013|
 |Samsung|Galaxy S5|Android 6.x|2014|
 
-### Kim's Device Lab
+#### Kim's Device Lab
 
 These devices belong to Kim and not FelineSoft, however, are available for internal testing purposes. Note that not all devices may be available at any one time.
 
@@ -59,5 +63,5 @@ These devices belong to Kim and not FelineSoft, however, are available for inter
 |HTC|One M8|Android 5.0|2014|
 |LG|GT540 Optimus|Android 2.1|2010|
 |Nintendo|New Nintendo 3DS|Ninendo 3DS system software 10.x|2015|
-|<del>Nokia</del> <mark>broken</mark>|<del>Lumia 800</del>|<del>Windows Phone 7.5</del>|<del>2011</del>|
+|<del>Nokia</del> <span class="tag tag-error">broken</span>|<del>Lumia 800</del>|<del>Windows Phone 7.5</del>|<del>2011</del>|
 |Sony|Xperia S|Android 4.4|2012|

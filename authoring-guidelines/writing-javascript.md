@@ -21,11 +21,26 @@ function bindSearchController() {
 }
 {% endhighlight %}
 
+## jQuery
+
+&zwnj;<mark>If the value of a variable is a jQuery object, prefix the variable name with a </mark>`$`<mark> sign</mark> to make it clear this is the case.
+
+{% highlight js %}
+// Yes
+const $header = $('.header');
+
+// No
+const header = $('.header');
+
+// This is okay because the value isn't a jQuery object
+const searchTerm = $('.search__query').val();
+{% endhighlight %}
+
 ## ECMAScript 2015 (aka, ES6) in practice
 
 ES6 is wonderful. It introduces enough syntactic sugar to make writing JavaScript just that little bit easier. Its use is encouraged wherever possible. 
 
-Unfortunately we live in a world where old browsers don't get updated for stuff, and ES6 is one of those things. There are a number of actively used browsers that don't have full (or any) support for ES6 yet and many of these browsers are still part of our support requirements. As such, the use of [Babel](https://babeljs.io) to transpile code down to ES5 is recommended.
+Unfortunately, we live in a world where old browsers don't get updated for stuff, and ES6 is one of those things. There are a number of actively used browsers that don't have full (or any) support for ES6 yet and many of these browsers are still part of our support requirements. As such, the use of [Babel](https://babeljs.io) to transpile code down to ES5 is recommended.
 
 ### `const`, `let` and `var`
 

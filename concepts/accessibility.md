@@ -14,7 +14,7 @@ Some quick wins to achieving Level AA compatibility:
 * Don't hijack or override browser functionality, keyboard behaviour, or mouse behaviour
 * Give interactive elements (links, buttons, inputs) clear focus states
 * Always associate form inputs with labels
-* Provide skip links for screen readers.
+* Provide skip links for screen readers
 * Add `alt` text to images
 * Don't use `!important`, allow user-defined stylesheets to override your styles
 
@@ -81,4 +81,6 @@ Typography and the formatting of text plays a large part in things being difficu
 ## Testing for accessibility
 
 Simple accessibility testing can be carried out in your browser using the [Tota11y](http://khan.github.io/tota11y/) bookmarklet. This checks for simple violations like poor colour contrast, nonsensical ordering, insufficient labels and missing `alt` text. It also includes a 'screen reader wand', which provides a basic view as to what content is visible to screen readers.
+
+For more in-depth screen reader testing we've previously employed [<abbr title="NonVisual Desktop Access">NVDA</abbr> screen reader](http://www.nvaccess.org/), which includes a speech viewer so you can see how the page is read without requiring sound. 
 

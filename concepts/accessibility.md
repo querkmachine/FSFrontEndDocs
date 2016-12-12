@@ -41,7 +41,7 @@ Some quick wins to achieving Level AA compatibility:
 The Government Digital Service put together [a helpful set of posters](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/) on the dos and don'ts of accessible design. 
 Given we don't control the content on many of our projects a lot of them are outside of our jurisdiction (though feel free to point out to clients that their copy is badly written).
 
-Below is a summary of other issues you may need to address.
+Below is a summary of other issues you may need to address, along with select pieces of the Government Digital Service's advice.
 
 ### For users on the autistic spectrum
 
@@ -199,14 +199,68 @@ Typography and the formatting of text plays a large part in things being difficu
 	</div>
 </div>
 
+### For users prone to photoepileptic seizures
+
+Most web content is harmless to people who suffer with photoepileptic problems, however some visual effects—from full-screen jumps to obnoxiously flashing banner ads—can cause issues for some people. This may not be as severe as a seizure, but could merely cause nausea or dizziness. 
+
+The <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> defines flashing or strobing as being [more than three times a second](https://www.w3.org/TR/WCAG20/#seizure-does-not-violate).
+
+<div class="grid">
+	<div class="cell">
+		<div class="card card-success">
+			<header class="card-header">Do</header>
+			<ul class="list-group">
+				<li>Provide a way of disabling intrusive UI animation</li>
+			</ul>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="card card-error">
+			<header class="card-header">Don't</header>
+			<ul class="list-group">
+				<li>Use rapidly flashing, flickering or strobing visual effects</li>
+				<li>Rapidly transition between highly contrasting colours</li>
+				<li>Use images with tight, high contrast parallel lines, as these tend to flicker on monitors</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+### For users with motion sensitivity
+
+Believe it or not (and I've known plenty of people who decided not) heavily animated user interface designs can cause headaches, nausea and vertigo in a number of people, typically caused by a disconnect between their actions and the on-screen result. This is particularly common with large scale scroll and zoom effects, such as parallax animation and scrolljacking. [It happens.](http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea)
+
+<div class="grid">
+	<div class="cell">
+		<div class="card card-success">
+			<header class="card-header">Do</header>
+			<ul class="list-group">
+				<li>Use animation and transitions in a subtle way</li>
+				<li>Confine effects to small portions of the page</li>
+				<li>Provide a way of disabling intrusive UI animation and hijacked controls</li>
+			</ul>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="card card-error">
+			<header class="card-header">Don't</header>
+			<ul class="list-group">
+				<li>Use autoplaying carousels or videos that take up significant portions of the screen</li>
+				<li>Change default scroll behaviour (scrolljacking)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 ## Testing for accessibility
 
 Simple accessibility testing can be carried out in your browser using the [Tota11y](http://khan.github.io/tota11y/) bookmarklet. This checks for simple violations like poor colour contrast, nonsensical ordering, insufficient labels and missing `alt` text. It also includes a 'screen reader wand', which provides a basic view as to what content is visible to screen readers.
 
 For more in-depth screen reader testing we've previously employed [<abbr title="NonVisual Desktop Access">NVDA</abbr> screen reader](http://www.nvaccess.org/), which includes a speech viewer so you can see how the page is read without requiring sound. 
 
-### More resources
+## More resources
 
-* [Level AA checklist](https://www.wuhcag.com/wcag-checklist/).
+* [Level AA checklist](https://www.wuhcag.com/wcag-checklist/)
+* [Notes on Using ARIA in HTML](http://w3c.github.io/aria-in-html/)
 * [Color Contrast Checker](http://webaim.org/resources/contrastchecker/)
-
+* [Designing Safer Web Animation For Motion Sensitivity](http://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)

@@ -122,9 +122,6 @@ Not all users of screen readers are blind, not all who don't use screen readers 
 	</div>
 </div>
 
-
-* [Color Contrast Checker](http://webaim.org/resources/contrastchecker/)
-
 ### For users with physical or motor disabilities
 
 Make common actions simple to perform and easy to find. 
@@ -207,4 +204,9 @@ Typography and the formatting of text plays a large part in things being difficu
 Simple accessibility testing can be carried out in your browser using the [Tota11y](http://khan.github.io/tota11y/) bookmarklet. This checks for simple violations like poor colour contrast, nonsensical ordering, insufficient labels and missing `alt` text. It also includes a 'screen reader wand', which provides a basic view as to what content is visible to screen readers.
 
 For more in-depth screen reader testing we've previously employed [<abbr title="NonVisual Desktop Access">NVDA</abbr> screen reader](http://www.nvaccess.org/), which includes a speech viewer so you can see how the page is read without requiring sound. 
+
+### More resources
+
+* [Level AA checklist](https://www.wuhcag.com/wcag-checklist/).
+* [Color Contrast Checker](http://webaim.org/resources/contrastchecker/)
 

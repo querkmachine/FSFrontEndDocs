@@ -59,7 +59,7 @@ A block will simply be a class name.
 Properties should always appear on a new line by themselves. If a selector only has a single property, feel free to keep that on one line.
 
 ### Shorthand vs. longhand notation
-&zwnj;<mark>CSS should be written in longhand</mark>, with shorthand properties only used when you are *absolutely sure* that a particular value will always apply. Using longhand makes the code consistent and easier to understand (who can even remember the full syntax for properties like `animation`?) 
+&zwnj;<mark>CSS should be written in longhand</mark>, with shorthand properties only used when you are *absolutely sure* that a particular value will always apply. Using longhand makes the code consistent and easier to understand (who can even remember the full syntax for properties like `animation`?) [Shorthand is an anti-pattern.](http://csswizardry.com/2016/12/css-shorthand-syntax-considered-an-anti-pattern/)
 
 Shorthand has the added pitfall in that it resets all related properties to their defaults, even if they’ve been changed in the same selector. 
 
@@ -107,7 +107,7 @@ Do not use the default colour values that exist in CSS except for debugging or r
 If you're in an environment where Autoprefixer isn't available, then you may write vendor prefixes into your code.
 
 ## Atomic design
-> One file to rule them all, One file to find them, One file to bring them all, And in the Sass way merge them.
+> One file to rule them all / One file to find them / One file to bring them all / And in the Sass way merge them.
 
 We use the [atomic design](http://bradfrost.com/blog/post/atomic-web-design/) architecture for structuring Sass files. Atomic design, like BEM, encourages creating modular, reusable components that can work independently of one another. 
 

@@ -32,3 +32,9 @@ If the URL for the CDN is known ahead of time, you can speed up the DNS resoluti
 Our Gulp boilerplate includes `gulp-imagemin` by default, which will losslessly compress UI images that are included in the project. Unfortunately, this doesn't apply to content managed media, that's for the back-enders and the clients to sort out. 
 
 For UI imagery we prefer to use SVGs. CSS-Tricks has [a whole article explaining their benefits over icon fonts](https://css-tricks.com/icon-fonts-vs-svg/).
+
+## Bundling
+
+The switchover to HTTP/2 makes bundling of styles and scripts unnecessary, and while [browser adoption of HTTP/2](http://caniuse.com/#feat=http2) is fairly significant, [for many hosting companies](http://isthewebhttp2yet.com/measurements/adoption.html) it's not. HTTP/2 is also limited in that many browsers only support it over TLS (making HTTPS a requirement). 
+
+Because of the limited adoption and use cases <mark>we are still actively bundling assets</mark> together. When adoption and feasibility picks up, then we'll probably make the switch.

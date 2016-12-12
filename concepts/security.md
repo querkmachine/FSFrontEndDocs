@@ -41,6 +41,8 @@ When creating or modifying a CORS configuration on a separate server or domain, 
 
 For example, an attacker could create their own webpage that references your JavaScript files which are hosted on a CDN. They can then send whatever data they want to web services or AJAX requests in those scripts, potentially to manipulate database information or to enact a <abbr title="Denial of Service">DOS</abbr> attack.
 
+* [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)
+
 ## Sensitive data
 
 Do not store sensitive data (such as passwords) unencrypted. Do not store them in client accessible means such as cookies (which are vulnerable to XSS and CORS attacks) or using local storage.

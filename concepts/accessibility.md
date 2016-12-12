@@ -256,6 +256,8 @@ Believe it or not (and I've known plenty of people who decided not) heavily anim
 
 Simple accessibility testing can be carried out in your browser using the [Tota11y](http://khan.github.io/tota11y/) bookmarklet. This checks for simple violations like poor colour contrast, nonsensical ordering, insufficient labels and missing `alt` text. It also includes a 'screen reader wand', which provides a basic view as to what content is visible to screen readers.
 
+Google have a Chrome extension that adds extra tools for accessibility testing to the built in devtools, [Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en), which includes a panel showing screen reader previews and an accessibility audit task to find common problems. 
+
 For more in-depth screen reader testing we've previously employed [<abbr title="NonVisual Desktop Access">NVDA</abbr> screen reader](http://www.nvaccess.org/), which includes a speech viewer so you can see how the page is read without requiring sound. 
 
 ## More resources

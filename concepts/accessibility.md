@@ -92,6 +92,7 @@ Screen reader users typically navigate using only the keyboard and with speciali
 			<ul class="list-group">
 				<li>Rely solely on appearance to determine hierarchy or state</li>
 				<li>Use other text document formats to convey information (PDFs, Word documents, etc.)</li>
+				<li>Spread content around the page</li>
 			</ul>
 		</div>
 	</div>
@@ -117,6 +118,35 @@ Not all users of screen readers are blind, not all who don't use screen readers 
 			<header class="card-header">Don't</header>
 			<ul class="list-group">
 				<li>Use a font size smaller than 14px, even for small print</li>
+				<li>Separate actions and notifications from their contexts</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+### For users with colour blindness
+
+Colour blindness is a genetic condition wherein the eye develops either without the cones necessary to perceive a colour, or with those cones being deformed or unequally distributed, creating an deficiency in perceiving a colour. There are seven primary types of colour blindness. 
+
+Many (but not all) types of colour blindness are hereditary and result from a genetic mutation in the X chromosome; making colour blindness much more common in men than in women. Approximately 9% of the male population and 0.45% of the female population have [some form of colour blindness](http://www.colour-blindness.com/general/prevalence/). Due to the hereditary nature, prevalence also varies by country.
+
+&zwnj;<mark>Colour blindness does not necessarily mean a complete inability to perceive colour</mark>, just a deficiency in doing so. Colour blindness causes absent colours to become darker (e.g. a person with protoanopia will see bright red as black) and makes otherwise differing colours to appear indistinguisable. 
+
+<div class="grid">
+	<div class="cell">
+		<div class="card card-success">
+			<header class="card-header">Do</header>
+			<ul class="list-group">
+				<li>Ensure that the colours of interactive elements don't cause them to blend into the surroundings</li>
+				<li>Use bright warm/dark cool colour combinations, these tend to have naturally higher contrast</li>
+			</ul>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="card card-error">
+			<header class="card-header">Don't</header>
+			<ul class="list-group">
+				<li>Rely solely on colour to convey information</li>
 			</ul>
 		</div>
 	</div>
@@ -140,7 +170,9 @@ Make common actions simple to perform and easy to find.
 		<div class="card card-error">
 			<header class="card-header">Don't</header>
 			<ul class="list-group">
+				<li>Design interfaces that require significant movement to use (e.g. dropdown navigation menus)</li>
 				<li>Require significant amounts of typing or scrolling to achieve common tasks</li>
+				<li>Have time out windows to complete tasks</li>
 			</ul>
 		</div>
 	</div>
@@ -191,6 +223,7 @@ Typography and the formatting of text plays a large part in things being difficu
 			<header class="card-header">Don't</header>
 			<ul class="list-group">
 				<li>Try to convey complex information in long paragraphs</li>
+				<li>Put too much information in one place</li>
 				<li>Use underlines, italics or capitals for emphasis</li>
 				<li>Force users to remember information</li>
 				<li>Rely on accurate spelling to achieve tasks</li>
@@ -263,6 +296,8 @@ For more in-depth screen reader testing we've previously employed [<abbr title="
 ## More resources
 
 * [Level AA checklist](https://www.wuhcag.com/wcag-checklist/)
-* [Notes on Using ARIA in HTML](http://w3c.github.io/aria-in-html/)
+* [Notes on Using ARIA in HTML](http://w3c.github.io/aria-in-html/) by W3C
 * [Color Contrast Checker](http://webaim.org/resources/contrastchecker/)
-* [Designing Safer Web Animation For Motion Sensitivity](http://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)
+* [Paletton](http://paletton.com) - Colour scheme tool with colour blindness simulation
+* [Integrating Contrast Checks in Your Web Workflow](https://24ways.org/2014/integrating-contrast-checks-in-your-web-workflow/) by Geri Coady
+* [Designing Safer Web Animation For Motion Sensitivity](http://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity) by Val Head

@@ -43,9 +43,11 @@ Given we don't control the content on many of our projects a lot of them are out
 
 Below is a summary of other issues you may need to address, along with select pieces of the Government Digital Service's advice.
 
-### For users on the autistic spectrum
+### For users with autism and attention deficit hyperactivity disorder (ADHD)
 
-The focus here is to remove distracting elements and make it easy to focus on content and determine how a system works.
+Autism is a highly variable neurodevelopmental disorder, typically covering impaired social interaction, communication and behavioural skills. Attention deficit hyperactivity disorder is a neurodevelopmental disorder characcteristed by problems paying atention, excessive activity and difficulty controlling behaviour. Approximately 1.5% of the population suffers from a form of autism. Approximately 2.6% of the adult population has ADHD, rising to 7% for people aged 18 and under.
+
+Interfaces can be improved for users with autism and ADHD by removing distracting elements to make content consumption easier and making interactive systems work in a simple, easily explainable way.
 
 <div class="grid">
 	<div class="cell">
@@ -55,6 +57,7 @@ The focus here is to remove distracting elements and make it easy to focus on co
 				<li>Use a simple colour palette</li>
 				<li>Use descriptive labelling on controls and buttons</li>
 				<li>Build simple and consistent layouts with a clear reading flow</li>
+				<li>Use images and diagrams to convey complex information or instructions</li>
 			</ul>
 		</div>
 	</div>
@@ -64,6 +67,7 @@ The focus here is to remove distracting elements and make it easy to focus on co
 			<ul class="list-group">
 				<li>Use distracting or bright colours</li>
 				<li>Use figures of speech or metaphors to describe functionality</li>
+				<li>Force users to remember information</li>
 			</ul>
 		</div>
 	</div>
@@ -71,7 +75,11 @@ The focus here is to remove distracting elements and make it easy to focus on co
 
 ### For users with screen readers
 
-Screen reader users typically navigate using only the keyboard and with specialised software. Screen readers tend to summarise the contents of a page into a list of headers, so users may never 'see' or interact with the majority of the page contents.
+Screen readers are an assistive software tool typically used by people with visual impairments that allows them to use computers. It does so by reading aloud user interface text when it is interacted with, either with a keyboard or a mouse. Many first- and third-party screen readers exist, with varying functionality between them. Approximately 64% of screen reader users are completely blind, with another 39% having some form of visual impairment ([statistics on screen reader usage](http://webaim.org/projects/screenreadersurvey6/)). 
+
+Interfaces can be improved for screen reader users by writing semantic and logically ordered code, with elements marked up with [<abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) indicating their role and state. Additionally avoid conveying information through mediums other than text, as these are inaccessible to screen readers.
+
+Be aware that screen readers tend to summarise the contents of a page into a list of headers or elements, so users may never 'see' or interact with the majority of the page contents.
 
 <div class="grid">
 	<div class="cell">
@@ -100,7 +108,9 @@ Screen reader users typically navigate using only the keyboard and with speciali
 
 ### For users with low vision
 
-Not all users of screen readers are blind, not all who don't use screen readers aren't. The focus here is in contrast, visibility and making sure things can get big. 
+Many people with visual impairment do not use screen readers as their eyesight is still good enough for their everyday life. They may still have issues with websites that are not designed with vision in mind, however. 
+
+Interfaces can be improved for prople with low vision by making sure there is a suitable size and colour contrast for content. Additionally, make sure that the page can be zoomed and that the interface does not break or become obscured because of zooming. 
 
 <div class="grid">
 	<div class="cell">
@@ -154,7 +164,9 @@ Many (but not all) types of colour blindness are hereditary and result from a ge
 
 ### For users with physical or motor disabilities
 
-Make common actions simple to perform and easy to find. 
+Physical and motor disabilities include a significant number of illnesses: some permanent, some temporary, some genetic, some obtained. For the purposes of this document, physical and motor disability refers to conditions that would prevent a person from being able to comfortably use physical input devices (such as a keyboard or mouse) dexterously. 
+
+Interfaces can be improved for users with physical and motor disabilities by creating simple interfaces that do not require significant interaction to achieve tasks. Additionally, interactive elements should have reasonably large interactive areas. If multiple interactive elements are in close proximity, adequate space should be placed between them to avoid accidentally activating the wrong element. 
 
 <div class="grid">
 	<div class="cell">
@@ -180,7 +192,9 @@ Make common actions simple to perform and easy to find.
 
 ### For users who are deaf or hard of hearing
 
-Don't rely on audio for things!
+Hearing impairment is a partial or total inability to hear or perceive sound. Heading loss can be caused by a number of factors both medical and external, and can be temporary or permanent. Hearing loss becomes more common through ageing due to natural degeneration of the eardrums. Approximately 15% of people aged 18 and over have some sort of trouble hearing. 
+
+Interfaces can be improved for users who are hard of hearing by providing text alternatives to audio.
 
 <div class="grid">
 	<div class="cell">
@@ -205,7 +219,9 @@ Don't rely on audio for things!
 
 ### For users with dyslexia
 
-Typography and the formatting of text plays a large part in things being difficult to read. Underlines, italics and capitalisation change the shape of letters, making life harder for dyslexic people. 
+Dyslexia is a cognitive disorder variously related to either issues with the language processing or visual processing centres of the brain. Dyslexia is often attributed to similar issues with number processing (dyscalculia) and distinguishing directions. Dyslexics often say their difficulty stems from text appearing to shift position or rotate while they're reading, leading to problems determining letter shapes and distinguishing between similar looking letters. Approximately 10% of people in the UK have dyslexia.
+
+Interfaces can be improved for users with dyslexia through appropriate typesetting, such as using typefaces with visually distinct glyphs and having wide spacing between words so that they cannot 'blend together'. Avoid using underlines, italics and capitalisation for emphasis, as these change the visual appearance of the glyph and make the letters harder to distinguish from one another. If possible, reduce the reliance on text content to convey information, and utilise other mediums such as diagrams or video. 
 
 <div class="grid">
 	<div class="cell">
@@ -232,9 +248,11 @@ Typography and the formatting of text plays a large part in things being difficu
 	</div>
 </div>
 
-### For users prone to photoepileptic seizures
+### For users prone to photosensitive epilepsy
 
-Most web content is harmless to people who suffer with photoepileptic problems, however some visual effects—from full-screen jumps to obnoxiously flashing banner ads—can cause issues for some people. This may not be as severe as a seizure, but could merely cause nausea or dizziness. 
+Photosensitive epilepsy is a form of epilepsy which is triggered by visual stimuli such as flashing lights or regular moving patterns. The effects can be limited to nausea or dizziness but can be as severe as seizures. Approximately 4% of people have photosensitive epilepsy.
+
+Most web content is harmless to people who suffer with photosensitive epilepsy, however some visual effects—from full-screen jumps to obnoxiously flashing banner ads—can cause issues for some people. Interfaces can be improved by reducing the use of these effects.
 
 The <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> defines flashing or strobing as being [more than three times a second](https://www.w3.org/TR/WCAG20/#seizure-does-not-violate).
 
@@ -261,7 +279,11 @@ The <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> defines flash
 
 ### For users with motion sensitivity
 
-Believe it or not (and I've known plenty of people who decided not) heavily animated user interface designs can cause headaches, nausea and vertigo in a number of people, typically caused by a disconnect between their actions and the on-screen result. This is particularly common with large scale scroll and zoom effects, such as parallax animation and scrolljacking. [It happens.](http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea)
+Motion sensitivity (also known as motion sickness) is a condition in which there is a disconnect between visually perceived movement and the vestibular system's sense of movement—either from physical moment that cannot be seen, or visual movement that cannot be felt. In a digital context, this also refers to a disconnect between the user's expected motion and the end result (e.g. moving down on the mousewheel scrolling the page right). Motion sickness is capable of affecting anyone, however some people are more prone to it. 
+
+Awareness of motion sensitivity caused by digital user interfaces first became prominent with the launch of [iOS 7's constantly moving homescreen and full-screen animations](http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea). 
+
+Interfaces can be improved for users with motion sensitivity by avoiding large scale scrolling and zooming effects, such as parallax animation and scrolljacking, as well as reducing the amount of uncontrollable visual animation used. 
 
 <div class="grid">
 	<div class="cell">

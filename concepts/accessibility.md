@@ -45,7 +45,7 @@ Below is a summary of other issues you may need to address, along with select pi
 
 ### For users with autism and attention deficit hyperactivity disorder (ADHD)
 
-Autism is a highly variable neurodevelopmental disorder, typically covering impaired social interaction, communication and behavioural skills. Attention deficit hyperactivity disorder is a neurodevelopmental disorder characcteristed by problems paying atention, excessive activity and difficulty controlling behaviour. Approximately 1.5% of the population suffers from a form of autism. Approximately 2.6% of the adult population has ADHD, rising to 7% for people aged 18 and under.
+Autism is a highly variable neurodevelopmental disorder, typically covering impaired social interaction, communication and behavioural skills. Attention deficit hyperactivity disorder is a neurodevelopmental disorder characterised by problems paying attention, excessive activity and difficulty controlling behaviour. Approximately 1.5% of the population suffers from a form of autism. Approximately 2.6% of the adult population has ADHD, rising to 7% for people aged 18 and under.
 
 Interfaces can be improved for users with autism and ADHD by removing distracting elements to make content consumption easier and making interactive systems work in a simple, easily explainable way.
 
@@ -75,7 +75,7 @@ Interfaces can be improved for users with autism and ADHD by removing distractin
 
 ### For users with screen readers
 
-Screen readers are an assistive software tool typically used by people with visual impairments that allows them to use computers. It does so by reading aloud user interface text when it is interacted with, either with a keyboard or a mouse. Many first- and third-party screen readers exist, with varying functionality between them. Approximately 64% of screen reader users are completely blind, with another 39% having some form of visual impairment ([statistics on screen reader usage](http://webaim.org/projects/screenreadersurvey6/)). 
+Screen readers are an assistive software tool typically used by people with visual impairments that allow them to use computers. It does so by reading aloud user interface text when it is interacted with, either with a keyboard or a mouse. Many first- and third-party screen readers exist, with varying functionality between them. Approximately 64% of screen reader users are completely blind, with another 39% having some form of visual impairment ([statistics on screen reader usage](http://webaim.org/projects/screenreadersurvey6/)). 
 
 Interfaces can be improved for screen reader users by writing semantic and logically ordered code, with elements marked up with [<abbr title="Accessible Rich Internet Applications">ARIA</abbr> attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) indicating their role and state. Additionally avoid conveying information through mediums other than text, as these are inaccessible to screen readers.
 
@@ -110,7 +110,7 @@ Be aware that screen readers tend to summarise the contents of a page into a lis
 
 Many people with visual impairment do not use screen readers as their eyesight is still good enough for their everyday life. They may still have issues with websites that are not designed with vision in mind, however. 
 
-Interfaces can be improved for prople with low vision by making sure there is a suitable size and colour contrast for content. Additionally, make sure that the page can be zoomed and that the interface does not break or become obscured because of zooming. 
+Interfaces can be improved for people with low vision by making sure there are a suitable size and colour contrast for content. Additionally, make sure that the page can be zoomed and that the interface does not break or become obscured because of zooming. 
 
 <div class="grid">
 	<div class="cell">
@@ -136,11 +136,11 @@ Interfaces can be improved for prople with low vision by making sure there is a 
 
 ### For users with colour blindness
 
-Colour blindness is a genetic condition wherein the eye develops either without the cones necessary to perceive a colour, or with those cones being deformed or unequally distributed, creating an deficiency in perceiving a colour. There are seven primary types of colour blindness. 
+Colour blindness is a genetic condition wherein the eye develops either without the cones necessary to perceive a colour, or with those cones being deformed or unequally distributed, creating a deficiency in perceiving a colour. There are seven primary types of colour blindness. 
 
-Many (but not all) types of colour blindness are hereditary and result from a genetic mutation in the X chromosome; making colour blindness much more common in men than in women. Approximately 9% of the male population and 0.45% of the female population have [some form of colour blindness](http://www.colour-blindness.com/general/prevalence/). Due to the hereditary nature, prevalence also varies by country.
+Many (but not all) types of colour blindness are hereditary and result from a genetic mutation on the X chromosome; making colour blindness much more common in men than in women. Approximately 9% of the male population and 0.45% of the female population have [some form of colour blindness](http://www.colour-blindness.com/general/prevalence/). Due to the hereditary nature, prevalence also varies by country.
 
-&zwnj;<mark>Colour blindness does not necessarily mean a complete inability to perceive colour</mark>, just a deficiency in doing so. Colour blindness causes absent colours to become darker (e.g. a person with protoanopia will see bright red as black) and makes otherwise differing colours to appear indistinguisable. 
+&zwnj;<mark>Colour blindness does not necessarily mean a complete inability to perceive colour</mark>, just a deficiency in doing so. Colour blindness causes absent colours to become darker (e.g. a person with protanopia will see bright red as black) and makes otherwise differing colours to appear indistinguishable. 
 
 <div class="grid">
 	<div class="cell">
@@ -192,7 +192,7 @@ Interfaces can be improved for users with physical and motor disabilities by cre
 
 ### For users who are deaf or hard of hearing
 
-Hearing impairment is a partial or total inability to hear or perceive sound. Heading loss can be caused by a number of factors both medical and external, and can be temporary or permanent. Hearing loss becomes more common through ageing due to natural degeneration of the eardrums. Approximately 15% of people aged 18 and over have some sort of trouble hearing. 
+Hearing impairment is a partial or total inability to hear or perceive sound. Hearing loss can be caused by a number of factors both medical and external and can be temporary or permanent. Hearing loss becomes more common through ageing due to natural degeneration of the eardrums. Approximately 15% of people aged 18 and over have some sort of trouble hearing. 
 
 Interfaces can be improved for users who are hard of hearing by providing text alternatives to audio.
 
@@ -219,7 +219,7 @@ Interfaces can be improved for users who are hard of hearing by providing text a
 
 ### For users with dyslexia
 
-Dyslexia is a cognitive disorder variously related to either issues with the language processing or visual processing centres of the brain. Dyslexia is often attributed to similar issues with number processing (dyscalculia) and distinguishing directions. Dyslexics often say their difficulty stems from text appearing to shift position or rotate while they're reading, leading to problems determining letter shapes and distinguishing between similar looking letters. Approximately 10% of people in the UK have dyslexia.
+Dyslexia is a cognitive disorder variously related to either issue with the language processing or visual processing centres of the brain. Dyslexia is often attributed to similar issues with number processing (dyscalculia) and distinguishing directions. Dyslexics often say their difficulty stems from text appearing to shift position or rotate while they're reading, leading to problems determining letter shapes and distinguishing between similar looking letters. Approximately 10% of people in the UK have dyslexia.
 
 Interfaces can be improved for users with dyslexia through appropriate typesetting, such as using typefaces with visually distinct glyphs and having wide spacing between words so that they cannot 'blend together'. Avoid using underlines, italics and capitalisation for emphasis, as these change the visual appearance of the glyph and make the letters harder to distinguish from one another. If possible, reduce the reliance on text content to convey information, and utilise other mediums such as diagrams or video. 
 
@@ -252,7 +252,7 @@ Interfaces can be improved for users with dyslexia through appropriate typesetti
 
 Photosensitive epilepsy is a form of epilepsy which is triggered by visual stimuli such as flashing lights or regular moving patterns. The effects can be limited to nausea or dizziness but can be as severe as seizures. Approximately 4% of people have photosensitive epilepsy.
 
-Most web content is harmless to people who suffer with photosensitive epilepsy, however some visual effects—from full-screen jumps to obnoxiously flashing banner ads—can cause issues for some people. Interfaces can be improved by reducing the use of these effects.
+Most web content is harmless to people who suffer with photosensitive epilepsy, however, some visual effects—from full-screen jumps to obnoxiously flashing banner ads—can cause issues for some people. Interfaces can be improved by reducing the use of these effects.
 
 The <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> defines flashing or strobing as being [more than three times a second](https://www.w3.org/TR/WCAG20/#seizure-does-not-violate).
 
@@ -279,9 +279,9 @@ The <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> defines flash
 
 ### For users with motion sensitivity
 
-Motion sensitivity (also known as motion sickness) is a condition in which there is a disconnect between visually perceived movement and the vestibular system's sense of movement—either from physical moment that cannot be seen, or visual movement that cannot be felt. In a digital context, this also refers to a disconnect between the user's expected motion and the end result (e.g. moving down on the mousewheel scrolling the page right). Motion sickness is capable of affecting anyone, however some people are more prone to it. 
+Motion sensitivity (also known as motion sickness) is a condition in which there is a disconnect between visually perceived movement and the vestibular system's sense of movement—either from a physical movement that cannot be seen, or visual movement that cannot be felt. In a digital context, this also refers to a disconnect between the user's expected motion and the end result (e.g. moving down on the mouse wheel scrolling the page right). Motion sickness is capable of affecting anyone, however, some people are more prone to it. 
 
-Awareness of motion sensitivity caused by digital user interfaces first became prominent with the launch of [iOS 7's constantly moving homescreen and full-screen animations](http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea). 
+Awareness of motion sensitivity caused by digital user interfaces first became prominent with the launch of [iOS 7's constantly moving home screen and full-screen animations](http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea). 
 
 Interfaces can be improved for users with motion sensitivity by avoiding large scale scrolling and zooming effects, such as parallax animation and scrolljacking, as well as reducing the amount of uncontrollable visual animation used. 
 
@@ -300,7 +300,7 @@ Interfaces can be improved for users with motion sensitivity by avoiding large s
 		<div class="card card-error">
 			<header class="card-header">Don't</header>
 			<ul class="list-group">
-				<li>Use autoplaying carousels or videos that take up significant portions of the screen</li>
+				<li>Use auto playing carousels or videos that take up significant portions of the screen</li>
 				<li>Change default scroll behaviour (scrolljacking)</li>
 			</ul>
 		</div>
@@ -311,7 +311,7 @@ Interfaces can be improved for users with motion sensitivity by avoiding large s
 
 Simple accessibility testing can be carried out in your browser using the [Tota11y](http://khan.github.io/tota11y/) bookmarklet. This checks for simple violations like poor colour contrast, nonsensical ordering, insufficient labels and missing `alt` text. It also includes a 'screen reader wand', which provides a basic view as to what content is visible to screen readers.
 
-Google have a Chrome extension that adds extra tools for accessibility testing to the built in devtools, [Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en), which includes a panel showing screen reader previews and an accessibility audit task to find common problems. 
+Google have a Chrome extension that adds extra tools for accessibility testing to the built-in devtools, [Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en), which includes a panel showing screen reader previews and an accessibility audit task to find common problems. 
 
 For more in-depth screen reader testing we've previously employed [<abbr title="NonVisual Desktop Access">NVDA</abbr> screen reader](http://www.nvaccess.org/), which includes a speech viewer so you can see how the page is read without requiring sound. 
 

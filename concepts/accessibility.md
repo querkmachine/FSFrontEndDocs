@@ -323,3 +323,4 @@ For more in-depth screen reader testing we've previously employed [<abbr title="
 * [Paletton](http://paletton.com) - Colour scheme tool with colour blindness simulation
 * [Integrating Contrast Checks in Your Web Workflow](https://24ways.org/2014/integrating-contrast-checks-in-your-web-workflow/) by Geri Coady
 * [Designing Safer Web Animation For Motion Sensitivity](http://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity) by Val Head
+* [Reduced motion media query](https://developer.apple.com/library/prerelease/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_1.html#//apple_ref/doc/uid/TP40014305-CH12-DontLinkElementID_60) introduced in Safari 10.1

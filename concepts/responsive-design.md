@@ -10,7 +10,7 @@ It’s rare nowadays that we get any project that isn’t going to be responsive
 * It’s easier to develop something simple and make it progressively more complex than it is to make something that’s already complex simpler;
 * It puts greater focus on building and perfecting the product’s core functionality; 
 * It’s more performant; phones typically have fewer hardware resources and slower connections, so providing what they need first and foremost makes for faster load times; 
-* From smartphones to smartwatches, the devices that people use to browse the web are getting smaller, not larger—focus on mobiles is future-proof;
+* From smartphones to smartwatches, the devices that people use to browse the web are getting smaller, not larger; an increasing number of web users across the world only use mobile devices—focusing on mobiles is future-proof;
 * It’s progressive motherflippin’ enhancement, baby. 
 
 CSS breakpoints should be mobile first, with breakpoints for larger resolutions afterwards. If you still need to support a browser that doesn't support media queries (may god have mercy on your soul) then use feature detection to serve those browsers different CSS. 

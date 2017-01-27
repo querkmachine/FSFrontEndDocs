@@ -9,10 +9,13 @@ Security doesn't much sound like a front-end problem, but like seemingly everyth
 
 A number of browsers prevent access to some HTML5 APIs unless accessed via HTTPS, particularly if these can be used to obtain personal information about a user. This currently includes geolocation lookup and WebRTC.
 
-Other APIs that may soon become HTTPS-only include: device motion and orientation, fullscreen capabilities, and Encrypted Media Extensions (EME)
+Other APIs that may soon become HTTPS-only include: device motion and orientation, fullscreen capabilities, and Encrypted Media Extensions (EME).
+
+As of January 2017, Google Chrome and Mozilla Firefox will mark pages that request password or credit card information as insecure if they are not explicitly served over HTTPS. 
 
 * [Secure Contexts specification](https://w3c.github.io/webappsec-secure-contexts/)
 * [Intent to deprecate: Insecure usage of powerful features](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2LXKVWYkOus/gT-ZamfwAKsJ)
+* [Firefox, Chrome start calling HTTP connections insecure](https://arstechnica.com/information-technology/2017/01/firefox-chrome-start-calling-http-connections-insecure/) on Ars Technica
 
 ## `:visited` links
 Certain browsers will not allow comprehensive styling of `:visited` links, and the `getComputedStyle()` JavaScript function will often 'lie' about the state of `:visited` links. This is to prevent webpages being able to detect what webpages the user has previously visited, as this may disclose personal information.

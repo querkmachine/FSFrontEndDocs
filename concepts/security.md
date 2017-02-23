@@ -48,6 +48,8 @@ For example, an attacker could create their own webpage that references your Jav
 
 ## Sensitive data
 
-Do not store sensitive data (such as passwords) unencrypted. Do not store them in client accessible means such as cookies (which are vulnerable to XSS and CORS attacks) or using local storage.
+Do not store sensitive data (such as passwords) unencrypted. Do not store them in client accessible means such as cookies (which are vulnerable to XSS and CORS attacks) or using local storage. 
+
+Additionally be aware that [some browser autofill features submit more than just the data requested](https://github.com/anttiviljami/browser-autofill-phishing). There's not much you can do about it, but be aware that it happens. 
 
 * [How to Create Totally Secure Cookies](http://blog.teamtreehouse.com/how-to-create-totally-secure-cookies)

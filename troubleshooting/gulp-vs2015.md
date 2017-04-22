@@ -3,9 +3,13 @@ layout: default
 title: The “OMG Microsoft Why” guide to making Node and Gulp work properly in Visual Studio 2015
 ---
 
+<aside class="aside aside--tangent">
+This troubleshooting guide is for Visual Studio 2015 only. For older versions you'll need to run Gulp through an external command line.
+</aside>
+
 The version of Node bundled in Visual Studio 2015 is *ancient*. Even with all of the updates, the most recent version of their IDE comes with Node version 0.10.31, released July 2013. 
 
-This causes problems. Problems like how Node 0.10.31 is so old it doesn’t support the ECMAScript 2015 JavaScript standard (commonly known as ES2015 or ES6). Basically, <mark>you’ll want to fix this problem</mark>, and this document tries to help you do that.
+This causes problems. Problems like how Node 0.10.31 is so old it doesn’t support the ECMAScript 2015 JavaScript standard (commonly known as ES2015 or ES6). Basically, **you’ll want to fix this problem**, and this document tries to help you do that.
 
 There’s also supplementary issues with using Node in Visual Studio unrelated to version, such as environmental binding. I’ll try to help you fix those too.
 
@@ -43,7 +47,7 @@ Ah yes, that’s another problem with using Gulp in Visual Studio.
 
 Some npm modules need to be built according to the environment they’re running on—Windows, Mac, Linux, etc., as well as what version of Gulp is in use. 
 
-&zwnj;<mark>This is done at the point the module is installed by VS2015</mark>, and not during any build/rebuild/clean action. This means that if the Node packages are installed by VS *before* upgrading Node (as above), then the packages will have been built for the environment in Visual Studio, NOT the environment you’ve just created by upgrading Node. 
+&zwnj;**This is done at the point the module is installed by VS2015**, and not during any build/rebuild/clean action. This means that if the Node packages are installed by VS *before* upgrading Node (as above), then the packages will have been built for the environment in Visual Studio, NOT the environment you’ve just created by upgrading Node. 
 
 As it happens, Visual Studio (seemingly) has a tendency to misrepresent what environment it is anyway and will always say that Gulp is running on a 32-bit version of Windows, even when that’s not the case. This will make `node-sass` confused and angry, and it will refuse to work for you as a result. You should probably…
 

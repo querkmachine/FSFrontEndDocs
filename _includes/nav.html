@@ -1,50 +1,39 @@
 <!-- Handcoded for now (sorry!) -->
-<nav class="navigation dashed-top grid" role="navigation">
-	<div class="cell">
-		<ul>
-			<li><a href="{{ site.baseurl }}/">Introduction</a></li>
-		</ul>
-		<ul>
-			<li>Authoring guidelines
-				<ul>
-					<li><a href="{{ site.baseurl }}/authoring-guidelines/authoring-guidelines.html">Authoring guidelines</a></li>
-					<li><a href="{{ site.baseurl }}/authoring-guidelines/writing-html.html">Writing HTML</a></li>
-					<li><a href="{{ site.baseurl }}/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
-					<li><a href="{{ site.baseurl }}/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
-				</ul>
-			</li>
-		</ul>
-		<ul>
-			<li>Tools
-				<ul>
-					<li><a href="{{ site.baseurl }}/tools/browser-support.html">Browser support and testing</a></li>
-					<li><a href="{{ site.baseurl }}/tools/build-tools.html">Build tools and Gulp</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-	<div class="cell">
-		<ul>
-			<li>Front-end concepts
-				<ul>
-					<li><a href="{{ site.baseurl }}/concepts/responsive-design.html">Responsive design</a></li>
-					<li><a href="{{ site.baseurl }}/concepts/user-experience.html">User experience</a></li>
-					<li><a href="{{ site.baseurl }}/concepts/accessibility.html">Accessibility</a></li>
-					<li><a href="{{ site.baseurl }}/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
-					<li><a href="{{ site.baseurl }}/concepts/performance.html">Performance</a></li>
-					<li><a href="{{ site.baseurl }}/concepts/security.html">Security</a></li>
-				</ul>
-			</li>
-		</ul>
-		<ul>
-			<li>Troubleshooting
-				<ul>
-					<li><a href="{{ site.baseurl }}/troubleshooting/gulp-vs2015.html">Using Gulp in VS2015</a></li>
-					<li><a href="{{ site.baseurl }}/troubleshooting/vs-bom.html">Visual Studio drops the BOM</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="{{ site.baseurl }}/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="{{ site.baseurl }}/authoring-guidelines/authoring-guidelines.html">Authoring guidelines</a></li>
+				<li><a href="{{ site.baseurl }}/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="{{ site.baseurl }}/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="{{ site.baseurl }}/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="{{ site.baseurl }}/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="{{ site.baseurl }}/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="{{ site.baseurl }}/tools/build-tools.html">Build tools and Gulp</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="{{ site.baseurl }}/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="{{ site.baseurl }}/concepts/user-experience.html">User experience</a></li>
+				<li><a href="{{ site.baseurl }}/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="{{ site.baseurl }}/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="{{ site.baseurl }}/concepts/performance.html">Performance</a></li>
+				<li><a href="{{ site.baseurl }}/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="{{ site.baseurl }}/troubleshooting/gulp-vs2015.html">Using Gulp in Visual Studio</a></li>
+				<li><a href="{{ site.baseurl }}/troubleshooting/vs-bom.html">Weird/unexplained spaces in layouts</a></li>
+			</ul>
+		</li>
+	</ul>
 </nav>
 
 <!-- {% assign currentpage = page.url | remove: 'index.html' %}

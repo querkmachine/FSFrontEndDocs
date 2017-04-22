@@ -3,7 +3,7 @@ layout: default
 title: Progressive enhancement
 ---
 
-Progressive enhancement. What is there to say about progressive enhancement other than it is <mark>absolutely the only way in which 99% of websites should work</mark>. 
+Progressive enhancement. What is there to say about progressive enhancement other than it is **absolutely the only way in which 99% of websites should work**. 
 
 Progressive enhancement isn't just about making things work without JavaScript. To build with progressive enhancement is to automatically include considerations for accessibility, search engine optimisation and the mobile web. Progressively enhanced websites are inherently more stable, with fewer [bottlenecks and dependencies](http://kryogenix.org/code/browser/everyonehasjs.html) to accessing the really important stuff: the content. 
 

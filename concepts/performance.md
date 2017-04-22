@@ -9,17 +9,19 @@ Harry Roberts has written a [very comprehensive article on front-end performance
 
 ## CSS and JavaScript includes
 
-CSS blocks rendering. The user will be stuck staring at a white screen until all of the page's CSS files have been downloaded. Because of this, we want to download CSS as soon as possible, so <mark>CSS should be included at the top of the document</mark>.
+CSS blocks rendering. The user will be stuck staring at a white screen until all of the page's CSS files have been downloaded. Because of this, we want to download CSS as soon as possible, so **CSS should be included at the top of the document**.
 
-JavaScript blocks downloads. While JavaScript files are downloading, the browser will not download anything else. Because of this, we want to download JavaScript files last so they don't block anything else, so <mark>JavaScript should be included at the bottom of the document</mark>. 
+JavaScript blocks downloads. While JavaScript files are downloading, the browser will not download anything else. Because of this, we want to download JavaScript files last so they don't block anything else, so **JavaScript should be included at the bottom of the document**. 
 
-There are some exceptions to the JavaScript rule. For example, some polyfill scripts may require being loaded in the `<head>` in order to work correctly. These may appear in the `<head>`, but other application code should not.
+<aside class="aside aside--correction">
+There are some exceptions to the JavaScript rule. For example, some polyfill scripts may require being loaded in the `<head>` in order to work correctly. Scripts like this may appear in the `<head>`, but other application code should not.
+</aside>
 
 ## CDNs and DNS
 
-This is mostly out of the hands of a front-ender, but should anyone ever ask, here's a quick answer for what they should do: <mark>put media and JavaScript on the CDN, but don't put CSS there</mark>. 
+This is mostly out of the hands of a front-ender, but should anyone ever ask, here's a quick answer for what they should do: **put media and JavaScript on the CDN, but don't put CSS there**. 
 
-CDNs are generally beneficial. Many browsers limit how many files it will download from a single domain, so spreading assets across multiple domains allows for more parallel downloads and thus a quicker download. However, CSS is part of the page's *critical path*, it's something you want to download as quickly as possible, as soon as possible, because the page won't paint without it. <mark>Putting CSS on the CDN makes it load slower</mark> because it adds the overhead of DNS resolution on top of the usual download effort. Keeping CSS on the same domain as the site removes this overhead. 
+CDNs are generally beneficial. Many browsers limit how many files it will download from a single domain, so spreading assets across multiple domains allows for more parallel downloads and thus a quicker download. However, CSS is part of the page's *critical path*, it's something you want to download as quickly as possible, as soon as possible, because the page won't paint without it. **Putting CSS on the CDN makes it load slower** because it adds the overhead of DNS resolution on top of the usual download effort. Keeping CSS on the same domain as the site removes this overhead. 
 
 If the URL for the CDN is known ahead of time, you can speed up the DNS resolution process by including a `dns-prefetch` meta tag in the `<head>` of the page. This won't make a huge difference, but it gives the resolution process a little head start where it wouldn't otherwise.
 
@@ -37,4 +39,4 @@ For UI imagery we prefer to use SVGs. CSS-Tricks has [a whole article explaining
 
 The switchover to HTTP/2 makes bundling of styles and scripts unnecessary, and while [browser adoption of HTTP/2](http://caniuse.com/#feat=http2) is fairly significant, [for many hosting companies](http://isthewebhttp2yet.com/measurements/adoption.html) it's not. HTTP/2 is also limited in that many browsers only support it over TLS (making HTTPS a requirement). 
 
-Because of the limited adoption and use cases <mark>we are still actively bundling assets</mark> together. When adoption and feasibility picks up, then we'll probably make the switch.
+Because of the limited adoption and use cases **we are still actively bundling assets** together. When adoption and feasibility picks up, then we'll probably make the switch.

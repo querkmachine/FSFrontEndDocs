@@ -9,3 +9,5 @@ pemalink: /:title
 # Build settings
 markdown: kramdown
 highlighter: rouge
+kramdown:
+  parse_block_html: true

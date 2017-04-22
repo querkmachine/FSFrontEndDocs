@@ -1,0 +1,39 @@
+// Get things from settings
+@function map($section, $key, $variant: false) {
+	$return: false;
+	@if $variant {
+		$return: map-get(map-get(map-get($settings, $section), $key), $variant);
+	}
+	@else {
+		$return: map-get(map-get($settings, $section), $key);
+	}
+	@if type_of($return) == 'string' {
+		@return unquote($return);
+	}
+	@else {
+		@return $return;
+	}
+}
+
+// Strip units from values
+@function strip-unit($num) {
+	@return $num / ($num * 0 + 1);
+}
+
+// Convert pixels to rems
+@function convert-to-rem($value, $base-value: $global-base)  {
+	$value: strip-unit($value) / strip-unit($base-value) * 1rem;
+	@if ($value == 0rem) { $value: 0; } // Turn 0rem into 0 for cleanliness
+	@return $value;
+}
+
+// Pixel to rem helper function
+@function rem-calc($values, $base-value: map(typography, base-font-size)) {
+	$max: length($values);
+	@if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+	$emValues: ();
+	@for $i from 1 through $max {
+		$emValues: append($emValues, convert-to-rem(nth($values, $i), $base-value));
+	}
+	@return $emValues;
+}

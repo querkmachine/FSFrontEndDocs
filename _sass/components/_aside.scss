@@ -1,0 +1,47 @@
+$asides: (
+	'default': 'On an aside',
+	'correction': 'Well, actually…',
+	'issue': 'Well that\'s annoying',
+	'tangent': 'The more you know',
+	'opinion': 'A matter of opinion'
+);
+
+.aside {
+	position: relative;
+	margin-left: 5rem;
+	padding: 1rem;
+	border-left: 3px solid #000;
+	@media only screen and (min-width: 64rem) {
+		margin-left: calc(-1rem - 3px);
+	}
+	&::before {
+		display: block;
+		margin-bottom: .5rem;
+	}
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -5rem;
+		width: 4rem;
+		height: 4rem;
+		border-radius: 3px;
+		background-color: red;
+	}
+	@each $key, $text in $asides {
+		&--#{$key} {
+			border-left-color: map(palette, aside, $key);
+			background-color: mix(#fff, map(palette, aside, $key), 90%);
+			&::before {
+				content: $text;
+				color: darken(map(palette, aside, $key), 15%);
+			}
+			&::after {
+				background-color: map(palette, aside, $key);
+			}
+		}
+	}
+	p + p {
+		margin-top: 1rem;
+	}
+}

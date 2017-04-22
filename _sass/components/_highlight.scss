@@ -1,3 +1,24 @@
+.highlight {
+	padding: 1rem;
+	border-left: 3px solid map(palette, neutral, dark);
+	background-color: map(palette, code);
+	overflow: auto;
+	@media only screen and (min-width: 64rem) {
+		margin-left: calc(-1rem - 3px);
+	}
+	[data-lang] {
+		&::before {
+			@include size-small;
+			@include tracking-loose;
+			content: attr(data-lang);
+			display: block;
+			margin-bottom: .5rem;
+			opacity: .67;
+			text-transform: uppercase;
+		}
+	}
+}
+
 // From https://github.com/poole/lanyon/blob/master/public/css/syntax.css
 
 .highlight .hll { background-color: #ffc; }

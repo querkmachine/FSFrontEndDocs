@@ -1,0 +1,84 @@
+// Type scale
+
+@mixin size-normal {
+	font-size: 1rem;
+}
+
+@mixin size-h1 {
+	font-size: 3rem;
+}
+
+@mixin size-h2 {
+	font-size: 2.25rem;
+}
+
+@mixin size-h3 {
+	font-size: 1.5rem;
+}
+
+@mixin size-h4 {
+	font-size: 1.25rem;
+}
+
+@mixin size-small {
+	font-size: .875rem;
+}
+
+
+// Leading
+
+@mixin lead-normal {
+	line-height: 1.5;
+}
+
+@mixin lead-solid {
+	line-height: 1;
+}
+
+@mixin lead-title {
+	line-height: 1.25;
+}
+
+
+// Measures
+
+@mixin measure-normal {
+	max-width: 30em;
+}
+
+@mixin measure-wide {
+	max-width: 34em;
+}
+
+@mixin measure-narrow {
+	max-width: 20em;
+}
+
+
+// Tracking
+
+@mixin tracking-normal {
+	letter-spacing: 0;
+}
+
+@mixin tracking-loose {
+	letter-spacing: .1em;
+}
+
+@mixin tracking-looser {
+	letter-spacing: .25em;
+}
+
+@mixin tracking-tight {
+	letter-spacing: -.05em;
+}
+
+
+// Truncation
+// Probably shouldn't ever need this, but here just in case
+
+@mixin truncate {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}

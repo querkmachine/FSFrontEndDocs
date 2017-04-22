@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: map(typography, family);
+	color: #202020;	
+}
+
+a {
+	color: map(palette, link, default);
+	text-decoration: none;
+	&:hover,
+	&:focus {
+		color: map(palette, link, hover);
+		text-decoration: underline;
+	}
+}
+
+.wrapper {
+	width: 92%;
+	max-width: 50rem;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.navigation {
+	@include lead-normal;
+	margin-top: 3rem;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	border-top: 2px dotted map(palette, neutral, lighter);
+	border-bottom: 2px dotted map(palette, neutral, lighter);
+	ul {
+		list-style-type: none;
+	}
+	li {
+		break-inside: avoid;
+		ul {
+			margin-bottom: 1rem;
+			margin-left: 2rem;
+		}
+	}
+	> ul {
+		column-width: 20em;
+		column-gap: 2rem;
+		> li {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+.masthead {
+
+}
+
+.footer {
+	@include size-small;
+	@include lead-normal;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	text-align: center;
+}

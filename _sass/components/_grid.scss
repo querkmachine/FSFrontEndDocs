@@ -1,0 +1,10 @@
+.grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	> * {
+		@include measure-narrow;
+		margin-right: 2rem;
+		break-inside: avoid;
+	}
+}

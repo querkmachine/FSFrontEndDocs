@@ -26,7 +26,7 @@ Certain browsers will not allow comprehensive styling of `:visited` links, and t
 
 Did you know that pages pass information about themselves through JavaScript when you click on a link? Did you know that information includes a cross-origin reference to the `window.opener` object, which the new webpage can manipulate to change the previous page, such as redirecting it to a malicious site?
 
-&zwnj;<mark>It's true! Terrifying and true!</mark> Luckily, this behaviour can be prevented by adding `rel="noopener"` to any `target="_blank"` links. This can even bring [some performance benefits](https://jakearchibald.com/2016/performance-benefits-of-rel-noopener/) for pages on the same domain, too!
+&zwnj;**It's true! Terrifying and true!** Luckily, this behaviour can be prevented by adding `rel="noopener"` to any `target="_blank"` links. This can even bring [some performance benefits](https://jakearchibald.com/2016/performance-benefits-of-rel-noopener/) for pages on the same domain, too!
 
 This only needs to be applied to links with `target="_blank"`. Also note that IE/Edge doesn't support `rel="noopener"` at this time. 
 
@@ -36,11 +36,11 @@ This only needs to be applied to links with `target="_blank"`. Also note that IE
 
 *Any* user input that is manipulated by JavaScript or output on the page should include code to strip any malicious JavaScript or HTML injection attempts. The [HTML5 Security Cheatsheet](http://html5sec.org) has a list of some common attack vectors and ways to prevent them.
 
-In an ideal world, <mark>user inputs should be transmitted to and sanitised on the server side</mark> before being output on the page. 
+In an ideal world, **user inputs should be transmitted to and sanitised on the server side** before being output on the page. 
 
 ## Cross-Origin Resource Sharing (CORS)
 
-When creating or modifying a CORS configuration on a separate server or domain, never resort to `Access-Control-Allow-Origin: *`. <mark>Always specify specific domains</mark>, otherwise an attacker can manipulate information from outside of your website.
+When creating or modifying a CORS configuration on a separate server or domain, never resort to `Access-Control-Allow-Origin: *`. **Always specify specific domains**, otherwise an attacker can manipulate information from outside of your website.
 
 For example, an attacker could create their own webpage that references your JavaScript files which are hosted on a CDN. They can then send whatever data they want to web services or AJAX requests in those scripts, potentially to manipulate database information or to enact a <abbr title="Denial of Service">DOS</abbr> attack.
 

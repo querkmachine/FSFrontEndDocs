@@ -7,15 +7,32 @@ title: Browser and device support
 
 Browser support requirements differ depending on the needs of the project, however, we typically build only for browsers that are still officially supported by their vendors. (This means you don't need to support IE8 anymore, thank god.)
 
-|  |IE 9|IE 10|IE 11|Edge|Chrome|Firefox|Safari|
-|:-|:----:|:-----:|:-----:|:-----:|:----:|:-----:|:----:|
-|Windows Vista|~| | | |✓|✓| |
-|Windows 7    |~|✓|✓| |✓|✓| |
-|Windows 8/8.1| |✓|✓| |✓|✓| |
-|Windows 10   | | |✓|✓|✓|✓| |
-|Mac OS 10.9  | | | | |✓|✓|✓|
-|Mac OS 10.10 | | | | |✓|✓|✓|
-|Mac OS 10.11 | | | | |✓|✓|✓|
+|  |Microsoft<br>IE 11|Microsoft<br>Edge|Google<br>Chrome|Mozilla<br>Firefox|Apple<br>Safari|Samsung<br>Internet|
+|:-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|Windows 7                |✓| |✓|✓| | |
+|Windows 8/8.1            |✓| |✓|✓| | |
+|Windows 10               |✓|✓|✓|✓| | |
+|Windows Phone 8          |✓| | | | | |
+|Windows 10 Mobile        | |✓| | | | |
+|Android 4.x "KitKat"     | | |✓| | | |
+|Android 5.x "Lollipop"   | | |✓| | | |
+|Android 6.x "Marshmallow"| | |✓| | |<abbr title="Where applicable">✓</abbr>|
+|Android 7.x "Nougat"     | | |✓| | |<abbr title="Where applicable">✓</abbr>|
+|OS X 10.10 "Yosemite"   | | |✓|✓|✓| |
+|OS X 10.11 "El Capitan" | | |✓|✓|✓| |
+|macOS 10.12 "Sierra"     | | |✓|✓|✓| |
+|iOS 9.x                  | | | | |✓| |
+|iOS 10.x                 | | | | |✓| |
+
+<aside class="aside aside--tangent">
+Desktop support for Opera is counted under Chrome's support, as the two share identical rendering engines. Mobile versions of Opera are not supported.
+
+Support for all iOS browsers is counted under Safari's support, as all iOS browsers use Safari's rendering engine. 
+</aside>
+
+<aside class="aside aside--tangent">
+This table was last updated in April 2017, when Microsoft finally ended support for Windows Vista (and IE 9 along with it).
+</aside>
 
 ### Browser testing
 
@@ -25,18 +42,11 @@ We use [Browserstack](http://browserstack.com) for browser testing. You'll have 
 
 Our device testing methods are a lot more freeform. We have a number of devices which can be found both in the device drawer and with Kim, but don’t worry about finding every edge case yourself—that’s a job that the QA team will carry out for you.
 
-As a standard we support the following mobile operating systems:
-
-* iOS 9 and above (Safari only)
-* Android 4.2 and above  (Internet on Samsung devices, Chrome elsewhere)
-* Windows Phone 8 and above (IE only)
-* Windows 10 Mobile and above (Edge only) 
-
 ### Device testing
 
-These are the devices we currently have available to test. <mark>This list is incomplete. The devices and OS versions may not be accurate.</mark>
+These are the devices we currently have available to test. **This list is incomplete. The devices and OS versions may not be accurate.**
 
-#### FelineSoft Device Lab
+#### Felinesoft Device Lab
 
 |Manufacturer|Model|Operating system|Released|
 |:-----------|:----|:---------------|:-------|
@@ -51,7 +61,7 @@ These are the devices we currently have available to test. <mark>This list is in
 
 #### Kim's Device Lab
 
-These devices belong to Kim and not FelineSoft, however, are available for internal testing purposes. Note that not all devices may be available at any one time.
+These devices belong to Kim and not Felinesoft, however, are available for internal testing purposes. Note that not all devices may be available at any one time.
 
 |Manufacturer|Model|Operating system|Released|
 |:-----------|:----|:---------------|:-------|
@@ -63,5 +73,4 @@ These devices belong to Kim and not FelineSoft, however, are available for inter
 |HTC|One M8|Android 5.0|2014|
 |LG|GT540 Optimus|Android 2.1|2010|
 |Nintendo|New Nintendo 3DS|Ninendo 3DS system software 10.x|2015|
-|<del>Nokia</del> <span class="tag tag-error">broken</span>|<del>Lumia 800</del>|<del>Windows Phone 7.5</del>|<del>2011</del>|
 |Sony|Xperia S|Android 4.4|2012|

@@ -1,0 +1,37 @@
+$settings: (
+	typography: (
+		family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+		base-font-size: 16px
+	),
+	palette: (
+		highlight: #fff59d,
+		code: #efeff0,
+		link: (
+			default: #2196f3,
+			hover: #1976d2
+		),
+		aside: (
+			default: #efeff0,
+			correction: #f5b6dc,
+			issue: #da9498,
+			tangent: #b2b1f2,
+			opinion: #bd9ec1
+		),
+		neutral: (
+			lightest: #efeff0,
+			lighter: #b9b9c0,
+			light: #8c8c9c,
+			mid: #778,
+			dark: #636373,
+			darker: #3f3f46,
+			darkest: #1f1f20
+		)
+	),
+	layers: (
+		modal: 9000,
+		backdrop: 8000,
+		overlay: 1000,
+		default: 1,
+		underlay: -1
+	),
+);

@@ -5,21 +5,25 @@ title: Authoring guidelines
 
 Formatting is the most basic means of maintaining uniformity in project code. A misplaced bracket or oddly intended line can turn functional code into an illegible mess, and worse still can lead to your fancy new JavaScript function breaking absolutely everything. [It happens to the best of us.](http://embeddedgurus.com/barr-code/2014/03/apples-gotofail-ssl-security-bug-was-easily-preventable/)
 
-At the most basic level we expect:
+Simply put, we use:
 
-* four (4) space indents, no tabs;
-* sensible line lengths;
-* multi-line code;
-* meaningful use of whitespace.
+* Four space indentation, no tabs.
+* Uncapped, but sensible line lengths.
+* Meaningful use of whitespace.
+* Multi-line code blocks.
 
 ## Indentation, brackets and line breaks
-We use <mark>four spaces for indentation</mark>; the sole reason for this being it's the standard in Visual Studio. Lucky for all you tab-loving developers out there (for it's obviously the superior option) Visual Studio will automatically convert tabs into four spaces for you. 
+We use **four spaces for indentation**; the sole reason for this being it's the standard in Visual Studio. Lucky for all you tab-loving developers out there Visual Studio will automatically convert tabs into four spaces for you. 
 
-If you're copying tabbed code from elsewhere, you can format it by going to `Edit > Advanced > Untabify Selected Lines` in Visual Studio.
+<aside class="aside aside--opinion">
+Hard tabs are obviously the superior option. More consistent, more configurable, easier to navigate with keyboards. What's not to love?
+</aside>
 
-We do not enforce any sort of line length in front-end code. This *isn’t* an excuse to make ridiculously long lines of code, however! <mark>Add new lines and indents where it is sensible to do so</mark>, maintaining a visual hierarchy of tags/brackets both looks good and makes things much easier to debug on sight. 
+If you're copying tabbed code from elsewhere, you can format it to spaces by going to `Edit > Advanced > Untabify Selected Lines` in Visual Studio.
 
-&zwnj;<mark>Brackets always go on the same line</mark> as the selector or function that uses it. There’s little benefit to putting brackets on new lines by themselves, especially if you’re already using indents to show hierarchy. Note that this differs to FelineSoft's C# standard, which expects brackets to appear alone on a new line. 
+We do not enforce any sort of line length in front-end code. This *isn’t* an excuse to make ridiculously long lines of code, however! **Add new lines and indents where it is sensible to do so**, maintaining a visual hierarchy of tags/brackets both looks good and makes things much easier to debug on sight. 
+
+**Brackets always go on the same line** as the selector or function that uses it. There’s little benefit to putting brackets on new lines by themselves, especially if you’re already using indents to show hierarchy. Note that this differs to Felinesoft's C# standard, which expects brackets to appear alone on a new line. 
 
 {% highlight css %}
 #tardis {

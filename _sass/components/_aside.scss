@@ -26,7 +26,12 @@ $asides: (
 		width: 4rem;
 		height: 4rem;
 		border-radius: 3px;
-		background-color: red;
+		background-size: 4rem 4rem;
+		image-rendering: -moz-crisp-edges;
+		image-rendering: -o-crisp-edges;
+		image-rendering: -webkit-optimize-contrast;
+		image-rendering: crisp-edges;
+		-ms-interpolation-mode: nearest-neighbor;
 	}
 	@each $key, $text in $asides {
 		&--#{$key} {
@@ -38,6 +43,7 @@ $asides: (
 			}
 			&::after {
 				background-color: map(palette, aside, $key);
+				background-image: url('aside/#{$key}.png');
 			}
 		}
 	}

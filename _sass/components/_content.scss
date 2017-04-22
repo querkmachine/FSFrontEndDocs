@@ -76,10 +76,18 @@
 		border-bottom: 1px dotted;
 		cursor: help;
 	}
-	blockquote p {
-		@include size-h3;
-		font-style: italic;
-		color: map(palette, neutral, dark);
+	blockquote {
+		p {
+			@include size-h3;
+			@include lead-title;
+			font-style: italic;
+			color: map(palette, neutral, dark);
+			@media only screen and (min-width: 52rem) {
+				text-indent: -.5em;
+			}
+			&::before { content: '\201c'; }
+			&:last-child::after { content: '\201d'; }
+		}
 	}
 	table {
 		@extend .table;

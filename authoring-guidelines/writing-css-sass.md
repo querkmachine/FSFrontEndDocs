@@ -126,7 +126,7 @@ Autoprefixer doesn't cover everything. [Text stroke](http://caniuse.com/#feat=te
 If you're in an environment where Autoprefixer isn't available, then you may write vendor prefixes into your code.
 
 ## Atomic design
-> One file to rule them all / One file to find them / One file to bring them all / And in the Sass way merge them.
+> One file to rule them all<br>One file to find them<br>One file to bring them all<br>And in the Sass way merge them.
 
 We use the [atomic design](http://bradfrost.com/blog/post/atomic-web-design/) architecture for structuring Sass files. Atomic design, like BEM, encourages creating modular, reusable components that can work independently of one another. 
 

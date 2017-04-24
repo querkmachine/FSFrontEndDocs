@@ -6,7 +6,7 @@ title: User experience
 User experience (or UX) as a concept can best be summed up with the phrase [‘don’t make me think’](http://www.amazon.co.uk/Dont-Make-Me-Think-Usability/dp/0321344758)—somewhat ironic given that good UX takes quite a lot of thought.
 
 <aside class="aside aside--issue">
-Unfortunately, a lot of our work is in the capacity of a development agency, not a design one, so the visual appearance of what we’re building is often set in stone. Regardless, if you find something that is blatantly horrible we *absolutely* encourage you to try and apply some of the below principles to make things nicer for the end user; and if you can’t, just **kick and scream and raise hell until it gets done properly**. That’s also good. 
+Unfortunately, a lot of our work is in the capacity of a development agency, not a design one, so the visual appearance of what we’re building is often set in stone. Regardless, if you find something that is blatantly horrible you are *absolutely* encouraged to try and apply some of the below principles to make things nicer for the end user; and if you can’t, just **raise hell until it gets done properly**. That’s also good. 
 </aside>
 
 Natalie is the company’s current UX specialist. If in doubt about something feel free to consult her. 
@@ -41,7 +41,7 @@ In web design, using pattern libraries and design systems aids in creating 'inte
 
 Perhaps an oversimplification, but basically means that **something should be designed for the specific task it fulfils**. 
 
-In website design this is considered from a visual perspective; Links and buttons should look like they can be clicked, for example. This can be with the application of skeuomorphism, for example, having a credit card details form visually resemble a credit card.
+In website design this is considered from a visual perspective; links and buttons should look like they can be clicked, for example. This can be made easier with the application of skeuomorphic principles, for example, having a credit card details form visually resemble a credit card.
 
 ### Mapping
 

@@ -21,7 +21,7 @@ For example:
 * Terms and conditions (not 'Terms and Conditions')
 * RSVP to this event (not 'RSVP to this Event')
 
-## Labelling 
+## Labelling
 
 Labels should be clear and easy to understand. Try and be as specific as possible about **what things do from a user's perspective**—these will typically involve verbs and actions—and not from a technical perspective. Aim for short, concise labels, however do not sacrifice clarity for brevity. A longer label that adequately describes a function is better than a shorter label that doesn't.
 
@@ -59,7 +59,7 @@ For example:
 * Enter your email address (not 'Enter email address')
 * Email me when my application status changes (not 'Email when application status changes')
 
-## Error mesaging
+## Error messaging
 
 ### Don't use redundant words
 
@@ -71,7 +71,7 @@ For example:
 
 ### Use contractions
 
-Say thanks, not 'thank you'. Say we've, not 'we have'. Using fully expanded phrases shoulds overly formal and robotic (it's literally how Data talks in *Star Trek: The Next Generation*!)
+Say thanks, not 'thank you'. Say we've, not 'we have'. Using fully expanded phrases should overly formal and robotic (it's literally how Data talks in *Star Trek: The Next Generation*!)
 
 For example:
 
@@ -83,7 +83,7 @@ Passive voice sounds impersonal and robotic.
 
 For example:
 
-* We couldn't change your password (not 'Your passwould could not be changed')
+* We couldn't change your password (not 'Your password could not be changed')
 
 ### Talk like a human&hellip;
 
@@ -95,7 +95,7 @@ For example:
 
 ### &hellip;Just don't be *too* informal
 
-Being too jokey or light-hearted can seem patronising to a user, particularly if something has just gone wrong. 
+Being too jokey or light-hearted can seem patronising to a user, particularly if something has just gone wrong.
 
 For example:
 
@@ -121,15 +121,15 @@ For example:
 
 ### Use sentences
 
-Write errors and feedback messages as though they were standard copy, using sentence case and full, correct punctuation. 
+Write errors and feedback messages as though they were standard copy, using sentence case and full, correct punctuation.
 
 For example:
 
 * We couldn't change your password.  (not 'We Couldn't Change Your Password')
 
-### Tell them what to do 
+### Tell them what to do
 
-If an error is displayed, **tell the user what they can do** to rectify the error in addition to the cause of the error. 
+If an error is displayed, **tell the user what they can do** to rectify the error in addition to the cause of the error.
 
 For example:
 

@@ -27,7 +27,7 @@ Browser support requirements differ depending on the needs of the project, howev
 <aside class="aside aside--tangent">
 Desktop support for Opera is counted under Chrome's support, as the two share identical rendering engines. Mobile versions of Opera are not supported.
 
-Support for all iOS browsers is counted under Safari's support, as all iOS browsers use Safari's rendering engine. 
+Support for all iOS browsers is counted under Safari's support, as all iOS browsers use Safari's rendering engine.
 </aside>
 
 <aside class="aside aside--tangent">
@@ -72,5 +72,5 @@ These devices belong to Kim and not Felinesoft, however, are available for inter
 |BLU|Win JR|Windows Phone 8.1|2014|
 |HTC|One M8|Android 5.0|2014|
 |LG|GT540 Optimus|Android 2.1|2010|
-|Nintendo|New Nintendo 3DS|Ninendo 3DS system software 10.x|2015|
+|Nintendo|New Nintendo 3DS|Nintendo 3DS system software 10.x|2015|
 |Sony|Xperia S|Android 4.4|2012|

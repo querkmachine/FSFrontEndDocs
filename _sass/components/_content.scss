@@ -73,7 +73,8 @@
 		box-shadow: 0 0 0 1px map(palette, neutral, lighter), 0 2px 0 0 #fff, 0 2px 0 1px map(palette, neutral, lighter);
 	}
 	abbr {
-		border-bottom: 1px dotted;
+		border-bottom: 2px dotted;
+		text-decoration: none;
 		cursor: help;
 	}
 	blockquote {

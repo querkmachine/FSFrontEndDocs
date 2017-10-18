@@ -5,34 +5,27 @@ title: Browser and device support
 
 ## Browser support
 
-Browser support requirements differ depending on the needs of the project, however, we typically build only for browsers that are still officially supported by their vendors. (This means you don't need to support IE8 anymore, thank god.)
+Browser support requirements differ depending on the needs of the project, however, we typically build for the 'latest minus one'—we support the latest version of a browser, plus the most recent prior version. We also only support browsers that are still officially supported by their vendors. (Which means you don't need to support IE8–10 anymore, thank god.)
 
-|  |Microsoft<br>IE 11|Microsoft<br>Edge|Google<br>Chrome|Mozilla<br>Firefox|Apple<br>Safari|Samsung<br>Internet|
+<aside class="aside aside--tangent">
+This table was last updated on the 18th October 2017, to account for the newest releases of Android, iOS and macOS; and to discontinue support for Windows Phone 8, Android 4, iOS 9, and macOS 10.10.
+</aside>
+
+|  |Microsoft<br>IE<br>11|Microsoft<br>Edge<br>15, 16|Google<br>Chrome<br>60, 61|Mozilla<br>Firefox<br>55, 56|Apple<br>Safari<br>10.x, 11|Samsung<br>Internet<br>5.4|
 |:-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |Windows 7                |✓| |✓|✓| | |
 |Windows 8/8.1            |✓| |✓|✓| | |
 |Windows 10               |✓|✓|✓|✓| | |
-|Windows Phone 8          |✓| | | | | |
 |Windows 10 Mobile        | |✓| | | | |
-|Android 4.x "KitKat"     | | |✓| | | |
 |Android 5.x "Lollipop"   | | |✓| | | |
-|Android 6.x "Marshmallow"| | |✓| | |<abbr title="Where applicable">✓</abbr>|
+|Android 6.x "Marshmallow"| | |✓| | | |
 |Android 7.x "Nougat"     | | |✓| | |<abbr title="Where applicable">✓</abbr>|
-|OS X 10.10 "Yosemite"   | | |✓|✓|✓| |
-|OS X 10.11 "El Capitan" | | |✓|✓|✓| |
-|macOS 10.12 "Sierra"     | | |✓|✓|✓| |
-|iOS 9.x                  | | | | |✓| |
-|iOS 10.x                 | | | | |✓| |
-
-<aside class="aside aside--tangent">
-Desktop support for Opera is counted under Chrome's support, as the two share identical rendering engines. Mobile versions of Opera are not supported.
-
-Support for all iOS browsers is counted under Safari's support, as all iOS browsers use Safari's rendering engine.
-</aside>
-
-<aside class="aside aside--tangent">
-This table was last updated in April 2017, when Microsoft finally ended support for Windows Vista (and IE 9 along with it).
-</aside>
+|Android 8.x "Oreo"       | | |✓| | |<abbr title="Where applicable">✓</abbr>|
+|OS X 10.11 "El Capitan"  | | |✓|✓|<abbr title="Safari 10.1, 11">✓</abbr>| |
+|macOS 10.12 "Sierra"     | | |✓|✓|<abbr title="Safari 10.1, 11">✓</abbr>| |
+|macOS 10.12 "High Sierra"| | |✓|✓|<abbr title="Safari 10.1, 11">✓</abbr>| |
+|iOS 10.3                 | | | | |<abbr title="Safari 10.3, 11">✓</abbr>| |
+|iOS 11.0                 | | | | |<abbr title="Safari 10.3, 11">✓</abbr>| |
 
 ### Browser testing
 

@@ -9,7 +9,7 @@ User experience (or UX) as a concept can best be summed up with the phrase [‘d
 Unfortunately, a lot of our work is in the capacity of a development agency, not a design one, so the visual appearance of what we’re building is often set in stone. Regardless, if you find something that is blatantly horrible you are *absolutely* encouraged to try and apply some of the below principles to make things nicer for the end user; and if you can’t, just **raise hell until it gets done properly**. That’s also good. 
 </aside>
 
-Natalie is the company’s current UX specialist. If in doubt about something feel free to consult her. 
+Cristiane is the company’s current UX specialist. If in doubt about something feel free to consult her. 
 
 ## Norman's user-centric design principles
 

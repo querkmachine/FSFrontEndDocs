@@ -23,10 +23,10 @@ Visual Studio provides a temporary way of resolving this issue:
 3. A dialog with encoding and line ending options will appear. In the Encoding dropdown, select `Unicode (UTF-8 without signature)`. This option is near the bottom of the list. 
 4. Click OK. 
 
-Visual Studio will remember this setting for as long as the file is still open, but will rever to saving with BOM after the file has been closed. 
+Visual Studio will remember this setting for as long as the file is still open, but will revert to saving with BOM after the file has been closed. 
 
 <aside class="aside aside--issue">
-Visual Studio supposedly has a setting to never add BOM characters to files not created with them in the application Options panel, under `Text Editor > General`. I've never actually seen this work, though. ¯\_(ツ)_/¯
+Visual Studio supposedly has a setting to never add BOM characters to files not created with them in the application Options panel, under `Text Editor > General`. I've never actually seen this work, though. ¯\\_(ツ)_/¯
 </aside>
 
 ### Extensions

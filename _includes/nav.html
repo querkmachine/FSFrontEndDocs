@@ -1,4 +1,3 @@
-<!-- Handcoded for now (sorry!) -->
 <nav class="navigation" role="navigation">
 	<ul>
 		<li><a href="{{ site.baseurl }}/">Introduction</a></li>
@@ -32,23 +31,9 @@
 		<li>Troubleshooting
 			<ul>
 				<li><a href="{{ site.baseurl }}/troubleshooting/gulp-vs2015.html">Using Gulp in Visual Studio</a></li>
+				<li><a href="{{ site.baseurl }}/troubleshooting/webfonts-on-azure.html">Using webfonts on Azure hosting</a></li>
 				<li><a href="{{ site.baseurl }}/troubleshooting/vs-bom.html">Weird/unexplained spaces in layouts</a></li>
 			</ul>
 		</li>
 	</ul>
 </nav>
-
-<!-- {% assign currentpage = page.url | remove: 'index.html' %}
-<nav class="navigation" role="navigation">
-	<ul>
-		{% for page in site.pages %}
-		{% unless page.exclude_from_nav %}
-		{% if page.title %}
-		<li class="navigation__item{% if page.url == currentpage %} navigation__item--current{% endif %}">
-			<a class="navigation__link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-		</li>
-		{% endif %}
-		{% endunless %}
-		{% endfor %}
-	</ul>
-</nav> -->

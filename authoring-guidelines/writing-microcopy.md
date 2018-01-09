@@ -13,7 +13,9 @@ This page is inspired by [FutureLearn's page on microcopy](https://www.futurelea
 
 ## Capitalisation
 
-Interface labels should be **written in sentence style**, with the first word capitalised and other words lowercase, unless they are proper nouns or proper adjectives.
+Interface labels should be **written in sentence case**, with the first word capitalised and other words lowercase, unless they are proper nouns or proper adjectives. 
+
+This is the way most things are written, and users can read sentence case much faster and with more ease than all caps or title case. 
 
 For example:
 

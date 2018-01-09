@@ -5,12 +5,12 @@ title: Progressive enhancement
 
 Progressive enhancement. What is there to say about progressive enhancement other than it is **absolutely the only way in which 99% of websites should work**. 
 
-Progressive enhancement isn't just about making things work without JavaScript. To build with progressive enhancement is to automatically include considerations for accessibility, search engine optimisation and the mobile web. Progressively enhanced websites are inherently more stable, with fewer [bottlenecks and dependencies](http://kryogenix.org/code/browser/everyonehasjs.html) to accessing the really important stuff: the content. 
+Progressive enhancement isn't just about making things work without JavaScript. To build with progressive enhancement is to automatically include considerations for accessibility, search engine optimisation, performance and the mobile web. Progressively enhanced websites are inherently more stable, with fewer [bottlenecks and dependencies](http://kryogenix.org/code/browser/everyonehasjs.html) to accessing the really important stuff: the content. 
 
 > It's called the world-wide web, not the wealthy-western web.
 
 Use [Modernizr](https://modernizr.com/) to feature detect any complex functionality. A List Apart has a short series of articles from 2008 on [understanding](http://alistapart.com/article/understandingprogressiveenhancement), [implementing](http://alistapart.com/article/progressiveenhancementwithcss), and [working with JavaScript](http://alistapart.com/article/progressiveenhancementwithjavascript) whilst working with progressive enhancement.
 
-Where progressive enhancement is not possible due to functional requirements, make sure to [keep your JavaScript unobtrusive](http://blog.teamtreehouse.com/unobtrusive-javascript-important) and provide fallback content or messaging. 
+In the rare situation where progressive enhancement is not possible due to functional requirements, make sure to [keep your JavaScript unobtrusive](http://blog.teamtreehouse.com/unobtrusive-javascript-important) and provide fallback content or messaging. (Yes, I said rare, **[progressive web apps](https://en.wikipedia.org/wiki/Progressive_web_app) are a thing**.)
 
 Other than that, just write sensible, semantic HTML and it should all come together nicely.

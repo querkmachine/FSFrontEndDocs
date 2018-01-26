@@ -8,10 +8,10 @@ title: Browser and device support
 Browser support requirements differ depending on the needs of the project, however, we typically build for the 'latest minus one'—we support the latest version of a browser, plus the most recent prior version. We also only support browsers that are still officially supported by their vendors. (Which means you don't need to support IE8–10 anymore, thank god.)
 
 <aside class="aside aside--tangent">
-This table was last updated on the 18th October 2017, to account for the newest releases of Android, iOS and macOS; and to discontinue support for Windows Phone 8, Android 4, iOS 9, and macOS 10.10. It was amended on 20th November to remove instances of incompatible OS/browser combinations.
+This table was last updated on the 26th January 2018 to account for the newest browser versions and newer versions of iOS. 
 </aside>
 
-|  |Microsoft<br>IE<br>11|Microsoft<br>Edge<br>15, 16|Google<br>Chrome<br>60, 61|Mozilla<br>Firefox<br>55, 56|Apple<br>Safari<br>10.x, 11.x|Samsung<br>Internet<br>5.4|
+|  |Microsoft<br>IE<br>11|Microsoft<br>Edge<br>15, 16|Google<br>Chrome<br>63, 64|Mozilla<br>Firefox<br>63, 64|Apple<br>Safari<br>10.x, 11.x|Samsung<br>Internet<br>6.2|
 |:-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |Windows 7                |✓| |✓|✓| | |
 |Windows 8/8.1            |✓| |✓|✓| | |
@@ -24,8 +24,8 @@ This table was last updated on the 18th October 2017, to account for the newest 
 |OS X 10.11 "El Capitan"  | | |✓|✓|<abbr title="Safari 10.1, 11">✓</abbr>| |
 |macOS 10.12 "Sierra"     | | |✓|✓|<abbr title="Safari 10.1, 11">✓</abbr>| |
 |macOS 10.13 "High Sierra"| | |✓|✓|<abbr title="Safari 11 only">✓</abbr>| |
-|iOS 10.3                 | | | | |<abbr title="Safari 10.3 only">✓</abbr>| |
-|iOS 11.0                 | | | | |<abbr title="Safari 11 only">✓</abbr>| |
+|iOS 10.3                 | | | | |<abbr title="Safari 10.3, 11">✓</abbr>| |
+|iOS 11.x                 | | | | |<abbr title="Safari 11.x only">✓</abbr>| |
 
 ### Browser testing
 

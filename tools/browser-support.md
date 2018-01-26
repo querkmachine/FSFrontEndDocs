@@ -11,6 +11,10 @@ Browser support requirements differ depending on the needs of the project, howev
 This table was last updated on the 26th January 2018 to account for the newest browser versions and newer versions of iOS. 
 </aside>
 
+<aside class="aside aside--issue">
+Microsoft Edge is a bit weird with version numbers, in that it has two of them—one for the version of the browser (Edge), and one for the version of the rendering engine it uses (EdgeHTML). We're web developers, so we care about the EdgeHTML version. Those numbers are used in this table.
+</aside>
+
 |  |Microsoft<br>IE<br>11|Microsoft<br>Edge<br>15, 16|Google<br>Chrome<br>63, 64|Mozilla<br>Firefox<br>63, 64|Apple<br>Safari<br>10.x, 11.x|Samsung<br>Internet<br>6.2|
 |:-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |Windows 7                |✓| |✓|✓| | |

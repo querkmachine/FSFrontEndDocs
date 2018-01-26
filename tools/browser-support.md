@@ -35,6 +35,8 @@ We use [Browserstack](http://browserstack.com) for browser testing. You'll have 
 
 Our device testing methods are a lot more freeform. We have a number of devices which can be found both in the device drawer and with Kim, but don’t worry about finding every edge case yourself—that’s a job that the QA team will carry out for you.
 
+<!--
+
 ### Device testing
 
 These are the devices we currently have available to test. **This list is incomplete. The devices and OS versions may not be accurate.**
@@ -67,3 +69,5 @@ These devices belong to Kim and not Felinesoft, however, are available for inter
 |LG|GT540 Optimus|Android 2.1|2010|
 |Nintendo|New Nintendo 3DS|Nintendo 3DS system software 10.x|2015|
 |Sony|Xperia S|Android 4.4|2012|
+
+-->

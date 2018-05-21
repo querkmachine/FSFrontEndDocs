@@ -24,6 +24,17 @@
 	h6 {
 		@include measure-narrow;
 		margin-top: 3rem;
+		font-family: map(typography, header);
+		font-weight: 700;
+		a {
+			@include size-small;
+			display: inline-block;
+			visibility: hidden;
+		}
+		&:hover,
+		&:focus {
+			a { visibility: visible; }
+		}
 	}
 	h1 {
 		@include size-h1;

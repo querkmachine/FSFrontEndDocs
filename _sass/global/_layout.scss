@@ -6,9 +6,14 @@
 	padding: 0;
 }
 
+html {
+	@include size-responsive(1.5vw, 16px);
+}
+
 body {
-	font-family: map(typography, family);
-	color: #202020;	
+	border-top: .5rem solid #EF663B;
+	color: #202020;
+	font-family: map(typography, body);
 }
 
 a {

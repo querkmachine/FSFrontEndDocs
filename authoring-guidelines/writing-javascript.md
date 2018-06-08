@@ -7,9 +7,26 @@ title: Writing JavaScript
 We don't have any particularly detailed rules for how to write JavaScript, mainly because I don't actually do a lot of it. If you think we need to standardise this more, hit me up! 
 </aside>
 
+## Variables
+
+Function and variable names should be written in camelCase.
+
+**If the value of a variable is a jQuery object, prefix the variable name with a `$` sign** to make it clear this is the case.
+
+{% highlight js %}
+// Yes
+const $header = $('.header');
+
+// No
+const header = $('.header');
+
+// This is okay because the value isn't a jQuery object
+const searchTerm = $('.search__query').val();
+{% endhighlight %}
+
 ## Indentation
 
-JavaScript indentation can be roughly boiled down to having a new line for each variable, function, assignment or other. This is generally consistent with [Stroustrup style indentation](https://en.wikipedia.org/wiki/Indent_style#Variant:_Stroustrup). Function and variable names should be written in camelCase.
+JavaScript indentation can be roughly boiled down to having a new line for each variable, function, assignment or other. This is generally consistent with [Stroustrup style indentation](https://en.wikipedia.org/wiki/Indent_style#Variant:_Stroustrup). 
 
 {% highlight js %}
 function bindSearchController() {
@@ -23,21 +40,6 @@ function bindSearchController() {
         }
     });
 }
-{% endhighlight %}
-
-## jQuery
-
-**If the value of a variable is a jQuery object, prefix the variable name with a `$` sign** to make it clear this is the case.
-
-{% highlight js %}
-// Yes
-const $header = $('.header');
-
-// No
-const header = $('.header');
-
-// This is okay because the value isn't a jQuery object
-const searchTerm = $('.search__query').val();
 {% endhighlight %}
 
 ## ECMAScript 2015 (aka, ES6) in practice

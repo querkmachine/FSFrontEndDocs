@@ -48,11 +48,24 @@ A block will simply be a class name.
 .fancy-button__label {}
 {% endhighlight %}
 
-*Modifiers* are modifications of blocks or elements, which are delimited with double hyphens. **Modifications can be visual or state related.**
+*Modifiers* are modifications of blocks or elements, which are delimited with double hyphens. **Modifications may be visual or state related.**
 
 {% highlight css %}
 .fancy-button--disabled {}
 .fancy-button__icon--large {}
+{% endhighlight %}
+
+### Namespacing
+
+On large projects it is usually beneficial to namespace CSS selectors, making it easier to determine where in the [atomic design]({{ site.baseurl }}{% link concepts/atomic-design.md %}) specification the BEM block fits. This is usually performed by prefixing the selector with a letter. 
+
+{% highlight css %}
+.a-button {} // an atom
+.m-search-form {} // a molecule
+.o-hero-banner {} // an organism
+.t-process {} // a template
+.p-register {} // a page
+.u-screenreader {} // a utility class 
 {% endhighlight %}
 
 ## Properties
@@ -124,26 +137,6 @@ Autoprefixer doesn't cover everything. [Text stroke](http://caniuse.com/#feat=te
 </aside>
 
 If you're in an environment where Autoprefixer isn't available, then you may write vendor prefixes into your code.
-
-## Atomic design
-> One file to rule them all<br>One file to find them<br>One file to bring them all<br>And in the Sass way merge them.
-
-We use the [atomic design](http://bradfrost.com/blog/post/atomic-web-design/) architecture for structuring Sass files. Atomic design, like BEM, encourages creating modular, reusable components that can work independently of one another. 
-
-A typical project will divide Sass partials into six folders, with a single root file—typically named `stylesheet.scss`—that includes all of the partials. The folders are as so:
-
-* App—contains project settings, mixins and functions.
-* Atoms—incredibly simple (usually singular) page elements,   such as buttons, icons, typographic elements, form inputs, etc.
-* Molecules—collections of atoms, such as a search form made up of form input and button atoms.
-* Organisms—collections of molecules, such as a website masthead made up of search, branding and navigation molecules. 
-* Templates—a collection of organisms; typically fairly generic and reusable, such as an article page. 
-* Pages—individual instances of a template, such as an article about *20 cats you’ll want to cuddle*. 
-
-**Partials should be named according to the BEM class that it relates to**, so styles for the `.profile-picture` block will be contained in the `_profile-picture.scss` partial. This makes the relevant code a bit easier to find.
-
-<aside class="aside aside--correction">
-An exception to this rule is partials that cover a concept rather than a specific component, such as typographic rules.
-</aside>
 
 ## Mixins and extends
 Sass has two main methods of creating [DRY-ness](https://en.wikipedia.org/wiki/Don't_repeat_yourself)—mixins and extends. **We prefer the use of mixins in almost all situations.** Here's a table explaining why:

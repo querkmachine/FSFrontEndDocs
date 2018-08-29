@@ -16,7 +16,7 @@ This table was last updated on the 29th August 2018 to account for the release o
 |Windows 7                |11 |      |67, 68|60, 61|          |        |
 |Windows 8/8.1            |11 |      |67, 68|60, 61|          |        |
 |Windows 10               |11 |16, 17|67, 68|60, 61|          |        |
-|Windows 10 Mobile        |   |15|      |      |          |        |
+|Windows 10 Mobile        |   |15    |      |      |          |        |
 |Android 6.x Marshmallow  |   |      |67, 68|      |          |6.4, 7.2|
 |Android 7.x Nougat       |   |      |67, 68|      |          |6.4, 7.2|
 |Android 8.x Oreo         |   |      |67, 68|      |          |6.4, 7.2|

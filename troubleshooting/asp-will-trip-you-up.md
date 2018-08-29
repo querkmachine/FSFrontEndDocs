@@ -42,7 +42,7 @@ Are you using a cool, hip, modern library like [Vue.js](http://vuejs.org) which 
 Instead you're going to have to be a lot more verbose.
 
 {% highlight c# %}
-@Html.TextBoxFor(x => x.Postcode, new Dictionary<string, object> { { "class", "a-input" }, { "data-autocomplete", "postal-code" }, { "v-on:change", "postcodeChanged()", { ":value", "postcode" } } })
+@Html.TextBoxFor(x => x.Postcode, new Dictionary<string, object> { { "class", "a-input" }, { "data-autocomplete", "postal-code" }, { "v-on:change", "postcodeChanged()" }, { ":value", "postcode" } })
 {% endhighlight %}
 
 ## Basically nothing is accessible

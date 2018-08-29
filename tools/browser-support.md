@@ -5,31 +5,34 @@ title: Browser and device support
 
 ## Browser support
 
-Browser support requirements differ depending on the needs of the project, however, we typically build for the 'latest minus one'—we support the latest version of a browser, plus the most recent prior version. We also only support browsers that are still officially supported by their vendors. (Which means you don't need to support IE8–10 anymore, thank god.)
+Browser support requirements differ depending on the needs of the project, however, we typically build for the 'latest minus one'—we support the latest version of a browser, plus the most recent prior version. We also only support browsers and operating systems that are still officially supported by their vendors. (Which means you don't need to support IE8–10 anymore, thank god.)
 
 <aside class="aside aside--tangent">
-This table was last updated on the 26th January 2018 to account for the newest browser versions and newer versions of iOS. 
+This table was last updated on the 29th August 2018 to account for the release of Android 9 Pie, the drop of Mac OS 10.11 and Android 5 support, updated browser versions and to correct the Firefox version numbers. This update also adds the new releases of macOS and iOS—both with new Safari versions, due to be released in the next few weeks. 
 </aside>
 
-<aside class="aside aside--issue">
-Microsoft Edge is a bit weird with version numbers, in that it has two of them—one for the version of the browser (Edge), and one for the version of the rendering engine it uses (EdgeHTML). We're web developers, so we care about the EdgeHTML version. Those numbers are used in this table.
-</aside>
+|  |Microsoft<br>IE|Microsoft<br>Edge|Google<br>Chrome|Mozilla<br>Firefox|Apple<br>Safari|Samsung<br>Internet|
+|:------------------------|:-:|:----:|:----:|:----:|:--------:|:------:|
+|Windows 7                |11 |      |67, 68|60, 61|          |        |
+|Windows 8/8.1            |11 |      |67, 68|60, 61|          |        |
+|Windows 10               |11 |16, 17|67, 68|60, 61|          |        |
+|Windows 10 Mobile        |   |15|      |      |          |        |
+|Android 6.x Marshmallow  |   |      |67, 68|      |          |6.4, 7.2|
+|Android 7.x Nougat       |   |      |67, 68|      |          |6.4, 7.2|
+|Android 8.x Oreo         |   |      |67, 68|      |          |6.4, 7.2|
+|Android 9.x Pie          |   |      |67, 68|      |          |6.4, 7.2|
+|macOS 10.12 Sierra       |   |      |67, 68|60, 61|11.1      |        |
+|macOS 10.13 High Sierra  |   |      |67, 68|60, 61|11.1      |        |
+|macOS 10.14 Mojave       |   |      |67, 68|60, 61|11.1, 12.0|        |
+|iOS 11.x                 |   |      |      |      |11.4      |        |
+|iOS 12.x                 |   |      |      |      |12.0      |        |
 
-|  |Microsoft<br>IE<br>11|Microsoft<br>Edge<br>15, 16|Google<br>Chrome<br>63, 64|Mozilla<br>Firefox<br>63, 64|Apple<br>Safari<br>10.x, 11.x|Samsung<br>Internet<br>6.2|
-|:-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Windows 7                |✓| |✓|✓| | |
-|Windows 8/8.1            |✓| |✓|✓| | |
-|Windows 10               |✓|✓|✓|✓| | |
-|Windows 10 Mobile        | |✓| | | | |
-|Android 5.x "Lollipop"   | | |✓| | | |
-|Android 6.x "Marshmallow"| | |✓| | | |
-|Android 7.x "Nougat"     | | |✓| | |<abbr title="Where applicable">✓</abbr>|
-|Android 8.x "Oreo"       | | |✓| | |<abbr title="Where applicable">✓</abbr>|
-|OS X 10.11 "El Capitan"  | | |✓|✓|<abbr title="Safari 10.1, 11">✓</abbr>| |
-|macOS 10.12 "Sierra"     | | |✓|✓|<abbr title="Safari 10.1, 11">✓</abbr>| |
-|macOS 10.13 "High Sierra"| | |✓|✓|<abbr title="Safari 11 only">✓</abbr>| |
-|iOS 10.3                 | | | | |<abbr title="Safari 10.3, 11">✓</abbr>| |
-|iOS 11.x                 | | | | |<abbr title="Safari 11.x only">✓</abbr>| |
+### Support table notes
+
+* Microsoft Edge is a bit weird with version numbers, in that it has two of them—one for the version of the browser (Edge), and one for the version of the rendering engine it uses (EdgeHTML). We care about the rendering engine, so use the EdgeHTML version numbers in this table.
+* Unlike Google and Mozilla, who keep the version numbers consistent between desktop and mobile versions of their browsers, the version numbers for the latest editions of Safari may differ between platforms. 
+* Apple and Samsung use different versioning systems compared to other browser vendors. Whilst most manufacturers will increment the major browser version when introducing significant changes, Apple and Samsung will happily introduce major changes in minor version increments. The table below includes minor version numbers for those manufacturers. 
+* Samsung Internet jumped from version 6.4 to 7.2. There were no publicly available 7.0 or 7.1 releases.
 
 ### Browser testing
 
@@ -37,41 +40,4 @@ We use [Browserstack](http://browserstack.com) for browser testing. You'll have 
 
 ## Device support
 
-Our device testing methods are a lot more freeform. We have a number of devices which can be found both in the device drawer and with Kim, but don’t worry about finding every edge case yourself—that’s a job that the QA team will carry out for you.
-
-<!--
-
-### Device testing
-
-These are the devices we currently have available to test. **This list is incomplete. The devices and OS versions may not be accurate.**
-
-#### Felinesoft Device Lab
-
-|Manufacturer|Model|Operating system|Released|
-|:-----------|:----|:---------------|:-------|
-|Apple|iPhone 5S|iOS 9.x|2013|
-|Apple|iPhone 6 Plus|iOS 9.x|2014|
-|Apple|iPad|iOS 5.x|2010|
-|Apple|iPad 2|iOS 9.x|2011|
-|Apple|iPad Mini 2|iOS 9.x|2013|
-|BlackBerry|Z10|BlackBerry 10|2013|
-|Google/Asus|Nexus 7|Android x.x|2013|
-|Samsung|Galaxy S5|Android 6.x|2014|
-
-#### Kim's Device Lab
-
-These devices belong to Kim and not Felinesoft, however, are available for internal testing purposes. Note that not all devices may be available at any one time.
-
-|Manufacturer|Model|Operating system|Released|
-|:-----------|:----|:---------------|:-------|
-|Amazon|Kindle Fire (5th generation)|Fire OS 5 (fork of Android 5.0)|2015|
-|Amazon|Kindle 7|Kindle firmware 5.6.5|2014|
-|Apple|iPhone 6|iOS 10.x|2014|
-|Apple|iPad 2|iOS 9.1|2011|
-|BLU|Win JR|Windows Phone 8.1|2014|
-|HTC|One M8|Android 5.0|2014|
-|LG|GT540 Optimus|Android 2.1|2010|
-|Nintendo|New Nintendo 3DS|Nintendo 3DS system software 10.x|2015|
-|Sony|Xperia S|Android 4.4|2012|
-
--->
+Our device testing methods are a lot more freeform. We have a number of devices which can be found both in the device drawer (by Ben F) and with Kim, but don’t worry about finding every edge case yourself—that’s a job that the QA team will carry out for you.

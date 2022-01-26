@@ -154,4 +154,4 @@ Sass has two main methods of creating [DRY-ness](https://en.wikipedia.org/wiki/D
 And if that hastily made table doesn't convince you, maybe the words of two of the world's foremost Sass-masters will:
 
 * [Mixins Better For Performance](http://csswizardry.com/2016/02/mixins-better-for-performance/) by Harry Roberts
-* [Why You Should Avoid Sass @extend](https://www.sitepoint.com/avoid-sass-extend/) by Hugo Giraudel
+* [Why You Should Avoid Sass @extend](https://www.sitepoint.com/avoid-sass-extend/) by Kitty Giraudel

@@ -4,6 +4,8 @@ title: In the beginning&hellip;
 exclude_from_nav: true
 ---
 
+<small>Originally written and maintained by [Kimberly Grey](https://berly.kim). **Last updated: 26th January 2022.**</small>
+
 Hello! If you’re reading this, you either [work here](http://felinesoft.com/), have been contracted by us to do some front-end work for us, or heck, you could even be some curious passer-by. Alternatively you could be a hacker who has compromised our systems (naughty!) but if that’s the case then there’s probably much more interesting things to look at than this. 
 
 This guide exists as a (hopefully) brief and (hopefully) helpful overview of how we handle HTML, control CSS and maintain dominant jurisdiction over JavaScript. It also contains plenty of bad jokes, just to keep things interesting. 

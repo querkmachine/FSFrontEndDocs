@@ -5,12 +5,16 @@ title: Authoring guidelines
 
 Formatting is the most basic means of maintaining uniformity in project code. A misplaced bracket or oddly intended line can turn functional code into an illegible mess, and worse still can lead to your fancy new JavaScript function breaking absolutely everything. [It happens to the best of us.](http://embeddedgurus.com/barr-code/2014/03/apples-gotofail-ssl-security-bug-was-easily-preventable/)
 
-Simply put, we use:
+Simply put, we prefer:
 
 * Four space indentation, no tabs.
 * Uncapped, but sensible line lengths.
 * Meaningful use of whitespace.
 * Multi-line code blocks.
+
+<aside class="aside aside--tangent">
+Life's too short to spend *that* much time caring about code formatting. Just [install Prettier](https://prettier.io), configure it to automatically format your code on commit, and stop worrying about it. 
+</aside>
 
 ## Indentation, brackets and line breaks
 We use **four spaces for indentation**; the sole reason for this being it's the standard in Visual Studio. Lucky for all you tab-loving developers out there Visual Studio will automatically convert tabs into four spaces for you. 
@@ -33,7 +37,7 @@ We do not enforce any sort of line length in front-end code. This *isn’t* an e
 {% endhighlight %}
 
 ## Quotes
-Use double quotes in HTML. Use single quotes in CSS and JavaScript.
+Use double quotes everywhere, except situations where the type of quotation mark used has semantic meaning, such as in Razor or some areas of JavaScript.
 
 ## Code comments
 If you find yourself writing something particularly complex or holy-heck-don’t-ever-change-this important, it’s probably a good idea to leave a note telling the next person along about how it works and how intelligent and attractive you are for being able to produce it. They’ll thank you for it... probably. 

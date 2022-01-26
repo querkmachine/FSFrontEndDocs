@@ -7,7 +7,7 @@ We use [Sass](http://sass-lang.com/) as our CSS preprocessor of choice, and use 
 
 ## Selectors
 
-CSS selectors and properties should always be lowercase. Selectors use hyphens to separate words. Try to **use whole words for selector names** rather than abbreviations, as it makes code easier to understand at a glance.
+CSS selectors and properties should be in kebab-case—all lowercase, with hyphens to separate words. Try to **use whole words for selector names** rather than abbreviations, as it makes code easier to understand at a glance.
 
 As much as possible **use classes to style elements** and avoid nesting or creating needlessly specific selectors (*especially* IDs). Doing so maintains [low specificity](https://stuffandnonsense.co.uk/archives/images/specificitywars-05v2.jpg) across the project, making it easy to make conditional changes later on without having to resort to a cheeky `!important`. 
 
@@ -41,7 +41,7 @@ A block will simply be a class name.
 .fancy-button {}
 {% endhighlight %}
 
-*Elements* are the… well, elements that are inside blocks. These are delimited with double underscores. 
+*Elements* are the… well, elements that are inside blocks. These are delimited with double underscores.
 
 {% highlight css %}
 .fancy-button__icon {}
@@ -55,18 +55,17 @@ A block will simply be a class name.
 .fancy-button__icon--large {}
 {% endhighlight %}
 
+<aside class="aside aside--correction">
+In many cases state can be conveyed via HTML attributes. A disabled button could be styled using `.fancy-button:disabled` or the current page in a list with `.breadcrumb__link[aria-current="page"]` instead of creating an additional modifer class. Doing this is preferable if there are appropriate attributes available.
+</aside>
+
 ### Namespacing
 
-On large projects it is usually beneficial to namespace CSS selectors, making it easier to determine where in the [atomic design]({{ site.baseurl }}{% link concepts/atomic-design.md %}) specification the BEM block fits. This is usually performed by prefixing the selector with a letter. 
+On many projects, using namespaces—in the form of class name prefixes—to indicate the origin or purpose of a class can often be useful. On projects using Felafel, for example, you may use them to differentiate between classes coming from Felafel (which are all prefixed `fs-`), third-party libraries like Flexslider (which all begin with `flex-`), and those native to your current project.
 
-{% highlight css %}
-.a-button {} // an atom
-.m-search-form {} // a molecule
-.o-hero-banner {} // an organism
-.t-process {} // a template
-.p-register {} // a page
-.u-screenreader {} // a utility class 
-{% endhighlight %}
+Some projects will use different prefixes for component-level code, and code specific to individual templates and pages. Ski Miquel, for example, uses `ski-`, `skit-` and `skip-`, respectively.
+
+Utility classes are almost always prefixed differently to clearly indicate their purpose and separate them from the BEM naming methodology. Felafel uses `fs-!-` for utility classes.
 
 ## Properties
 Properties should always appear on a new line by themselves. If a selector only has a single property, feel free to keep that on one line.
@@ -115,21 +114,7 @@ This code is bad. It forces the snowflake to always have zero `margin` at the to
 
 This code is better. Only the values we actually want to set are defined, the `background` and `animation` properties are easier to understand and we don’t have any unexpected style overrides. We can even exclude some of the values on the `animation` entirely because we’re not using the shorthand syntax.
 
-## Value formatting
-Strings (URLs, font names, `content` values, etc.) should be surrounded by single quotes. 
-
-**Values of 0 should be unitless.**
-
-<aside class="aside aside--issue">
-CSS timing functions, [like the Mongols](https://www.youtube.com/watch?v=PqcVro-3f4I), are the exception. They require units even when their values are zero! Argh! 
-</aside>
-
-## Colours
-Colour values should be written in hexadecimal; shortened and lowercase where possible. RGB and HSL may also be used where appropriate. If using Sass then hex values will automatically be converted to these where necessary. 
-
-Do not use the default colour values that exist in CSS except for debugging or rapid prototyping purposes. They’re semantically inconsistent (`gray` is darker than `darkgray`, for example) and sometimes even render differently between browsers. They’re not to be trusted.
-
-## Vendor prefixes
+### Vendor prefixes
 **Do not write vendor prefixes into code**, instead use a tool like [Autoprefixer](https://github.com/postcss/autoprefixer) to add these programmatically. This makes the code easier to scan and allows us to configure browser support from the Gulp configuration like a boss. 
 
 <aside class="aside aside--correction">
@@ -138,7 +123,63 @@ Autoprefixer doesn't cover everything. [Text stroke](http://caniuse.com/#feat=te
 
 If you're in an environment where Autoprefixer isn't available, then you may write vendor prefixes into your code.
 
-## Mixins and extends
+## Values
+Strings (URLs, font names, `content` values, etc.) should be surrounded by double quotes. 
+
+**Values of 0 should be unitless.**
+
+<aside class="aside aside--issue">
+CSS timing functions, [like the Mongols](https://www.youtube.com/watch?v=PqcVro-3f4I), are the exception. They require units even when their values are zero! Argh! 
+</aside>
+
+### Colours
+Colour values should be written in hexadecimal; shortened and lowercase where possible. RGB and HSL may also be used where appropriate. If using Sass then hex values will automatically be converted to these where necessary. 
+
+Do not use the default colour values that exist in CSS except for debugging or rapid prototyping purposes. They’re semantically inconsistent (`gray` is darker than `darkgray`, for example) and sometimes even render differently between browsers. They’re not to be trusted.
+
+## Sass specifics
+Sass has changed which compiler the first-party tool uses a few times in its history. Originally written in Ruby (Ruby Sass), it was then ported to C/C++ (as LibSass), and is now implemented via Dart (Dart Sass). Each implementation has slightly different feature sets and handles edge cases differently.
+
+When using Sass, **gravitate to the most up-to-date implementation available**, as this will have the most recent bugfixes and features and the longest remaining support lifetime. As of writing, both Ruby Sass and LibSass have been deprecated in favour of Dart Sass.
+
+### The Sass module system
+Dart Sass 1.23.0 introduced [the module system](https://sass-lang.com/blog/the-module-system-is-launched). This presents a fairly radical change to the language. In previous Sass versions all variables, mixins and functions—whether built-in or user authored— existed in a single global scope that could be added to through simple `@import`-ing. 
+
+{% highlight scss %}
+// Note that these @import rules could be anywhere prior 
+// to this partial, they don't need to be in the same file. 
+
+@import "settings"; // Contains `$theme-color`
+@import "helpers/theming"; // Contains a `setBgColor` mixin
+
+body {
+    $color: darken($theme-color, 15%);
+    @include setBgColor($color);
+}
+{% endhighlight %}
+
+With the module system, each Sass partial is a separate island and other files must be explicitly referenced in the partial before they can be used, and these referenced elements are automatically namespaced. 
+
+{% highlight scss %}
+// In the module system, @use rules *must* be in the same file.
+
+@use "settings"; // Contains `$theme-color`
+@use "helpers/theming"; // Contains a `setBgColor` mixin
+@use "sass:color"; // You must now explicitly reference Sass's built-in functions
+
+body {
+    $color: color.darken(settings.$theme-color, 15%);
+    @include theming.setBgColor($color);
+}
+{% endhighlight %}
+
+**Use of the module system is highly preferred over the older `@import`-based method.** `@import` is deprecated, and the Sass team is intending to remove the `@import` Sass rule completely by October 2022.
+
+<aside class="aside aside--tangent">
+You can create private variables, mixins and functions by prefixing their name with an underscore or a hyphen. They will be inaccessible outside of the partial where they are defined, even if directly referenced.
+</aside>
+
+### Mixins and extends
 Sass has two main methods of creating [DRY-ness](https://en.wikipedia.org/wiki/Don't_repeat_yourself)—mixins and extends. **We prefer the use of mixins in almost all situations.** Here's a table explaining why:
 
 |  |Mixins |Extends |
@@ -155,3 +196,9 @@ And if that hastily made table doesn't convince you, maybe the words of two of t
 
 * [Mixins Better For Performance](http://csswizardry.com/2016/02/mixins-better-for-performance/) by Harry Roberts
 * [Why You Should Avoid Sass @extend](https://www.sitepoint.com/avoid-sass-extend/) by Kitty Giraudel
+
+## Transpiling for older browsers
+
+If you wish to use [next generation](https://www.youtube.com/watch?v=p5kcBxL7-qI) CSS features that are not supported across all browsers yet, it is recommended you use [PostCSS](https://postcss.org) and [postcss-preset-env](https://preset-env.cssdb.org) as part of your build pipeline. 
+
+postcss-preset-env includes Autoprefixer, which you should ideally be using anyway.

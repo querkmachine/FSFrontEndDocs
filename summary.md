@@ -31,7 +31,7 @@ We aim to build almost everything as a standalone piece of functionality that ca
 
 **Build with the expectation that your work will be reused elsewhere, and don't build anew what already exists.** Speaking of&hellip;
 
-*Read [Writing CSS/Sass]({{ site.baseurl }}{% link authoring-guidelines/writing-css-sass.md %}), [Atomic design]({{ site.baseurl }}{% link concepts/atomic-design.md %}) and [Pattern and component libraries]({{ site.baseurl }}{% link tools/pattern-libraries.md %}).*
+*Read [Writing CSS/Sass]({{ site.baseurl }}{% link authoring-guidelines/writing-css-sass.md %}), [Atomic design]({{ site.baseurl }}{% link concepts/atomic-design.md %}) and [Design systems]({{ site.baseurl }}{% link tools/design-systems.md %}).*
 
 ## Don't reinvent the wheel
 

@@ -4,7 +4,8 @@
 	}
 	p,
 	ul,
-	ol {
+	ol,
+	dl {
 		@include size-normal;
 		@include lead-normal;
 		@include measure-normal;
@@ -103,5 +104,14 @@
 	}
 	table {
 		@extend .table;
+	}
+	dl {
+		
+	}
+	dt {
+		font-weight: bold;
+	}
+	dd {
+		margin-left: 2em;
 	}
 }

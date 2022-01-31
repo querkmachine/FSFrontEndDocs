@@ -3,6 +3,18 @@ layout: default
 title: Changelog
 ---
 
+## 2022-01-31
+
+Part two of the big re-write.
+
+* Felinesoft front-end frameworks: Added page.
+* Build tools and Gulp: Rewrote slightly.
+* Pattern libraries: Added a bunch more content, renamed page to Design systems.
+* Atomic design: Removed page (not how most projects are structred now).
+* Accessibility: Rewrote pretty much the entire page.
+* User experience: Removed page (pretty much completely outdated and handled by our UX team now).
+* Other ways ASP.NET will cause pain: Renamed page to Razor and Umbraco quirks and pain points.
+
 ## 2022-01-26
 
 Part one of a big re-write as part of my goodbye documentation.
@@ -18,7 +30,6 @@ Part one of a big re-write as part of my goodbye documentation.
 * Writing CSS/Sass: Added section about transpiling for older browsers.
 * Writing CSS/Sass: Corrected Kitty Giraudel's name.
 * Writing JavaScript: Rewrote pretty much the entire page.
-* Felinesoft frameworks: Added page.
 * Browser support: Rewrote pretty much the entire page. No longer shows a table, simply points to Browserslist query.
 * Version control: Significantly expanded git flow section.
 * Version control: Removed Team Foundation Version Control section as we have successfully purged it from use.

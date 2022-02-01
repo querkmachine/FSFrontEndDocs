@@ -1,10 +1,12 @@
 ---
 layout: default
-title: The “OMG Microsoft Why” guide to making Node.js and Gulp work properly in Visual Studio
+title: Using Gulp with Visual Studio
 ---
 
-<aside class="aside aside--tangent">
-This troubleshooting guide is for Visual Studio 2015 and 2017 only. For older versions you'll need to run Gulp through an external command line.
+<aside class="aside aside--correction">
+This troubleshooting guide was written for Visual Studio 2015 and 2017. I cannot verify if these issues still occur, or if the below is still correct, for newer Visual Studio versions.
+
+For older versions of Visual Studio you cannot use Gulp within the application, and must use an external command line.
 </aside>
 
 The version of Node.js bundled in Visual Studio 2015 is *ancient*. Even with all of the updates, the most recent version their IDE comes with is 0.10.31, released July 2013. Visual Studio 2017 is a lot better, at Node 5, but is still multiple versions behind the most recent Node releases.
@@ -17,7 +19,7 @@ All this stuff is dramatically easier if you’re on macOS or Linux. But then ag
 
 ## I get some error about `const` or something? What’s up with that?
 
-`const` is an ES2015 feature for—unsurprisingly—a constant. You’re getting this error because the version of Node it uses is so hella old it doesn’t understand ES2015. 
+`const` is an ES2015 feature for—unsurprisingly—a constant. You’re getting this error because the version of Node that Visual Studio has installed is so hella old it doesn’t understand ES2015. 
 
 You’ll need to install a more up-to-date version of Node.
 
@@ -64,9 +66,3 @@ This often doesn’t work (maybe 5-10% of the time it solves the problem), but i
 If that doesn’t work, your best bet may be in turning it off and on again.
 
 In the same command line, run the command `npm uninstall gulp-sass --save-dev`, then run `npm install gulp-sass --save-dev`. This will uninstall and re-install the package using the command line environment. 
-
-## Hang on, I’m getting something about ‘gifcicle’, ‘jpegtran’, ‘optipng’ or ‘svgo’.
-
-These are all image compression engines which are dependencies of `gulp-imagemin`. The installation of these can fail for a few reasons.
-
-Fix it by uninstalling and reinstalling gulp-imagemin `npm uninstall gulp-imagemin --save-dev` followed by `npm install gulp-imagemin --save-dev`.

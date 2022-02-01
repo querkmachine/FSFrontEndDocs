@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Razor and Umbraco quirks and pain points
+title: Razor and Umbraco troubleshooting
 ---
 
 Life is hard for front-end developers in the Microsoft world. Razor (the templating language used by ASP.NET) and, to a degree, Umbraco were made to convenience back-end developers, not provide flexibility or ease of use for front-enders. In the rare situation that you have to deal with it directly, be aware of these pitfalls.

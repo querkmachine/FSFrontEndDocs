@@ -7,7 +7,7 @@ Design systems are a tool that nearly every Felinesoft project utilises. Usually
 
 Design systems can be seen as an extension of the client's brand guidelines, showing how the principles of the brand have been turned into a functional user interface.
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 The phrases "component library" or "pattern library" are commonly used interchangably with "design system". These are related but distinct terms: 
 
 A component library typically only contains UI components.
@@ -15,7 +15,7 @@ A component library typically only contains UI components.
 A pattern library will include components and examples of how they work together to create fuller experiences (aka, patterns).
 
 A design system includes both of these, plus information about assets, the wider design language (such as typography and acceptable colour combinations), desired brand perception, tone of voice, etc.
-</aside>
+{% endaside %}
 
 ## Why use a design system? 
 

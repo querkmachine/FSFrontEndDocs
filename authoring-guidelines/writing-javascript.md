@@ -26,9 +26,9 @@ const searchTerm = document.getElementById("q").value;
 
 This is a bit of a layover from the jQuery days, where it was conventional to prefix jQuery objects with a dollar to indicate that jQuery methods could be used with them. I've since continued doing this, but to HTML elements that DOM manipulation methods can be used instead.
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 Dollar signs don't have any intrinsic meaning in JavaScript, they're just part of the variable name. 
-</aside>
+{% endaside %}
 
 ### `const`, `let` or `var`
 

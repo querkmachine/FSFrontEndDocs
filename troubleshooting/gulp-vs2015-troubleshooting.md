@@ -3,11 +3,11 @@ layout: default
 title: Using Gulp with Visual Studio
 ---
 
-<aside class="aside aside--correction">
+{% aside correction %}
 This troubleshooting guide was written for Visual Studio 2015 and 2017. I cannot verify if these issues still occur, or if the below is still correct, for newer Visual Studio versions.
 
 For older versions of Visual Studio you cannot use Gulp within the application, and must use an external command line.
-</aside>
+{% endaside %}
 
 The version of Node.js bundled in Visual Studio 2015 is *ancient*. Even with all of the updates, the most recent version their IDE comes with is 0.10.31, released July 2013. Visual Studio 2017 is a lot better, at Node 5, but is still multiple versions behind the most recent Node releases.
 

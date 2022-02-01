@@ -3,9 +3,9 @@ layout: default
 title: Visual Studio drops the BOM
 ---
 
-<aside class="aside aside--correction">
+{% aside correction %}
 This page was written based on an issue observed with Visual Studio 2015 and 2017. I haven't seen this problem pop up for a while now, so it may have been fixed in more recent versions of Visual Studio.
-</aside>
+{% endaside %}
 
 By default, Visual Studio will always save files encoded as 'UTF-8 with BOM' (Byte Order Mark, often referred to as 'UTF-8 with signature' in Microsoft land). This is generally a good thing! UTF-8 with BOM supports the largest range of languages; without BOM, languages like Chinese wouldn't be available in the editor—not such a problem for us English speakers, but this is a planet for everyone. Byte order marks are typically represented in a document by prefixing it with the Unicode character `U+FEFF`. 
 
@@ -29,9 +29,9 @@ Visual Studio provides a temporary way of resolving this issue:
 
 Visual Studio will remember this setting for as long as the file is still open, but will revert to saving with BOM after the file has been closed. 
 
-<aside class="aside aside--issue">
+{% aside issue %}
 Visual Studio supposedly has a setting to never add BOM characters to files not created with them in the application Options panel, under `Text Editor > General`. I've never actually seen this work, though. 🤷🏻️
-</aside>
+{% endaside %}
 
 ### Extensions
 

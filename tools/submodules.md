@@ -15,9 +15,9 @@ Configuration for submodules is stored in the `.gitmodules` file.
 
 ## Adding the submodule
 
-<aside class="aside">
+{% aside %}
 Be very careful with this. Submodules are fairly difficult to fix if configured incorrectly. 
-</aside>
+{% endaside %}
 
 In the superproject, navigate your terminal to the root of the superproject (aka, where the `.git` directory is located, but not inside the directory itself), and use this command:
 
@@ -37,11 +37,11 @@ If you have yet to clone the superproject, you can clone it and its submodules a
 git clone --recurse-submodules <url>
 {% endhighlight %}
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 Visual Studio 2017 Update 5 and above will do this automatically, although will not show the contents of the submodule within the File Explorer. You need to open the submodule separately if you want to inspect the contents. 
 
 Visual Studio versions prior to Update 5 do not support submodules, so you'll have to run commands in a separate command line.
-</aside>
+{% endaside %}
 
 If you've already cloned the superproject without the submodules, you'll need to run two commands instead:
 
@@ -64,11 +64,11 @@ git submodule update --remote
 
 The updated lockfile needs to be committed in the superproject.
 
-<aside class="aside aside--issue">
+{% aside issue %}
 *Something* about how this works (in Visual Studio, in DevOps, or maybe elsewhere) is kinda buggy, and lockfiles can get overwritten with older versions on projects where multiple developers are working simultaneously. 
 
 To ensure you don't accidentally overwrite things, consider always running the submodule update command prior to committing and pushing.
-</aside>
+{% endaside %}
 
 ## Removing a submodule
 

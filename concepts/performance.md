@@ -13,9 +13,9 @@ CSS blocks rendering. The user will be stuck staring at a white screen until all
 
 JavaScript blocks downloads. While JavaScript files are downloading, the browser will not download anything else. Because of this, we want to download JavaScript files last so they don't block anything else, so **JavaScript should be included at the bottom of the document**. 
 
-<aside class="aside aside--correction">
+{% aside correction %}
 There are some exceptions to the JavaScript rule. For example, some polyfill scripts may require being loaded in the `<head>` in order to work correctly. Scripts like this may appear in the `<head>`, but other application code should not.
-</aside>
+{% endaside %}
 
 ## CDNs and DNS
 

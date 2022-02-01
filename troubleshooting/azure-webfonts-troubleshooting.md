@@ -3,9 +3,9 @@ layout: default
 title: Using webfonts on Azure hosting
 ---
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 This actually works for all files with a non-standard extension, such as Handlebars templates. It's not just for fonts!
-</aside>
+{% endaside %}
 
 Many of our projects, all the way from integration environments to QA to UAT to the live site, run on [Microsoft Azure](https://azure.microsoft.com). Azure provides a hosting environment similar to the default set up of Internet Information Services (IIS) on your development machine; the problem is this set up doesn't cover all the bases. 
 
@@ -32,6 +32,6 @@ If the project you're on has a `web.config` file, which practically everything h
 </system.webServer>
 {% endhighlight %}
 
-<aside class="aside aside--correction">
+{% aside correction %}
 You probably don't need all of these, but there's no harm in adding them all, just in case!
-</aside>
+{% endaside %}

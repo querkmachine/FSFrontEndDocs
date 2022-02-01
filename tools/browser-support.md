@@ -27,9 +27,9 @@ Extending it to more than two versions can have the reverse effect, however, as 
 
 The "still supported by manufacturer" rule may also present issues in the event that a browser's support is discontinued with little notice, as it will drop off the support list regardless of current real-world usage. 
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 Browserslist will automatically mark a browser version as being unsupported if it hasn't been updated for more than 24 months. This muddies the distinction between being supported and being released in the last two years a little, but the two queries ultimately return different results.
-</aside>
+{% endaside %}
 
 ## Device support
 

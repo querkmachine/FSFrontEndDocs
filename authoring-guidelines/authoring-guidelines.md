@@ -12,16 +12,16 @@ Simply put, we prefer:
 * Meaningful use of whitespace.
 * Multi-line code blocks.
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 Life's too short to spend *that* much time caring about code formatting. Just [install Prettier](https://prettier.io), configure it to automatically format your code on commit, and stop worrying about it. 
-</aside>
+{% endaside %}
 
 ## Indentation, brackets and line breaks
 We use **four spaces for indentation**; the sole reason for this being it's the standard in Visual Studio. Lucky for all you tab-loving developers out there Visual Studio will automatically convert tabs into four spaces for you. 
 
-<aside class="aside aside--opinion">
+{% aside opinion %}
 Hard tabs are obviously the superior option. More consistent, more configurable, easier to navigate with keyboards. What's not to love?
-</aside>
+{% endaside %}
 
 If you're copying tabbed code from elsewhere, you can format it to spaces by going to `Edit > Advanced > Untabify Selected Lines` in Visual Studio.
 

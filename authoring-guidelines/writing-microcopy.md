@@ -5,9 +5,9 @@ title: Writing microcopy
 
 Microcopy is those little bits of text that litter your typical user interface—log in links, form labels, error messages, things like that. These pieces of text are often hardcoded, so it is up to you, dear developer, to make sure it's up to par. Quality microcopy is pivotal in creating an easy to use and accessible user experience.
 
-<aside class="aside aside--opinion">
+{% aside opinion %}
 This page is *very* opinionated. There are no hard and fast rules for microcopy, and what rules there are might differ on a project by project basis. Either way, this is a good baseline to work from.
-</aside>
+{% endaside %}
 
 This page is inspired by [FutureLearn's page on microcopy](https://www.futurelearn.com/pattern-library/core-patterns/microcopy).
 

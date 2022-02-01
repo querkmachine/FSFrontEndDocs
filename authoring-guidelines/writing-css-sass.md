@@ -55,9 +55,9 @@ A block will simply be a class name.
 .fancy-button__icon--large {}
 {% endhighlight %}
 
-<aside class="aside aside--correction">
+{% aside correction %}
 In many cases state can be conveyed via HTML attributes. A disabled button could be styled using `.fancy-button:disabled` or the current page in a list with `.breadcrumb__link[aria-current="page"]` instead of creating an additional modifer class. Doing this is preferable if there are appropriate attributes available.
-</aside>
+{% endaside %}
 
 ### Namespacing
 
@@ -117,9 +117,9 @@ This code is better. Only the values we actually want to set are defined, the `b
 ### Vendor prefixes
 **Do not write vendor prefixes into code**, instead use a tool like [Autoprefixer](https://github.com/postcss/autoprefixer) to add these programmatically. This makes the code easier to scan and allows us to configure browser support from the Gulp configuration like a boss. 
 
-<aside class="aside aside--correction">
+{% aside correction %}
 Autoprefixer doesn't cover everything. [Text stroke](http://caniuse.com/#feat=text-stroke), for example, is not in any W3C specification and only exists as a prefixed property. You have to include the prefix manually in situations like this.
-</aside>
+{% endaside %}
 
 If you're in an environment where Autoprefixer isn't available, then you may write vendor prefixes into your code.
 
@@ -128,9 +128,9 @@ Strings (URLs, font names, `content` values, etc.) should be surrounded by doubl
 
 **Values of 0 should be unitless.**
 
-<aside class="aside aside--issue">
+{% aside issue %}
 CSS timing functions, [like the Mongols](https://www.youtube.com/watch?v=PqcVro-3f4I), are the exception. They require units even when their values are zero! Argh! 
-</aside>
+{% endaside %}
 
 ### Colours
 Colour values should be written in hexadecimal; shortened and lowercase where possible. RGB and HSL may also be used where appropriate. If using Sass then hex values will automatically be converted to these where necessary. 
@@ -175,9 +175,9 @@ body {
 
 **Use of the module system is highly preferred over the older `@import`-based method.** `@import` is deprecated, and the Sass team is intending to remove the `@import` Sass rule completely by October 2022.
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 You can create private variables, mixins and functions by prefixing their name with an underscore or a hyphen. They will be inaccessible outside of the partial where they are defined, even if directly referenced.
-</aside>
+{% endaside %}
 
 ### Mixins and extends
 Sass has two main methods of creating [DRY-ness](https://en.wikipedia.org/wiki/Don't_repeat_yourself)—mixins and extends. **We prefer the use of mixins in almost all situations.** Here's a table explaining why:

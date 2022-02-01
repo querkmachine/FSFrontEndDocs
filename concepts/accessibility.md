@@ -9,11 +9,11 @@ For website projects we aim to, as much as is practical, fulfil the requirements
 
 One thing to keep in mind throughout this page is that **accessibility is not just about permanent disabilities**. A person with glasses may zoom into a page to be able to read easier; a person with a strain injury will struggle to use a mouse and keyboard; a person who is in a crisis will struggle to read long or complex instructions; and for most people functions like eyesight will degrade with age. [We're all just temporarily abled](https://uxmag.com/articles/we-re-just-temporarily-abled), and making things work for those with the greatest need often benefits everyone, even those without disabilities.
 
-<aside class="aside aside--tangent">
+{% aside tangent %}
 This is a very long page. It has to be, as accessibility is simultaneously a very wide and very deep subject matter—there's a reason there are entire companies that specialise at this. 
 
 If you're short on time or patience, skim the Dos and Don'ts, most of the stuff you need to know is in there. 
-</aside>
+{% endaside %}
 
 ## Quick wins
 

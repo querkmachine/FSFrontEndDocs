@@ -3,6 +3,25 @@ layout: default
 title: Changelog
 ---
 
+## 2022-02-04
+
+Part four.
+
+* Grouped together related troubleshooting topics in the navigation.
+* Replaced every instance of "as of writing" with an actual date because that's not really that useful otherwise.
+* Writing CSS/Sass: Slightly update Sass module system section.
+* Writing CSS/Sass: Add logical properties and values section.
+* Troubleshooting Browserslist: Added page.
+* Troubleshooting Fractal: Added page.
+* Troubleshooting Sass: Added page.
+
+## 2022-02-01
+
+Part three.
+
+* Git submodules: Added page.
+* Troubleshooting: Rewrote a number of pages and added warnings to those that might no longer be relevant.
+
 ## 2022-01-31
 
 Part two of the big re-write.

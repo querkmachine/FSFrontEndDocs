@@ -25,7 +25,7 @@ You’ll need to install a more up-to-date version of Node.
 
 ### Step one: Download and install Node
 
-Go to the [Node website](https://nodejs.org/) and download the most recent version of Node. The 'LTS' release will do. At the time of writing, that’s Node 8.9.4.
+Go to the [Node website](https://nodejs.org/) and download the most recent version of Node. The 'LTS' release will do.
 
 Install it as you would normally. 
 

@@ -140,10 +140,10 @@ Do not use the default colour values that exist in CSS except for debugging or r
 ## Sass specifics
 Sass has changed which compiler the first-party tool uses a few times in its history. Originally written in Ruby (Ruby Sass), it was then ported to C/C++ (as LibSass), and is now implemented via Dart (Dart Sass). Each implementation has slightly different feature sets and handles edge cases differently.
 
-When using Sass, **gravitate to the most up-to-date implementation available**, as this will have the most recent bugfixes and features and the longest remaining support lifetime. As of writing, both Ruby Sass and LibSass have been deprecated in favour of Dart Sass.
+When using Sass, **gravitate to the most up-to-date implementation available**, as this will have the most recent bugfixes and features and the longest remaining support lifetime. As August 2020, both Ruby Sass and LibSass have been deprecated in favour of Dart Sass.
 
 ### The Sass module system
-Dart Sass 1.23.0 introduced [the module system](https://sass-lang.com/blog/the-module-system-is-launched). This presents a fairly radical change to the language. In previous Sass versions all variables, mixins and functions—whether built-in or user authored— existed in a single global scope that could be added to through simple `@import`-ing. 
+Dart Sass 1.23.0 introduced [the module system](https://sass-lang.com/blog/the-module-system-is-launched). This presents a fairly radical change to the language. In previous Sass versions all variables, mixins and functions—whether built-in or user authored—existed in a single global scope that could be added to through simple `@import` rules. 
 
 {% highlight scss %}
 // Note that these @import rules could be anywhere prior 
@@ -158,7 +158,7 @@ body {
 }
 {% endhighlight %}
 
-With the module system, each Sass partial is a separate island and other files must be explicitly referenced in the partial before they can be used, and these referenced elements are automatically namespaced. 
+With the module system, each Sass partial is a separate island and other files must be explicitly referenced in the partial before they can be used. These referenced elements are automatically namespaced. 
 
 {% highlight scss %}
 // In the module system, @use rules *must* be in the same file.
@@ -168,10 +168,12 @@ With the module system, each Sass partial is a separate island and other files m
 @use "sass:color"; // You must now explicitly reference Sass's built-in functions
 
 body {
-    $color: color.darken(settings.$theme-color, 15%);
+    $color: color.adjust(settings.$theme-color, $lightness: -15%);
     @include theming.setBgColor($color);
 }
 {% endhighlight %}
+
+(Note that [various color functions also changed how they work]({{ site.baseurl }}{% link troubleshooting/outdated-sass-troubleshooting.md %}#deprecation-and-removal-of-various-built-in-functions) when the module system was introduced.)
 
 **Use of the module system is highly preferred over the older `@import`-based method.** `@import` is deprecated, and the Sass team is intending to remove the `@import` Sass rule completely by October 2022.
 
@@ -196,6 +198,50 @@ And if that hastily made table doesn't convince you, maybe the words of two of t
 
 * [Mixins Better For Performance](http://csswizardry.com/2016/02/mixins-better-for-performance/) by Harry Roberts
 * [Why You Should Avoid Sass @extend](https://www.sitepoint.com/avoid-sass-extend/) by Kitty Giraudel
+
+## Logical properties and values
+Some recent Felinesoft projects have started to utilise [Logical Properties and Values](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties), a newer addition to the CSS specification that replaces *physical* keywords (literally, words that reference physical properties: width, height, up, down, left and right) with *logical* keywords, which can automatically adapt to different languages and localities. 
+
+Although there isn't much reason to do this if a website is only ever going to support English, it's an interesting thing to learn and get accustomed to for when you actually need it. 
+
+There are some generally useful additions in the logical properties spec too. For example, `margin-block` can be used to set both `margin-block-start` and `margin-block-end` at the same time. `inset` introduces a positioning shorthand that takes up to four values in the same manner as the `margin` and `padding` shorthands (top, right, bottom, then left).
+
+For more information, I suggest reading [the MDN docs for the spec](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties).
+
+### Translating physical properties to logical ones
+
+If you're supporting a project that already uses logical properties and values, and wish to continue using them (Being consistent! Good!), you mainly just have to remember these word substitutions:
+
+|CSS physical name|CSS logical name|In <abbr title="left-to-right">LTR</abbr> languages|In <abbr title="right-to-left">RTL</abbr> languages|In Han languages|In Mongolic languages|
+|:-|:-|:-|:-|:-|:-|
+|`height` and `vertical`|`block`|height|height|width|width|
+|`width` and `horizontal`|`inline`|width|width|height|height|
+|`top`|`block-start`|top|top|top|right|
+|`bottom`|`block-end`|bottom|bottom|bottom|left|
+|`left`|`inline-start` or `start`|left|right|left|top|
+|`right`|`inline-end` or `end`|right|left|right|bottom|
+
+{% aside correction %}
+In the table above, Han languages (Chinese, Japanese, Korean, and others) are classified on the assumption of top-to-bottom writing systems, to demonstrate the variety that logical keywords cover.
+
+In reality, these languages use left-to-right in most online applications, mainly due to historical incompatibilities, but top-to-bottom is increasingly common. Han languages have historically also used right-to-left, so this may also appear at times.
+
+Mongolic languages have typically also defaulted to using left-to-right on websites, as many browsers did not support Mongolic writing systems until relatively recently. [Here's an example of a contemporary website with Mongolic writing support](https://president.mn/mng/) (although it does not use logical properties).
+{% endaside %}
+
+For most properties there's a direct replacement of one phrase for another: `padding-right` becomes `padding-inline-end`, `border-top` becomes `border-block-start`, `float: left` becomes `float: inline-start`.
+
+There are a few little quirks however: 
+
+`border-radius`, `text-align`
+: Omits the `block` and `inline` parts of the name: `border-top-right-radius` becomes `border-start-end-radius`, `text-align: right` becomes `text-align: end`.
+
+`top`, `right`, `bottom`, `left`
+: Prefixes with `inset-` in addition to replacing the word: `right` becomes `inset-inline-end`. 
+
+`margin`, `padding`, `inset`, `border-width`, `border-style`, `border-color`
+: By default, these properties are physical unless prefixed with the `logical` keyword. `margin: 15px 20px 15px 10px` and `margin: logical 15px 20px 15px 10px` will appear differently between LTR and RTL languages.
+
 
 ## Transpiling for older browsers
 

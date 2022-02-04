@@ -49,4 +49,4 @@ Unlike Kickstart, Felafel does not have a built-in design system component. It i
 
 [Vanilla Validation](https://github.com/querkmachine/vanilla-validation) is a vanilla JavaScript library that leverages the browser's own [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation) to display custom validation messages on forms. It has a bunch of options, ARIA for accessibility compliance, and generally tries to follow best practices where known. It is made to integrate seamlessly with Umbraco Forms, the form builder used on many Felinesoft projects. 
 
-Vanilla Validation was built in late-2021. At time of writing, the npm-hosted library isn't used on any projects, although early and bespoke iterations of it exist in the source code of several projects. Vanilla Validation should ideally be used going forwards. 
+Vanilla Validation was built in late-2021. As of January 2022, the npm-hosted library isn't used on any projects, although early and bespoke iterations of it exist in the source code of several projects. Vanilla Validation should ideally be used going forwards. 

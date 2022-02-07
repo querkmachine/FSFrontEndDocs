@@ -48,6 +48,10 @@ A block will simply be a class name.
 .fancy-button__label {}
 {% endhighlight %}
 
+{% aside opinion %}
+Ideally, flatten element lists. Whilst it's certainly possible for `.nav__list__item__link__icon` to exist if you mirror the HTML structure directly, `.nav__icon` will often suffice.
+{% endaside %}
+
 *Modifiers* are modifications of blocks or elements, which are delimited with double hyphens. **Modifications may be visual or state related.**
 
 {% highlight css %}
@@ -56,14 +60,19 @@ A block will simply be a class name.
 {% endhighlight %}
 
 {% aside correction %}
-In many cases state can be conveyed via HTML attributes. A disabled button could be styled using `.fancy-button:disabled` or the current page in a list with `.breadcrumb__link[aria-current="page"]` instead of creating an additional modifer class. Doing this is preferable if there are appropriate attributes available.
+In many cases, an element's state can be conveyed via HTML attributes rather than using modifier classes. A disabled button could be styled using `.fancy-button:disabled` or the current page in a list with `.breadcrumb__link[aria-current="page"]` instead of creating an additional modifer class. Doing this is preferable if there are appropriate attributes available.
+{% endaside %}
+
+{% aside opinion %}
+When an element ends up having a *lot* of modifiers, I personally trend towards using `data-*` attributes instead of classes: `.fancy-button[data-size="small"]`. 
+
+This is particularly true for buttons, where there can be lots of modifiers (color, size, responsive behaviour, etc.) with incompatible options (size can't be both small and large).
 {% endaside %}
 
 ### Namespacing
-
 On many projects, using namespaces—in the form of class name prefixes—to indicate the origin or purpose of a class can often be useful. On projects using Felafel, for example, you may use them to differentiate between classes coming from Felafel (which are all prefixed `fs-`), third-party libraries like Flexslider (which all begin with `flex-`), and those native to your current project.
 
-Some projects will use different prefixes for component-level code, and code specific to individual templates and pages. Ski Miquel, for example, uses `ski-`, `skit-` and `skip-`, respectively.
+Some projects will use different prefixes for code at the component-level and code specific to individual templates and pages. Ski Miquel, for example, uses `ski-`, `skit-` and `skip-`, respectively. **Try to avoid having too much page-specific CSS in your project**, but when it's unavoidable, namespace it.
 
 Utility classes are almost always prefixed differently to clearly indicate their purpose and separate them from the BEM naming methodology. Felafel uses `fs-!-` for utility classes.
 
@@ -117,7 +126,7 @@ This code is better. Only the values we actually want to set are defined, the `b
 ### Vendor prefixes
 **Do not write vendor prefixes into code**, instead use a tool like [Autoprefixer](https://github.com/postcss/autoprefixer) to add these programmatically. This makes the code easier to scan and allows us to configure browser support from the Gulp configuration like a boss. 
 
-{% aside correction %}
+{% aside issue %}
 Autoprefixer doesn't cover everything. [Text stroke](http://caniuse.com/#feat=text-stroke), for example, is not in any W3C specification and only exists as a prefixed property. You have to include the prefix manually in situations like this.
 {% endaside %}
 
@@ -178,7 +187,7 @@ body {
 **Use of the module system is highly preferred over the older `@import`-based method.** `@import` is deprecated, and the Sass team is intending to remove the `@import` Sass rule completely by October 2022.
 
 {% aside tangent %}
-You can create private variables, mixins and functions by prefixing their name with an underscore or a hyphen. They will be inaccessible outside of the partial where they are defined, even if directly referenced.
+You can create private variables, mixins and functions by prefixing their name with an underscore or a hyphen (`$_like-this`). They will be inaccessible outside of the partial where they are defined, even if directly referenced.
 {% endaside %}
 
 ### Mixins and extends
@@ -198,6 +207,10 @@ And if that hastily made table doesn't convince you, maybe the words of two of t
 
 * [Mixins Better For Performance](http://csswizardry.com/2016/02/mixins-better-for-performance/) by Harry Roberts
 * [Why You Should Avoid Sass @extend](https://www.sitepoint.com/avoid-sass-extend/) by Kitty Giraudel
+
+{% aside opinion %}
+There *are* places where extends come in handy. For example, if you have [a component that borrows styles from lots of other places](https://github.com/querkmachine/felafel/blob/master/src/scss/components/_prose.scss), but for the most part, mixins are the better option.
+{% endaside %}
 
 ## Logical properties and values
 Some recent Felinesoft projects have started to utilise [Logical Properties and Values](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties), a newer addition to the CSS specification that replaces *physical* keywords (literally, words that reference physical properties: width, height, up, down, left and right) with *logical* keywords, which can automatically adapt to different languages and localities. 

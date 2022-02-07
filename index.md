@@ -4,7 +4,7 @@ title: In the beginning&hellip;
 exclude_from_nav: true
 ---
 
-<small>Originally written and maintained by [Kimberly Grey](https://berly.kim). **Last updated: 4th February 2022.**</small>
+<small>Originally written and maintained by [Kimberly Grey](https://berly.kim). **Last updated: 7th February 2022.**</small>
 
 Hello! If you’re reading this, you either [work here](http://felinesoft.com/), have been contracted by us to do some front-end work for us, or heck, you could even be some curious passer-by. Alternatively you could be a hacker who has compromised our systems (naughty!) but if that’s the case then there’s probably much more interesting things to look at than this. 
 

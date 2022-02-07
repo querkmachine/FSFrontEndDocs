@@ -7,7 +7,7 @@
 }
 
 html {
-	@include size-responsive(1.2vw, 16px);
+	@include size-responsive(1.2vw, $min: 16px, $max: 22px);
 }
 
 body {

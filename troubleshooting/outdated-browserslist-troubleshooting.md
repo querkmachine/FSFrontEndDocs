@@ -45,6 +45,6 @@ Browserslist used to require explicit OR joiners, whereas it now requires explic
 }
 {% endhighlight %}
 
-While you're there, make sure that the Browserslist query complies with our [current browser support policy]({{ site.baseurl }}{% link tools/browser-support.md %}). Check any Gulpfiles to see if they contain embedded Browserslist configurations. If they do, remove them so that the config in `package.json` is used instead.
+While you're there, make sure that the Browserslist query complies with our [current browser support policy]({% link tools/browser-support.md %}). Check any Gulpfiles to see if they contain embedded Browserslist configurations. If they do, remove them so that the config in `package.json` is used instead.
 
 You can verify that the Browserslist query is working as expected by running `npx browserslist`.

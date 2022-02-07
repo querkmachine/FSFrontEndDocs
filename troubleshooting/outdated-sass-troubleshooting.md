@@ -64,7 +64,7 @@ $height: $width * 0.5;
 
 With the introduction of the [Sass module system](https://sass-lang.com/blog/the-module-system-is-launched), and the `@use` and `@forward` rules, it was announced that `@import` would eventually be removed by October 2022. This decision was, in part, to resolve issues with Sass `@import` sharing the same name as CSS `@import`.
 
-In many situations, `@import` can be directly replaced with `@use`, however [the two do not work in exactly the same way]({{ site.baseurl }}{% link authoring-guidelines/writing-css-sass.md %}#the-sass-module-system), and it is reasonably likely that some restructuring and refactoring take place. 
+In many situations, `@import` can be directly replaced with `@use`, however [the two do not work in exactly the same way]({% link authoring-guidelines/writing-css-sass.md %}#the-sass-module-system), and it is reasonably likely that some restructuring and refactoring take place. 
 
 ## Deprecation and removal of various built-in functions
 

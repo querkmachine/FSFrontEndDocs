@@ -43,7 +43,7 @@ New developers can also get up to speed much quicker by looking at the design sy
 
 At Felinesoft, we've long used [Fractal](http://fractal.build/) with the [Nunjucks adaptor](https://github.com/frctl/fractal/tree/main/packages/nunjucks) for our design system management. Nunjucks is a fair amount more powerful than the Handlebars adaptor that Fractal ships with, and it allows for the use of macros, which are themselves a bit more flexible than Fractal's own render system. 
 
-See Kickstart 8 on [the frameworks page]({{ site.baseurl }}{% link tools/felinesoft-frameworks.md %}) for the Fractal/Nunjucks architecture we've used on most of our projects in recent years.
+See Kickstart 8 on [the frameworks page]({% link tools/felinesoft-frameworks.md %}) for the Fractal/Nunjucks architecture we've used on most of our projects in recent years.
 
 ### What to include
 

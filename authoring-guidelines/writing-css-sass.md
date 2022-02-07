@@ -182,7 +182,7 @@ body {
 }
 {% endhighlight %}
 
-(Note that [various color functions also changed how they work]({{ site.baseurl }}{% link troubleshooting/outdated-sass-troubleshooting.md %}#deprecation-and-removal-of-various-built-in-functions) when the module system was introduced.)
+(Note that [various color functions also changed how they work]({% link troubleshooting/outdated-sass-troubleshooting.md %}#deprecation-and-removal-of-various-built-in-functions) when the module system was introduced.)
 
 **Use of the module system is highly preferred over the older `@import`-based method.** `@import` is deprecated, and the Sass team is intending to remove the `@import` Sass rule completely by October 2022.
 

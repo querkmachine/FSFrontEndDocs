@@ -60,7 +60,18 @@ a {
 }
 
 .masthead {
-
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+	font-size: 1.25rem;
+	.wrapper {
+		display: flex;
+		align-items: center;
+	}
+	img {
+		width: 2.25rem;
+		height: 2.25rem;
+		margin-right: .75rem;
+	}
 }
 
 .footer {

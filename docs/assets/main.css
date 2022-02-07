@@ -24,6 +24,12 @@ a:hover, a:focus { color: #1976d2; text-decoration: underline; }
 
 .navigation > ul > li { margin-bottom: 1rem; }
 
+.masthead { padding-top: .5rem; padding-bottom: .5rem; font-size: 1.25rem; }
+
+.masthead .wrapper { display: flex; align-items: center; }
+
+.masthead img { width: 2.25rem; height: 2.25rem; margin-right: .75rem; }
+
 .footer { font-size: .875rem; line-height: 1.5; padding-top: 1rem; padding-bottom: 1rem; text-align: center; }
 
 .aside { position: relative; margin-left: 5rem; padding: 1rem; border-left: 3px solid #000; }

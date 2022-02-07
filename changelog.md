@@ -8,6 +8,8 @@ title: Changelog
 Part four and a bit.
 
 * Reworked how build/deployment works because GitHub Pages doesn't like custom Liquid tags apparently.
+* Added a site header.
+* Changed global text size to clamp it to a min/max.
 * Writing CSS/Sass: Added various asides.
 
 ## 2022-02-04

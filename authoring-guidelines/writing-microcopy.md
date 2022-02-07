@@ -9,7 +9,7 @@ Microcopy is those little bits of text that litter your typical user interfaceâ€
 This page is *very* opinionated. There are no hard and fast rules for microcopy, and what rules there are might differ on a project by project basis. Either way, this is a good baseline to work from.
 {% endaside %}
 
-This page is inspired by [FutureLearn's page on microcopy](https://www.futurelearn.com/pattern-library/core-patterns/microcopy).
+This page is inspired by [FutureLearn's page on microcopy](https://storybook.futurelearn.com/?path=/story/design-system_design-system-core-styles-microcopy--page).
 
 ## Capitalisation
 

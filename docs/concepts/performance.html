@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Performance | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/concepts/performance.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Performance</h1>
+				<blockquote>
+  <p>It’s hard, if not impossible, to deny that performance is by far one of the most critical aspects of any decent web project, be it a small portfolio site, a mobile-first web app, right through to a full-scale ecommerce project. Studies, articles and personal experience all tell us that fast is best.</p>
+</blockquote>
+
+<p>Harry Roberts has written a <a href="http://csswizardry.com/2013/01/front-end-performance-for-web-designers-and-front-end-developers/">very comprehensive article on front-end performance for developers</a> already. It’s a little old, but a lot of the advice it gives is still relevant; a summary of which is included here for your convenience.</p>
+
+<h2 id="css-and-javascript-includes">CSS and JavaScript includes</h2>
+
+<p>CSS blocks rendering. The user will be stuck staring at a white screen until all of the page’s CSS files have been downloaded. Because of this, we want to download CSS as soon as possible, so <strong>CSS should be included at the top of the document</strong>.</p>
+
+<p>JavaScript blocks downloads. While JavaScript files are downloading, the browser will not download anything else. Because of this, we want to download JavaScript files last so they don’t block anything else, so <strong>JavaScript should be included at the bottom of the document</strong>.</p>
+
+<aside class="aside aside--correction">
+
+  <p>There are some exceptions to the JavaScript rule. For example, some polyfill scripts may require being loaded in the <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> in order to work correctly. Scripts like this may appear in the <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>, but other application code should not.</p>
+
+</aside>
+
+<h2 id="cdns-and-dns">CDNs and DNS</h2>
+
+<p>This is mostly out of the hands of a front-ender, but should anyone ever ask, here’s a quick answer for what they should do: <strong>put media and JavaScript on the CDN, but don’t put CSS there</strong>.</p>
+
+<p>CDNs are generally beneficial. Many browsers limit how many files it will download from a single domain, so spreading assets across multiple domains allows for more parallel downloads and thus a quicker download. However, CSS is part of the page’s <em>critical path</em>, it’s something you want to download as quickly as possible, as soon as possible, because the page won’t paint without it. <strong>Putting CSS on the CDN makes it load slower</strong> because it adds the overhead of DNS resolution on top of the usual download effort. Keeping CSS on the same domain as the site removes this overhead.</p>
+
+<p>If the URL for the CDN is known ahead of time, you can speed up the DNS resolution process by including a <code class="language-plaintext highlighter-rouge">dns-prefetch</code> meta tag in the <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> of the page. This won’t make a huge difference, but it gives the resolution process a little head start where it wouldn’t otherwise.</p>
+
+<figure class="highlight">
+  <pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"dns-prefetch"</span> <span class="na">href=</span><span class="s">"//cdn.foobar.com"</span><span class="nt">&gt;</span></code></pre>
+</figure>
+
+<h2 id="optimising-images">Optimising images</h2>
+
+<p>Our Gulp boilerplate includes <code class="language-plaintext highlighter-rouge">gulp-imagemin</code> by default, which will losslessly compress UI images that are included in the project. Unfortunately, this doesn’t apply to content managed media, that’s for the back-enders and the clients to sort out.</p>
+
+<p>For UI imagery we prefer to use SVGs. CSS-Tricks has <a href="https://css-tricks.com/icon-fonts-vs-svg/">a whole article explaining their benefits over icon fonts</a>.</p>
+
+<h2 id="bundling">Bundling</h2>
+
+<p>The switchover to HTTP/2 makes bundling of styles and scripts unnecessary, and while <a href="http://caniuse.com/#feat=http2">browser adoption of HTTP/2</a> is fairly significant, <a href="http://isthewebhttp2yet.com/measurements/adoption.html">for many hosting companies</a> it’s not. HTTP/2 is also limited in that many browsers only support it over TLS (making HTTPS a requirement).</p>
+
+<p>Because of the limited adoption and use cases <strong>we are still actively bundling assets</strong> together. When adoption and feasibility picks up, then we’ll probably make the switch.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

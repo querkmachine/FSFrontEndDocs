@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Git submodules | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/tools/submodules.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Git submodules</h1>
+				<p>On several projects, the design system and front-end elements of the project are contained in a separate Git repository to the back-end. We do this as the front-end is normally built some weeks ahead of the backend, potentially causing work for different sprints to overlap—which is problematic if breaking changes are being introduced. Having front-end in a separate repo means that it can be independently versioned and released, and used to get client review and approval of interfaces that are still in development.</p>
+
+<p>To marry front- and back-end repos together we use <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Git submodules</a>. Submodules, as the name may suggest, basically allow one Git repo to be included inside of another one. In Git terminology, a project which has submodules is named a “superproject”.</p>
+
+<p>By default, submodules appear in the file system as an empty directory. After updating the submodule, the directly will be populated by code from the submodule’s repo. Git, however, will treat the directory as though it is a file containing a commit ID (a “lockfile”). This is the ID for the commit that was most recent at the time the submodule was last updated, and is what allows us to choose which version of the design system repo is being deployed.</p>
+
+<p>By default, cloning, fetching or pulling on the superproject will not update submodules, they must be updated with separate commands or by using flags.</p>
+
+<p>Configuration for submodules is stored in the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file.</p>
+
+<h2 id="adding-the-submodule">Adding the submodule</h2>
+
+<aside class="aside aside--">
+
+  <p>Be very careful with this. Submodules are fairly difficult to fix if configured incorrectly.</p>
+
+</aside>
+
+<p>In the superproject, navigate your terminal to the root of the superproject (aka, where the <code class="language-plaintext highlighter-rouge">.git</code> directory is located, but not inside the directory itself), and use this command:</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">git submodule add &lt;url&gt; &lt;path&gt;</code></pre>
+</figure>
+
+<p><code class="language-plaintext highlighter-rouge">url</code> is the cloning path of the Git repo you’re using as a submodule.</p>
+
+<p><code class="language-plaintext highlighter-rouge">path</code> is the directory path of where you want this submodule to live in the superproject. For design systems, you will almost certainly want this to be in a sub-directory of the UI/presentation directory of the project.</p>
+
+<h2 id="getting-the-submodule">Getting the submodule</h2>
+
+<p>If you have yet to clone the superproject, you can clone it and its submodules at the same time:</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">git clone <span class="nt">--recurse-submodules</span> &lt;url&gt;</code></pre>
+</figure>
+
+<aside class="aside aside--tangent">
+
+  <p>Visual Studio 2017 Update 5 and above will do this automatically, although will not show the contents of the submodule within the File Explorer. You need to open the submodule separately if you want to inspect the contents.</p>
+
+  <p>Visual Studio versions prior to Update 5 do not support submodules, so you’ll have to run commands in a separate command line.</p>
+
+</aside>
+
+<p>If you’ve already cloned the superproject without the submodules, you’ll need to run two commands instead:</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">git submodule init
+git submodule update</code></pre>
+</figure>
+
+<p>The first command initialises the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file (which updates the configuration file in the <code class="language-plaintext highlighter-rouge">.git</code> directory). The second fetches the commit specified in the submodule lockfile.</p>
+
+<h2 id="updating-the-submodule">Updating the submodule</h2>
+
+<p>By default, submodules are “locked” to the commit that they were on when first added to the superproject. No matter who pulls the superproject, or when they do it, they will receive the submodule’s code as it existed at the time it was locked. This is to allow for dependency management; you don’t want the code to be changing under your feet, after all!</p>
+
+<p>To update the submodule code and update the lockfile:</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">git submodule update <span class="nt">--remote</span></code></pre>
+</figure>
+
+<p>The updated lockfile needs to be committed in the superproject.</p>
+
+<aside class="aside aside--issue">
+
+  <p><em>Something</em> about how this works (in Visual Studio, in DevOps, or maybe elsewhere) is kinda buggy, and lockfiles can get overwritten with older versions on projects where multiple developers are working simultaneously.</p>
+
+  <p>To ensure you don’t accidentally overwrite things, consider always running the submodule update command prior to committing and pushing.</p>
+
+</aside>
+
+<h2 id="removing-a-submodule">Removing a submodule</h2>
+
+<p>Rarely you may need to remove a submodule, such as if it’s been misconfigured or you’re attempting a clean install in order to resolve a problem. Removing a submodule is relatively labour intensive, compared to creating one, so get your command line hats on.</p>
+
+<p>In all of the below, replace “path/to/submodule” to match the path defined when the submodule was added.</p>
+
+<ol>
+  <li>Open the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file in a text editor and delete the section for the submodule. This will start with <code class="language-plaintext highlighter-rouge">[submodule "path/to/submodule"]</code>, and includes any indented lines under this heading.</li>
+  <li>Stage the change.</li>
+</ol>
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">git add .gitmodules</code></pre>
+</figure>
+
+<ol>
+  <li>Open the file located at <code class="language-plaintext highlighter-rouge">.git/config</code> and delete the section for the submodule. This is formatted the same way as in the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file.</li>
+  <li>Unstage the submodule directory from Git.</li>
+</ol>
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">git <span class="nb">rm</span> <span class="nt">--cached</span> path/to/submodule</code></pre>
+</figure>
+
+<ol>
+  <li>Delete the submodule configuration.</li>
+</ol>
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell"><span class="nb">rm</span> <span class="nt">-rf</span> .git/modules/path/to/submodule</code></pre>
+</figure>
+
+<ol>
+  <li>Commit your changes.</li>
+  <li>Finally, delete the submodule directory.</li>
+</ol>
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell"><span class="nb">rm</span> <span class="nt">-rf</span> path/to/submodule</code></pre>
+</figure>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

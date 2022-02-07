@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Using Gulp with Visual Studio | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/troubleshooting/gulp-vs2015-troubleshooting.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Using Gulp with Visual Studio</h1>
+				<aside class="aside aside--correction">
+
+  <p>This troubleshooting guide was written for Visual Studio 2015 and 2017. I cannot verify if these issues still occur, or if the below is still correct, for newer Visual Studio versions.</p>
+
+  <p>For older versions of Visual Studio you cannot use Gulp within the application, and must use an external command line.</p>
+
+</aside>
+
+<p>The version of Node.js bundled in Visual Studio 2015 is <em>ancient</em>. Even with all of the updates, the most recent version their IDE comes with is 0.10.31, released July 2013. Visual Studio 2017 is a lot better, at Node 5, but is still multiple versions behind the most recent Node releases.</p>
+
+<p>This causes problems. Problems like how Node.js 0.10.31 is so old it doesn’t support the ECMAScript 2015 JavaScript standard (commonly known as ES2015 or ES6). Basically, <strong>you’ll want to fix this problem</strong>, and this document tries to help you do that.</p>
+
+<p>There’s also supplementary issues with using Node in Visual Studio unrelated to version, such as environmental binding. I’ll try to help you fix those too.</p>
+
+<p>All this stuff is dramatically easier if you’re on macOS or Linux. But then again those systems <del>don’t yet have Visual Studio</del> (<a href="https://www.visualstudio.com/vs/visual-studio-mac/">Macs almost do</a>), so you probably have no reason to be reading this.</p>
+
+<h2 id="i-get-some-error-about-const-or-something-whats-up-with-that">I get some error about <code class="language-plaintext highlighter-rouge">const</code> or something? What’s up with that?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">const</code> is an ES2015 feature for—unsurprisingly—a constant. You’re getting this error because the version of Node that Visual Studio has installed is so hella old it doesn’t understand ES2015.</p>
+
+<p>You’ll need to install a more up-to-date version of Node.</p>
+
+<h3 id="step-one-download-and-install-node">Step one: Download and install Node</h3>
+
+<p>Go to the <a href="https://nodejs.org/">Node website</a> and download the most recent version of Node. The ‘LTS’ release will do.</p>
+
+<p>Install it as you would normally.</p>
+
+<h3 id="step-two-configure-external-web-tools-in-visual-studio">Step two: Configure ‘External Web Tools’ in Visual Studio</h3>
+
+<p>Go to <code class="language-plaintext highlighter-rouge">Tools &gt; Options</code>. Then on the tree on the left, navigate to <code class="language-plaintext highlighter-rouge">Projects and Solutions &gt; External Web Tools</code>.</p>
+
+<p>Click the button of a folder with a little star next to it. This will insert a text input into the list below it.</p>
+
+<p>In the input, type the name of the folder where Node has been installed. This will typically be something like <code class="language-plaintext highlighter-rouge">C:\Program Files\nodejs</code>. You may need to use Explorer to find this.</p>
+
+<p>Click off the input but stay on the new list item. Then click the button with an up arrow as many times as necessary to bring the list item to the top of the list. This makes Visual Studio prioritise it over the built-in version of Node.</p>
+
+<h3 id="step-three-re-do-the-gulp">Step three: Re-do the Gulp</h3>
+
+<p>You might need to close and re-open Visual Studio for this, but run the Gulp in the Task Runner Explorer again. Hopefully, it should work, but if not…</p>
+
+<h2 id="apparently-node-sass-needs-rebuilding-what-what">Apparently <code class="language-plaintext highlighter-rouge">node-sass</code> needs rebuilding? What what?</h2>
+
+<p>Ah yes, that’s another problem with using Gulp in Visual Studio.</p>
+
+<p>Some npm modules need to be built according to the environment they’re running on—Windows, Mac, Linux, etc., as well as what version of Gulp is in use.</p>
+
+<p>‌<strong>This is done at the point the module is installed by Visual Studio</strong>, and not during any build/rebuild/clean action. This means that if the Node packages are installed by VS <em>before</em> upgrading Node (as above), then the packages will have been built for the environment in Visual Studio, NOT the environment you’ve just created by upgrading Node.</p>
+
+<p>As it happens, Visual Studio (seemingly) has a tendency to misrepresent what environment it is anyway and will always say that Gulp is running on a 32-bit version of Windows, even when that’s not the case. This will make <code class="language-plaintext highlighter-rouge">node-sass</code> confused and angry, and it will refuse to work for you as a result. You should probably…</p>
+
+<h3 id="step-one-try-doing-what-it-says">Step one: Try doing what it says</h3>
+
+<p>Visual Studio doesn’t have a built-in command line that can interact with Gulp, so you’ll need to hit the start menu and open ‘Command line with Node’.</p>
+
+<p>In the command line, navigate to the directory where <code class="language-plaintext highlighter-rouge">Gulpfile.js</code> file is and run <code class="language-plaintext highlighter-rouge">npm rebuild node-sass</code>.</p>
+
+<p>This often doesn’t work (maybe 5-10% of the time it solves the problem), but it’s worth giving it a shot—just in case.</p>
+
+<h3 id="step-two-kill-it">Step two: Kill it</h3>
+
+<p>If that doesn’t work, your best bet may be in turning it off and on again.</p>
+
+<p>In the same command line, run the command <code class="language-plaintext highlighter-rouge">npm uninstall gulp-sass --save-dev</code>, then run <code class="language-plaintext highlighter-rouge">npm install gulp-sass --save-dev</code>. This will uninstall and re-install the package using the command line environment.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

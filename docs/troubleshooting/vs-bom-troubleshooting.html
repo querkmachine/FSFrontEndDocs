@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Visual Studio drops the BOM | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/troubleshooting/vs-bom-troubleshooting.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Visual Studio drops the BOM</h1>
+				<aside class="aside aside--correction">
+
+  <p>This page was written based on an issue observed with Visual Studio 2015 and 2017. I haven’t seen this problem pop up for a while now, so it may have been fixed in more recent versions of Visual Studio.</p>
+
+</aside>
+
+<p>By default, Visual Studio will always save files encoded as ‘UTF-8 with BOM’ (Byte Order Mark, often referred to as ‘UTF-8 with signature’ in Microsoft land). This is generally a good thing! UTF-8 with BOM supports the largest range of languages; without BOM, languages like Chinese wouldn’t be available in the editor—not such a problem for us English speakers, but this is a planet for everyone. Byte order marks are typically represented in a document by prefixing it with the Unicode character <code class="language-plaintext highlighter-rouge">U+FEFF</code>.</p>
+
+<p>The problems begin with how ‘persuasive’ Visual Studio is with how it handles files. It doesn’t matter what encoding the file used to have, <strong>VS will force all UTF-8 files to be UTF-8 with BOM</strong>, even if that’s not what you want it to be. Byte order marks can also occassionally appear in the middle of files, usually immediately preceding code pasted from elsewhere.</p>
+
+<p>This can <em>royally</em> break things. Some observed issues include:</p>
+
+<ul>
+  <li>Errant spaces/margins appearing at the top or within pages (as HTML entity <code class="language-plaintext highlighter-rouge">&amp;#65279;</code>).</li>
+  <li>Being unable to parse hardcoded JSON files, even though the JSON is valid.</li>
+  <li>Comparison operators failing to match hardcoded strings, even though the string visually matches.</li>
+  <li>Being unable to parse hardcoded C# strings.</li>
+</ul>
+
+<h2 id="fixin-it">Fixin’ it</h2>
+
+<p>Visual Studio provides a temporary way of resolving this issue:</p>
+
+<ol>
+  <li>When saving the file, go to <code class="language-plaintext highlighter-rouge">File &gt; Save &lt;filename&gt; As…</code>.</li>
+  <li>Click the dropdown arrow next to the standard Save button, selecting the <code class="language-plaintext highlighter-rouge">Save with Encoding…</code> option.</li>
+  <li>A dialog with encoding and line ending options will appear. In the Encoding dropdown, select <code class="language-plaintext highlighter-rouge">Unicode (UTF-8 without signature)</code>. This option is near the bottom of the list.</li>
+  <li>Click OK.</li>
+</ol>
+
+<p>Visual Studio will remember this setting for as long as the file is still open, but will revert to saving with BOM after the file has been closed.</p>
+
+<aside class="aside aside--issue">
+
+  <p>Visual Studio supposedly has a setting to never add BOM characters to files not created with them in the application Options panel, under <code class="language-plaintext highlighter-rouge">Text Editor &gt; General</code>. I’ve never actually seen this work, though. 🤷🏻️</p>
+
+</aside>
+
+<h3 id="extensions">Extensions</h3>
+
+<p>The <a href="https://vlasovstudio.com/fix-file-encoding/">Fix File Encoding</a> Visual Studio extension can force files to always be saved without BOM characters, with the ability to configure it only for certain file types.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

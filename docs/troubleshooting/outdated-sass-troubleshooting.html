@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sass troubleshooting | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/troubleshooting/outdated-sass-troubleshooting.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Sass troubleshooting</h1>
+				<p><a href="https://sass-lang.com">Sass</a> is a CSS pre-compiler language, that adds various programming features to CSS, including functions, mixins, flow control and nesting.</p>
+
+<h2 id="deprecation-and-removal-of-slash-division">Deprecation and removal of slash division</h2>
+
+<p>Sass has announced their intention to remove the ability to do division using the forward slash character (<code class="language-plaintext highlighter-rouge">/</code>) in version 2.0.0 of Sass, due to conflicts with newer versions of the CSS specification which make use of the character for other purposes.</p>
+
+<aside class="aside aside--tangent">
+
+  <p>As of January 2022, no date for the removal of slash division has been given, though it is likely to be at the same time that <code class="language-plaintext highlighter-rouge">@import</code> is removed, which is planned for October 2022.</p>
+
+</aside>
+
+<p>Instances of slash division in your code will trigger a deprecation warning on build, which appears similarly to this:</p>
+
+<figure class="highlight">
+  <pre><code class="language-text" data-lang="text">DEPRECATION WARNING: Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($value, $relative-to) or calc($value / $relative-to)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+   ╷
+16 │     @return ($value / $relative-to) * 1em;
+   │              ^^^^^^^^^^^^^^^^^^^^^
+   ╵
+	node_modules/normalize-scss/sass/normalize/_vertical-rhythm.scss 16:14  normalize-rhythm()
+	node_modules/normalize-scss/sass/normalize/_vertical-rhythm.scss 27:14  normalize-font-size()
+	node_modules/normalize-scss/sass/normalize/_normalize-mixin.scss 108:7  normalize()
+	node_modules/normalize-scss/sass/normalize/_import-now.scss 11:1        @use
+	src/sass/vendor/_normalize.scss 1:1                                     @use
+	src/sass/vendor/_index.scss 1:1                                         @use
+	src/sass/all.scss 2:1                                                   root stylesheet</code></pre>
+</figure>
+
+<p>This can be rectified in a number of ways:</p>
+
+<figure class="highlight">
+  <pre><code class="language-scss" data-lang="scss"><span class="nv">$width</span><span class="p">:</span> <span class="m">4rem</span><span class="p">;</span> 
+
+<span class="c1">// Original code</span>
+<span class="nv">$height</span><span class="p">:</span> <span class="nv">$width</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
+
+<span class="c1">// Using the Sass math module</span>
+<span class="c1">// Only available in projects using Dart Sass.</span>
+<span class="k">@use</span> <span class="s2">"sass:math"</span><span class="p">;</span>
+<span class="nv">$height</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="nf">div</span><span class="p">(</span><span class="nv">$width</span><span class="o">,</span> <span class="m">2</span><span class="p">);</span>
+
+<span class="c1">// Using the CSS calc() function</span>
+<span class="c1">// Somewhat contextual, this only really works in situations where </span>
+<span class="c1">// $height is output without any further modifications. Note that</span>
+<span class="c1">// the $width variable must also be interpolated in this situation.</span>
+<span class="nv">$height</span><span class="p">:</span> <span class="nf">calc</span><span class="p">(</span><span class="si">#{</span><span class="nv">$width</span><span class="si">}</span> <span class="o">/</span> <span class="m">2</span><span class="p">);</span> 
+
+<span class="c1">// Translating to a multiple</span>
+<span class="c1">// If the operation being performed uses a simple, fixed value, it </span>
+<span class="c1">// can be turned into a multiplication instead.</span>
+<span class="nv">$height</span><span class="p">:</span> <span class="nv">$width</span> <span class="o">*</span> <span class="m">0</span><span class="mi">.5</span><span class="p">;</span> </code></pre>
+</figure>
+
+<h2 id="deprecation-and-removal-of-sass-import-rules">Deprecation and removal of Sass <code class="language-plaintext highlighter-rouge">@import</code> rules</h2>
+
+<p>With the introduction of the <a href="https://sass-lang.com/blog/the-module-system-is-launched">Sass module system</a>, and the <code class="language-plaintext highlighter-rouge">@use</code> and <code class="language-plaintext highlighter-rouge">@forward</code> rules, it was announced that <code class="language-plaintext highlighter-rouge">@import</code> would eventually be removed by October 2022. This decision was, in part, to resolve issues with Sass <code class="language-plaintext highlighter-rouge">@import</code> sharing the same name as CSS <code class="language-plaintext highlighter-rouge">@import</code>.</p>
+
+<p>In many situations, <code class="language-plaintext highlighter-rouge">@import</code> can be directly replaced with <code class="language-plaintext highlighter-rouge">@use</code>, however <a href="/authoring-guidelines/writing-css-sass.html#the-sass-module-system">the two do not work in exactly the same way</a>, and it is reasonably likely that some restructuring and refactoring take place.</p>
+
+<h2 id="deprecation-and-removal-of-various-built-in-functions">Deprecation and removal of various built-in functions</h2>
+
+<p>At the same time the Sass module system was introduced, a number of the built-in color manipulating functions were removed. This includes:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">adjust-hue</code></li>
+  <li><code class="language-plaintext highlighter-rouge">saturate</code></li>
+  <li><code class="language-plaintext highlighter-rouge">desaturate</code></li>
+  <li><code class="language-plaintext highlighter-rouge">lighten</code></li>
+  <li><code class="language-plaintext highlighter-rouge">darken</code></li>
+  <li><code class="language-plaintext highlighter-rouge">opacify</code>, <code class="language-plaintext highlighter-rouge">fade-in</code></li>
+  <li><code class="language-plaintext highlighter-rouge">transparentize</code>, <code class="language-plaintext highlighter-rouge">fade-out</code></li>
+</ul>
+
+<p>These are now all bundled under a single function: <code class="language-plaintext highlighter-rouge">color.adjust</code>, which can accept and perform multiple manipulations at once.</p>
+
+<p>Despite this, the authors of Sass recommend that you use <code class="language-plaintext highlighter-rouge">color.scale</code> or <code class="language-plaintext highlighter-rouge">color.change</code> if possible, suggesting that <code class="language-plaintext highlighter-rouge">color.adjust</code> mainly exists for backwards compatibility purposes and may be removed in a future version of Sass.</p>
+
+<figure class="highlight">
+  <pre><code class="language-scss" data-lang="scss"><span class="k">@use</span> <span class="s2">"sass:color"</span><span class="p">;</span>
+
+<span class="nv">$color</span><span class="p">:</span> <span class="nf">hsl</span><span class="p">(</span><span class="m">45</span><span class="o">,</span> <span class="m">25%</span><span class="o">,</span> <span class="m">50%</span><span class="p">);</span>
+
+<span class="c1">// adjust-hue</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">adjust-hue</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="m">-42deg</span><span class="p">);</span> <span class="c1">// =&gt; hsl(3, 25%, 50%)</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$hue</span><span class="o">:</span> <span class="m">-42deg</span><span class="p">);</span> <span class="c1">// =&gt; hsl(3, 25%, 50%)</span>
+
+<span class="c1">// saturate</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">saturate</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="m">47%</span><span class="p">);</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$saturation</span><span class="o">:</span> <span class="m">47%</span><span class="p">);</span> <span class="c1">// =&gt; hsl(45, 72%, 50%)</span>
+
+<span class="c1">// desaturate</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">desaturate</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="m">9%</span><span class="p">);</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$saturation</span><span class="o">:</span> <span class="m">-9%</span><span class="p">);</span> <span class="c1">// =&gt; hsl(45, 16%, 50%)</span>
+
+<span class="c1">// lighten</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">lighten</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="m">22%</span><span class="p">);</span> <span class="c1">// =&gt; hsl(45, 25%, 72%)</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$lightness</span><span class="o">:</span> <span class="m">22%</span><span class="p">);</span> <span class="c1">// =&gt; hsl(45, 25%, 72%)</span>
+
+<span class="c1">// darken</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">darken</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="m">13%</span><span class="p">);</span> <span class="c1">// =&gt; hsl(45, 100%, 37%)</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$lightness</span><span class="o">:</span> <span class="m">-13%</span><span class="p">);</span> <span class="c1">// =&gt; hsl(45, 25%, 37%)</span>
+
+<span class="nv">$transparent-color</span><span class="p">:</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">120</span><span class="o">,</span> <span class="m">105</span><span class="o">,</span> <span class="m">153</span><span class="o">,</span> <span class="m">0</span><span class="mi">.5</span><span class="p">);</span>
+
+<span class="c1">// fade-in / opacify</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">fade-in</span><span class="p">(</span><span class="nv">$transparent-color</span><span class="o">,</span> <span class="m">0</span><span class="mi">.35</span><span class="p">);</span> <span class="c1">// =&gt; rgba(120, 105, 153, 0.85)</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">opacify</span><span class="p">(</span><span class="nv">$transparent-color</span><span class="o">,</span> <span class="m">0</span><span class="mi">.35</span><span class="p">);</span> <span class="c1">// =&gt; rgba(120, 105, 153, 0.85)</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="nv">$transparent-color</span><span class="o">,</span> <span class="nv">$alpha</span><span class="o">:</span> <span class="m">0</span><span class="mi">.35</span><span class="p">);</span> <span class="c1">// =&gt; rgba(120, 105, 153, 0.85)</span>
+
+<span class="c1">// fade-out / transparentize</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">fade-out</span><span class="p">(</span><span class="nv">$transparent-color</span><span class="o">,</span> <span class="m">0</span><span class="mi">.2</span><span class="p">);</span> <span class="c1">// =&gt; rgba(120, 105, 153, 0.3)</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="nf">transparentize</span><span class="p">(</span><span class="nv">$transparent-color</span><span class="o">,</span> <span class="m">0</span><span class="mi">.2</span><span class="p">);</span> <span class="c1">// =&gt; rgba(120, 105, 153, 0.3)</span>
+<span class="nv">$r</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="nv">$transparent-color</span><span class="o">,</span> <span class="nv">$alpha</span><span class="o">:</span> <span class="m">-0</span><span class="mi">.2</span><span class="p">);</span> <span class="c1">// =&gt; rgba(120, 105, 153, 0.3)</span></code></pre>
+</figure>
+
+<p>All function names from before the introduction of the module system (e.g. <code class="language-plaintext highlighter-rouge">map-get</code>, as opposed to <code class="language-plaintext highlighter-rouge">map.get</code>) will be removed at the same time as Sass <code class="language-plaintext highlighter-rouge">@import</code> rules.</p>
+
+<h2 id="deprecation-of-libsass-and-node-sass">Deprecation of LibSass and Node Sass</h2>
+
+<p>In August 2020, LibSass (and packages built on top of it, including Node Sass) was <a href="https://github.com/sass/node-sass/issues/2952">officially deprecated</a>, following a lack of major updates and increasing disparity between it and Dart Sass—the newer, leading Sass implementation introduced in October 2016.</p>
+
+<p>While LibSass will still receive security fixes, it otherwise will not receive further updates, and will only drift more out of line with the Sass specification as time goes on. As of January 2022, Node Sass is no longer compatible with current releases of Node, furthering the need to replace it in older projects.</p>
+
+<p>Remove <code class="language-plaintext highlighter-rouge">node-sass</code> and install <code class="language-plaintext highlighter-rouge">sass</code> (a wrapper for Dart Sass):</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">npm uninstall node-sass <span class="nt">--save-dev</span>
+npm <span class="nb">install </span>sass <span class="nt">--save-dev</span></code></pre>
+</figure>
+
+<p>If the project uses the <code class="language-plaintext highlighter-rouge">gulp-sass</code> wrapper, it may need to be updated to the most recent version in order to be able to use Dart Sass. To do this, first edit gulp-sass’s version in the <code class="language-plaintext highlighter-rouge">package.json</code> file to read “latest”:</p>
+
+<figure class="highlight">
+  <pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"gulp-sass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"latest"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</figure>
+
+<p>Then run the install command:</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">npm <span class="nb">install </span>gulp-sass <span class="nt">--save-dev</span></code></pre>
+</figure>
+
+<aside class="aside aside--correction">
+
+  <p>Some projects may be using <code class="language-plaintext highlighter-rouge">gulp-dart-sass</code> instead of <code class="language-plaintext highlighter-rouge">gulp-sass</code>. This was a transitional package from the time prior to <code class="language-plaintext highlighter-rouge">gulp-sass</code> supporting Dart Sass. <code class="language-plaintext highlighter-rouge">gulp-dart-sass</code> is no longer necessary, and can be safely removed and replaced with <code class="language-plaintext highlighter-rouge">gulp-sass</code> without issue.</p>
+
+</aside>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

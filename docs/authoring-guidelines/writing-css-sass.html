@@ -1,0 +1,448 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Writing CSS and Sass | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/authoring-guidelines/writing-css-sass.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Writing CSS and Sass</h1>
+				<p>We use <a href="http://sass-lang.com/">Sass</a> as our CSS preprocessor of choice, and use the SCSS syntax. Sass is generally better supported by developers than other compiled languages and SCSS is much closer to the vanilla CSS syntax, which is indispensable whenever a back-end developer has to poke around.</p>
+
+<h2 id="selectors">Selectors</h2>
+
+<p>CSS selectors and properties should be in kebab-case—all lowercase, with hyphens to separate words. Try to <strong>use whole words for selector names</strong> rather than abbreviations, as it makes code easier to understand at a glance.</p>
+
+<p>As much as possible <strong>use classes to style elements</strong> and avoid nesting or creating needlessly specific selectors (<em>especially</em> IDs). Doing so maintains <a href="https://stuffandnonsense.co.uk/archives/images/specificitywars-05v2.jpg">low specificity</a> across the project, making it easy to make conditional changes later on without having to resort to a cheeky <code class="language-plaintext highlighter-rouge">!important</code>.</p>
+
+<p>Avoid using an element name as a selector or qualifier unless that element can (by specification) only appear once in the document. <code class="language-plaintext highlighter-rouge">html</code> and <code class="language-plaintext highlighter-rouge">body</code> are the most common exceptions.</p>
+
+<p>You <em>may</em> use an element name as a selector if you’re unable to add a class name to the output as is often the case with CMS-managed data. In these cases scope the selectors to a containing class such as <code class="language-plaintext highlighter-rouge">.wysiwyg</code>.</p>
+
+<figure class="highlight">
+  <pre><code class="language-scss" data-lang="scss"><span class="nc">.wysiwyg</span> <span class="p">{</span>
+    <span class="nt">h1</span> <span class="p">{</span>
+        <span class="k">@include</span> <span class="nd">header-1</span><span class="p">;</span>
+        <span class="nl">font-style</span><span class="p">:</span> <span class="nb">italic</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">del</span> <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">line-through</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nt">a</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="mh">#fc0</span><span class="p">;</span>
+        <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">underline</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<h3 id="bem-syntax">BEM syntax</h3>
+
+<p>We use <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">BEM (Block, Element, Modifier) syntax</a> for authoring CSS. I’d totally recommend reading that article for the full picture, but here’s a gist:</p>
+
+<p><em>Blocks</em> are individual components, like a call to action or a styled list. <strong>Blocks should be self-contained</strong> and able to be dropped anywhere with little to no extra effort. For this reason it’s a good idea to avoid applying specific dimensions, margins or paddings to them.</p>
+
+<p>A block will simply be a class name.</p>
+
+<figure class="highlight">
+  <pre><code class="language-css" data-lang="css"><span class="nc">.fancy-button</span> <span class="p">{}</span></code></pre>
+</figure>
+
+<p><em>Elements</em> are the… well, elements that are inside blocks. These are delimited with double underscores.</p>
+
+<figure class="highlight">
+  <pre><code class="language-css" data-lang="css"><span class="nc">.fancy-button__icon</span> <span class="p">{}</span>
+<span class="nc">.fancy-button__label</span> <span class="p">{}</span></code></pre>
+</figure>
+
+<aside class="aside aside--opinion">
+
+  <p>Ideally, flatten element lists. Whilst it’s certainly possible for <code class="language-plaintext highlighter-rouge">.nav__list__item__link__icon</code> to exist if you mirror the HTML structure directly, <code class="language-plaintext highlighter-rouge">.nav__icon</code> will often suffice.</p>
+
+</aside>
+
+<p><em>Modifiers</em> are modifications of blocks or elements, which are delimited with double hyphens. <strong>Modifications may be visual or state related.</strong></p>
+
+<figure class="highlight">
+  <pre><code class="language-css" data-lang="css"><span class="nc">.fancy-button--disabled</span> <span class="p">{}</span>
+<span class="nc">.fancy-button__icon--large</span> <span class="p">{}</span></code></pre>
+</figure>
+
+<aside class="aside aside--correction">
+
+  <p>In many cases, an element’s state can be conveyed via HTML attributes rather than using modifier classes. A disabled button could be styled using <code class="language-plaintext highlighter-rouge">.fancy-button:disabled</code> or the current page in a list with <code class="language-plaintext highlighter-rouge">.breadcrumb__link[aria-current="page"]</code> instead of creating an additional modifer class. Doing this is preferable if there are appropriate attributes available.</p>
+
+</aside>
+
+<aside class="aside aside--opinion">
+
+  <p>When an element ends up having a <em>lot</em> of modifiers, I personally trend towards using <code class="language-plaintext highlighter-rouge">data-*</code> attributes instead of classes: <code class="language-plaintext highlighter-rouge">.fancy-button[data-size="small"]</code>.</p>
+
+  <p>This is particularly true for buttons, where there can be lots of modifiers (color, size, responsive behaviour, etc.) with incompatible options (size can’t be both small and large).</p>
+
+</aside>
+
+<h3 id="namespacing">Namespacing</h3>
+<p>On many projects, using namespaces—in the form of class name prefixes—to indicate the origin or purpose of a class can often be useful. On projects using Felafel, for example, you may use them to differentiate between classes coming from Felafel (which are all prefixed <code class="language-plaintext highlighter-rouge">fs-</code>), third-party libraries like Flexslider (which all begin with <code class="language-plaintext highlighter-rouge">flex-</code>), and those native to your current project.</p>
+
+<p>Some projects will use different prefixes for code at the component-level and code specific to individual templates and pages. Ski Miquel, for example, uses <code class="language-plaintext highlighter-rouge">ski-</code>, <code class="language-plaintext highlighter-rouge">skit-</code> and <code class="language-plaintext highlighter-rouge">skip-</code>, respectively. <strong>Try to avoid having too much page-specific CSS in your project</strong>, but when it’s unavoidable, namespace it.</p>
+
+<p>Utility classes are almost always prefixed differently to clearly indicate their purpose and separate them from the BEM naming methodology. Felafel uses <code class="language-plaintext highlighter-rouge">fs-!-</code> for utility classes.</p>
+
+<h2 id="properties">Properties</h2>
+<p>Properties should always appear on a new line by themselves. If a selector only has a single property, feel free to keep that on one line.</p>
+
+<figure class="highlight">
+  <pre><code class="language-css" data-lang="css"><span class="c">/* Many properties */</span>
+<span class="nc">.embiggen</span> <span class="p">{</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">2.8em</span><span class="p">;</span>
+    <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Just the one */</span>
+<span class="nc">.emredden</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="p">}</span></code></pre>
+</figure>
+
+<h3 id="shorthand-vs-longhand-notation">Shorthand vs. longhand notation</h3>
+<p><strong>CSS should be written in longhand</strong>, with shorthand properties only used when you are <em>absolutely sure</em> that a particular value will always apply. Using longhand makes the code consistent and easier to understand (who can even remember the full syntax for properties like <code class="language-plaintext highlighter-rouge">animation</code>?) <a href="http://csswizardry.com/2016/12/css-shorthand-syntax-considered-an-anti-pattern/">Shorthand is an anti-pattern.</a></p>
+
+<p>Shorthand has the added pitfall in that it resets all related properties to their defaults, even if they’ve been changed in the same selector.</p>
+
+<figure class="highlight">
+  <pre><code class="language-css" data-lang="css"><span class="nc">.let-it-snow</span> <span class="p">{</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="sx">url('../images/snowflake.png')</span> <span class="nb">top</span> <span class="nb">center</span> <span class="nb">no-repeat</span><span class="p">;</span>
+    <span class="nl">animation</span><span class="p">:</span> <span class="n">fallingSnow</span> <span class="m">5s</span> <span class="n">ease-in-out</span> <span class="m">0s</span> <span class="m">1</span> <span class="nb">normal</span> <span class="n">forwards</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>This code is bad. It forces the snowflake to always have zero <code class="language-plaintext highlighter-rouge">margin</code> at the top and bottom, even though our intention might be to just set <code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">right</code> to <code class="language-plaintext highlighter-rouge">auto</code>. It uses shorthand <code class="language-plaintext highlighter-rouge">background</code> and <code class="language-plaintext highlighter-rouge">animation</code> properties which are difficult to understand at a glance, and the <code class="language-plaintext highlighter-rouge">background-color</code> won’t appear at all because it’s being overridden by the <code class="language-plaintext highlighter-rouge">background</code> shorthand.</p>
+
+<figure class="highlight">
+  <pre><code class="language-css" data-lang="css"><span class="nc">.let-it-snow</span> <span class="p">{</span>
+    <span class="nl">margin-right</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">margin-left</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+    <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url('../images/snowflake.png')</span><span class="p">;</span>
+    <span class="nl">background-position</span><span class="p">:</span> <span class="nb">top</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="nl">background-repeat</span><span class="p">:</span> <span class="nb">no-repeat</span><span class="p">;</span>
+    <span class="nl">animation-name</span><span class="p">:</span> <span class="n">fallingSnow</span><span class="p">;</span>
+    <span class="nl">animation-duration</span><span class="p">:</span> <span class="m">5s</span><span class="p">;</span>
+    <span class="nl">animation-timing-function</span><span class="p">:</span> <span class="n">ease-in-out</span><span class="p">;</span>
+    <span class="nl">animation-fill-mode</span><span class="p">:</span> <span class="n">forwards</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>This code is better. Only the values we actually want to set are defined, the <code class="language-plaintext highlighter-rouge">background</code> and <code class="language-plaintext highlighter-rouge">animation</code> properties are easier to understand and we don’t have any unexpected style overrides. We can even exclude some of the values on the <code class="language-plaintext highlighter-rouge">animation</code> entirely because we’re not using the shorthand syntax.</p>
+
+<h3 id="vendor-prefixes">Vendor prefixes</h3>
+<p><strong>Do not write vendor prefixes into code</strong>, instead use a tool like <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a> to add these programmatically. This makes the code easier to scan and allows us to configure browser support from the Gulp configuration like a boss.</p>
+
+<aside class="aside aside--issue">
+
+  <p>Autoprefixer doesn’t cover everything. <a href="http://caniuse.com/#feat=text-stroke">Text stroke</a>, for example, is not in any W3C specification and only exists as a prefixed property. You have to include the prefix manually in situations like this.</p>
+
+</aside>
+
+<p>If you’re in an environment where Autoprefixer isn’t available, then you may write vendor prefixes into your code.</p>
+
+<h2 id="values">Values</h2>
+<p>Strings (URLs, font names, <code class="language-plaintext highlighter-rouge">content</code> values, etc.) should be surrounded by double quotes.</p>
+
+<p><strong>Values of 0 should be unitless.</strong></p>
+
+<aside class="aside aside--issue">
+
+  <p>CSS timing functions, <a href="https://www.youtube.com/watch?v=PqcVro-3f4I">like the Mongols</a>, are the exception. They require units even when their values are zero! Argh!</p>
+
+</aside>
+
+<h3 id="colours">Colours</h3>
+<p>Colour values should be written in hexadecimal; shortened and lowercase where possible. RGB and HSL may also be used where appropriate. If using Sass then hex values will automatically be converted to these where necessary.</p>
+
+<p>Do not use the default colour values that exist in CSS except for debugging or rapid prototyping purposes. They’re semantically inconsistent (<code class="language-plaintext highlighter-rouge">gray</code> is darker than <code class="language-plaintext highlighter-rouge">darkgray</code>, for example) and sometimes even render differently between browsers. They’re not to be trusted.</p>
+
+<h2 id="sass-specifics">Sass specifics</h2>
+<p>Sass has changed which compiler the first-party tool uses a few times in its history. Originally written in Ruby (Ruby Sass), it was then ported to C/C++ (as LibSass), and is now implemented via Dart (Dart Sass). Each implementation has slightly different feature sets and handles edge cases differently.</p>
+
+<p>When using Sass, <strong>gravitate to the most up-to-date implementation available</strong>, as this will have the most recent bugfixes and features and the longest remaining support lifetime. As August 2020, both Ruby Sass and LibSass have been deprecated in favour of Dart Sass.</p>
+
+<h3 id="the-sass-module-system">The Sass module system</h3>
+<p>Dart Sass 1.23.0 introduced <a href="https://sass-lang.com/blog/the-module-system-is-launched">the module system</a>. This presents a fairly radical change to the language. In previous Sass versions all variables, mixins and functions—whether built-in or user authored—existed in a single global scope that could be added to through simple <code class="language-plaintext highlighter-rouge">@import</code> rules.</p>
+
+<figure class="highlight">
+  <pre><code class="language-scss" data-lang="scss"><span class="c1">// Note that these @import rules could be anywhere prior </span>
+<span class="c1">// to this partial, they don't need to be in the same file. </span>
+
+<span class="k">@import</span> <span class="s2">"settings"</span><span class="p">;</span> <span class="c1">// Contains `$theme-color`</span>
+<span class="k">@import</span> <span class="s2">"helpers/theming"</span><span class="p">;</span> <span class="c1">// Contains a `setBgColor` mixin</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+    <span class="nv">$color</span><span class="p">:</span> <span class="nf">darken</span><span class="p">(</span><span class="nv">$theme-color</span><span class="o">,</span> <span class="m">15%</span><span class="p">);</span>
+    <span class="k">@include</span> <span class="nd">setBgColor</span><span class="p">(</span><span class="nv">$color</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>With the module system, each Sass partial is a separate island and other files must be explicitly referenced in the partial before they can be used. These referenced elements are automatically namespaced.</p>
+
+<figure class="highlight">
+  <pre><code class="language-scss" data-lang="scss"><span class="c1">// In the module system, @use rules *must* be in the same file.</span>
+
+<span class="k">@use</span> <span class="s2">"settings"</span><span class="p">;</span> <span class="c1">// Contains `$theme-color`</span>
+<span class="k">@use</span> <span class="s2">"helpers/theming"</span><span class="p">;</span> <span class="c1">// Contains a `setBgColor` mixin</span>
+<span class="k">@use</span> <span class="s2">"sass:color"</span><span class="p">;</span> <span class="c1">// You must now explicitly reference Sass's built-in functions</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+    <span class="nv">$color</span><span class="p">:</span> <span class="n">color</span><span class="o">.</span><span class="nf">adjust</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="nv">$theme-color</span><span class="o">,</span> <span class="nv">$lightness</span><span class="o">:</span> <span class="m">-15%</span><span class="p">);</span>
+    <span class="k">@include</span> <span class="nd">theming</span><span class="o">.</span><span class="nf">setBgColor</span><span class="p">(</span><span class="nv">$color</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</figure>
+
+<p>(Note that <a href="/troubleshooting/outdated-sass-troubleshooting.html#deprecation-and-removal-of-various-built-in-functions">various color functions also changed how they work</a> when the module system was introduced.)</p>
+
+<p><strong>Use of the module system is highly preferred over the older <code class="language-plaintext highlighter-rouge">@import</code>-based method.</strong> <code class="language-plaintext highlighter-rouge">@import</code> is deprecated, and the Sass team is intending to remove the <code class="language-plaintext highlighter-rouge">@import</code> Sass rule completely by October 2022.</p>
+
+<aside class="aside aside--tangent">
+
+  <p>You can create private variables, mixins and functions by prefixing their name with an underscore or a hyphen (<code class="language-plaintext highlighter-rouge">$_like-this</code>). They will be inaccessible outside of the partial where they are defined, even if directly referenced.</p>
+
+</aside>
+
+<h3 id="mixins-and-extends">Mixins and extends</h3>
+<p>Sass has two main methods of creating <a href="https://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY-ness</a>—mixins and extends. <strong>We prefer the use of mixins in almost all situations.</strong> Here’s a table explaining why:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Mixins</th>
+      <th style="text-align: left">Extends</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Accepts parameters</td>
+      <td style="text-align: left">Yep</td>
+      <td style="text-align: left">Nope</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Can have internal logic</td>
+      <td style="text-align: left">Yep</td>
+      <td style="text-align: left">Maybe?</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Usable inside media queries</td>
+      <td style="text-align: left">Yep</td>
+      <td style="text-align: left">Nope</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Simple to debug</td>
+      <td style="text-align: left">Yep</td>
+      <td style="text-align: left">Nope</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Keeps selectors sensibly grouped</td>
+      <td style="text-align: left">Yep</td>
+      <td style="text-align: left">Nope</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Maintains the cascade as written</td>
+      <td style="text-align: left">Yep</td>
+      <td style="text-align: left">Nope</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Smaller file size (when gzipped)</td>
+      <td style="text-align: left">Yep</td>
+      <td style="text-align: left">Nope</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And if that hastily made table doesn’t convince you, maybe the words of two of the world’s foremost Sass-masters will:</p>
+
+<ul>
+  <li><a href="http://csswizardry.com/2016/02/mixins-better-for-performance/">Mixins Better For Performance</a> by Harry Roberts</li>
+  <li><a href="https://www.sitepoint.com/avoid-sass-extend/">Why You Should Avoid Sass @extend</a> by Kitty Giraudel</li>
+</ul>
+
+<aside class="aside aside--opinion">
+
+  <p>There <em>are</em> places where extends come in handy. For example, if you have <a href="https://github.com/querkmachine/felafel/blob/master/src/scss/components/_prose.scss">a component that borrows styles from lots of other places</a>, but for the most part, mixins are the better option.</p>
+
+</aside>
+
+<h2 id="logical-properties-and-values">Logical properties and values</h2>
+<p>Some recent Felinesoft projects have started to utilise <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties">Logical Properties and Values</a>, a newer addition to the CSS specification that replaces <em>physical</em> keywords (literally, words that reference physical properties: width, height, up, down, left and right) with <em>logical</em> keywords, which can automatically adapt to different languages and localities.</p>
+
+<p>Although there isn’t much reason to do this if a website is only ever going to support English, it’s an interesting thing to learn and get accustomed to for when you actually need it.</p>
+
+<p>There are some generally useful additions in the logical properties spec too. For example, <code class="language-plaintext highlighter-rouge">margin-block</code> can be used to set both <code class="language-plaintext highlighter-rouge">margin-block-start</code> and <code class="language-plaintext highlighter-rouge">margin-block-end</code> at the same time. <code class="language-plaintext highlighter-rouge">inset</code> introduces a positioning shorthand that takes up to four values in the same manner as the <code class="language-plaintext highlighter-rouge">margin</code> and <code class="language-plaintext highlighter-rouge">padding</code> shorthands (top, right, bottom, then left).</p>
+
+<p>For more information, I suggest reading <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties">the MDN docs for the spec</a>.</p>
+
+<h3 id="translating-physical-properties-to-logical-ones">Translating physical properties to logical ones</h3>
+
+<p>If you’re supporting a project that already uses logical properties and values, and wish to continue using them (Being consistent! Good!), you mainly just have to remember these word substitutions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">CSS physical name</th>
+      <th style="text-align: left">CSS logical name</th>
+      <th style="text-align: left">In <abbr title="left-to-right">LTR</abbr> languages</th>
+      <th style="text-align: left">In <abbr title="right-to-left">RTL</abbr> languages</th>
+      <th style="text-align: left">In Han languages</th>
+      <th style="text-align: left">In Mongolic languages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">height</code> and <code class="language-plaintext highlighter-rouge">vertical</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">block</code></td>
+      <td style="text-align: left">height</td>
+      <td style="text-align: left">height</td>
+      <td style="text-align: left">width</td>
+      <td style="text-align: left">width</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">width</code> and <code class="language-plaintext highlighter-rouge">horizontal</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">inline</code></td>
+      <td style="text-align: left">width</td>
+      <td style="text-align: left">width</td>
+      <td style="text-align: left">height</td>
+      <td style="text-align: left">height</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">top</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">block-start</code></td>
+      <td style="text-align: left">top</td>
+      <td style="text-align: left">top</td>
+      <td style="text-align: left">top</td>
+      <td style="text-align: left">right</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bottom</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">block-end</code></td>
+      <td style="text-align: left">bottom</td>
+      <td style="text-align: left">bottom</td>
+      <td style="text-align: left">bottom</td>
+      <td style="text-align: left">left</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">left</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">inline-start</code> or <code class="language-plaintext highlighter-rouge">start</code></td>
+      <td style="text-align: left">left</td>
+      <td style="text-align: left">right</td>
+      <td style="text-align: left">left</td>
+      <td style="text-align: left">top</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">right</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">inline-end</code> or <code class="language-plaintext highlighter-rouge">end</code></td>
+      <td style="text-align: left">right</td>
+      <td style="text-align: left">left</td>
+      <td style="text-align: left">right</td>
+      <td style="text-align: left">bottom</td>
+    </tr>
+  </tbody>
+</table>
+
+<aside class="aside aside--correction">
+
+  <p>In the table above, Han languages (Chinese, Japanese, Korean, and others) are classified on the assumption of top-to-bottom writing systems, to demonstrate the variety that logical keywords cover.</p>
+
+  <p>In reality, these languages use left-to-right in most online applications, mainly due to historical incompatibilities, but top-to-bottom is increasingly common. Han languages have historically also used right-to-left, so this may also appear at times.</p>
+
+  <p>Mongolic languages have typically also defaulted to using left-to-right on websites, as many browsers did not support Mongolic writing systems until relatively recently. <a href="https://president.mn/mng/">Here’s an example of a contemporary website with Mongolic writing support</a> (although it does not use logical properties).</p>
+
+</aside>
+
+<p>For most properties there’s a direct replacement of one phrase for another: <code class="language-plaintext highlighter-rouge">padding-right</code> becomes <code class="language-plaintext highlighter-rouge">padding-inline-end</code>, <code class="language-plaintext highlighter-rouge">border-top</code> becomes <code class="language-plaintext highlighter-rouge">border-block-start</code>, <code class="language-plaintext highlighter-rouge">float: left</code> becomes <code class="language-plaintext highlighter-rouge">float: inline-start</code>.</p>
+
+<p>There are a few little quirks however:</p>
+
+<dl>
+  <dt><code class="language-plaintext highlighter-rouge">border-radius</code>, <code class="language-plaintext highlighter-rouge">text-align</code></dt>
+  <dd>Omits the <code class="language-plaintext highlighter-rouge">block</code> and <code class="language-plaintext highlighter-rouge">inline</code> parts of the name: <code class="language-plaintext highlighter-rouge">border-top-right-radius</code> becomes <code class="language-plaintext highlighter-rouge">border-start-end-radius</code>, <code class="language-plaintext highlighter-rouge">text-align: right</code> becomes <code class="language-plaintext highlighter-rouge">text-align: end</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">top</code>, <code class="language-plaintext highlighter-rouge">right</code>, <code class="language-plaintext highlighter-rouge">bottom</code>, <code class="language-plaintext highlighter-rouge">left</code></dt>
+  <dd>Prefixes with <code class="language-plaintext highlighter-rouge">inset-</code> in addition to replacing the word: <code class="language-plaintext highlighter-rouge">right</code> becomes <code class="language-plaintext highlighter-rouge">inset-inline-end</code>.</dd>
+  <dt><code class="language-plaintext highlighter-rouge">margin</code>, <code class="language-plaintext highlighter-rouge">padding</code>, <code class="language-plaintext highlighter-rouge">inset</code>, <code class="language-plaintext highlighter-rouge">border-width</code>, <code class="language-plaintext highlighter-rouge">border-style</code>, <code class="language-plaintext highlighter-rouge">border-color</code></dt>
+  <dd>By default, these properties are physical unless prefixed with the <code class="language-plaintext highlighter-rouge">logical</code> keyword. <code class="language-plaintext highlighter-rouge">margin: 15px 20px 15px 10px</code> and <code class="language-plaintext highlighter-rouge">margin: logical 15px 20px 15px 10px</code> will appear differently between LTR and RTL languages.</dd>
+</dl>
+
+<h2 id="transpiling-for-older-browsers">Transpiling for older browsers</h2>
+
+<p>If you wish to use <a href="https://www.youtube.com/watch?v=p5kcBxL7-qI">next generation</a> CSS features that are not supported across all browsers yet, it is recommended you use <a href="https://postcss.org">PostCSS</a> and <a href="https://preset-env.cssdb.org">postcss-preset-env</a> as part of your build pipeline.</p>
+
+<p>postcss-preset-env includes Autoprefixer, which you should ideally be using anyway.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

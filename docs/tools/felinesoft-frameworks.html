@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Felinesoft front-end frameworks | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/tools/felinesoft-frameworks.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Felinesoft front-end frameworks</h1>
+				<p>Over time we have built a number of front-end frameworks and libraries for our own use. These are all open source, because I (Kim) made them predominantly in my own time, and open source things are neat. Besides, there’s not much point to closed source HTML, CSS and JavaScript when every browser on earth can download and read it.</p>
+
+<h2 id="kickstart">Kickstart</h2>
+
+<p><a href="https://github.com/querkmachine/kickstart">Kickstart</a> was the framework used for most projects between 2015 and 2019. It is built on top of the <a href="http://fractal.build">Fractal</a> design system tool, utilising an <a href="https://atomicdesign.bradfrost.com">Atomic Design</a>-based architecture. Components are split into three levels of complexity (atoms, molecules, organisms) and pages into two level based on specificity (templates and pages), with these built as a one-way hierarchy (pages are instances of templates, templates are built out of organisms, organisms are built out of molecules, etc.)</p>
+
+<p>Kickstart has been deprecated, new projects should not use it.</p>
+
+<h2 id="kickstart-8">Kickstart 8</h2>
+
+<p><a href="https://github.com/querkmachine/kickstart8">Kickstart 8</a>, appropriately the eighth major revision of Kickstart, is primarily used in projects between 2019 and 2021. Projects since 2021 still use elements of it, in combination with Felafel (see below).</p>
+
+<p>Kickstart 8 uses a componentised architecture that borrows elements from Atomic Design, but flattens the atom, molecule and organism layers into a flat list of components to help simplify tooling. Like Kickstart, it uses Fractal for design system management.  Kickstart 8 is also notable for having the concept of implementation-agnostic tokens (using <a href="https://github.com/salesforce-ux/theo">Theo</a>) that can be shared across Sass, JavaScript, mobile apps and basically anything that can read an XML or JSON file. This concept was dropped starting with Felafel as it created additional build effort, and most of our projects just don’t require that level of flexibility.</p>
+
+<h3 id="setting-up-kickstart-8">Setting up Kickstart 8</h3>
+
+<ol>
+  <li>Set up a new, dedicated git repo for the project design system. This should have its own build/deploy pipeline that pulls from the develop branch, so that clients can review components and templates for sign off.</li>
+  <li>Create a copy of Kickstart 8—either by cloning it and then deleting the <code class="language-plaintext highlighter-rouge">.git</code> folder, or by downloading and copying the files manually.</li>
+  <li>Update the namespaces and <code class="language-plaintext highlighter-rouge">package.json</code> used in Kickstart 8 (see <a href="https://github.com/querkmachine/kickstart8/blob/develop/README.md">Kickstart 8’s readme</a>).</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">npm run start</code> in a terminal to start the local development server.</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">npm run add "Component Name"</code> to boilerplate new components.</li>
+  <li>To add new templates and pages, create separate “templates” and “pages” folders inside of the <code class="language-plaintext highlighter-rouge">component</code> folder, then nest folders for each view within those folders.</li>
+</ol>
+
+<h2 id="felafel">Felafel</h2>
+
+<p><a href="https://github.com/querkmachine/felafel">Felafel</a> (the Felinesoft Agile Front-End Library) is a CSS/JS architecture designed for projects of all sizes. It is highly customisable and highly modular, with nearly every part of it being optional to use and having a myriad of settings variables on both global and per-component scopes.</p>
+
+<p>Felafel uses <a href="https://github.com/querkmachine/felafel/blob/master/src/scss/README.md">a variation of the ITCSS architecture</a> and is also the first to fully utilise the <a href="https://sass-lang.com/blog/the-module-system-is-launched">Sass module system</a> and <a href="https://javascript.plainenglish.io/dynamic-imports-in-javascript-explained-with-examples-c2122743e5ac">dynamic JavaScript imports</a>.</p>
+
+<p>Unlike Kickstart, Felafel does not have a built-in design system component. It is therefore commonly used in combination with Kickstart 8. This combination has been the primary means of starting new projects since mid-2021.</p>
+
+<h3 id="setting-up-felafel-with-kickstart-8">Setting up Felafel with Kickstart 8</h3>
+
+<ol>
+  <li>Set up a new, dedicated git repo for the project design system. This should have its own build/deploy pipeline that pulls from the develop branch, so that clients can review components and templates for sign off.</li>
+  <li>Create a copy of Kickstart 8—either by cloning it and then deleting the <code class="language-plaintext highlighter-rouge">.git</code> folder, or by downloading and copying the files manually—removing code relating to tokens and most of the Sass code.</li>
+  <li>Update the namespaces and <code class="language-plaintext highlighter-rouge">package.json</code> used in Kickstart 8 (see <a href="https://github.com/querkmachine/kickstart8/blob/develop/README.md">Kickstart 8’s readme</a>).</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">npm install @querkmachine/felafel</code> in a terminal to install Felafel.</li>
+  <li>Import the parts of Felafel you’re using into your Sass and JS entry files.</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">npm run start</code> in a terminal to start the local development server.</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">npm run add "Component Name"</code> to boilerplate new components. You sould import and use Felafel variables and helpers wherever possible, and bespoke code where necessary, to get the most out of Felafel’s benefits.</li>
+  <li>To add new templates and pages, create separate “templates” and “pages” folders inside of the <code class="language-plaintext highlighter-rouge">component</code> folder, then nest folders for each view within those folders.</li>
+</ol>
+
+<h2 id="vanilla-validation">Vanilla Validation</h2>
+
+<p><a href="https://github.com/querkmachine/vanilla-validation">Vanilla Validation</a> is a vanilla JavaScript library that leverages the browser’s own <a href="https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation">Constraint Validation API</a> to display custom validation messages on forms. It has a bunch of options, ARIA for accessibility compliance, and generally tries to follow best practices where known. It is made to integrate seamlessly with Umbraco Forms, the form builder used on many Felinesoft projects.</p>
+
+<p>Vanilla Validation was built in late-2021. As of January 2022, the npm-hosted library isn’t used on any projects, although early and bespoke iterations of it exist in the source code of several projects. Vanilla Validation should ideally be used going forwards.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

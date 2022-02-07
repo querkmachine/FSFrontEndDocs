@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>gulp-imagemin troubleshooting | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/troubleshooting/outdated-imagemin-troubleshooting.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>gulp-imagemin troubleshooting</h1>
+				<p><code class="language-plaintext highlighter-rouge">gulp-imagemin</code> is a Gulp wrapping library that minifies images. It’s used as as a build step in most of our Gulp configurations to compress user interface images and iconography.</p>
+
+<h2 id="compatibility-issues-with-gulp-imagemin-version-8">Compatibility issues with <code class="language-plaintext highlighter-rouge">gulp-imagemin</code> version 8</h2>
+
+<p>For whatever reason, the developer of <code class="language-plaintext highlighter-rouge">gulp-imagemin</code> completely rewrote the library for version 8.0.0, in doing so <a href="https://github.com/sindresorhus/gulp-imagemin/issues/366">breaking compatibility with out-the-box Gulp</a> and forcing developers to install additional dependencies and completely rewrite their Gulpfiles to match the ESM standard.</p>
+
+<p>This is naturally not good news if you’re just aiming to keep your dependencies fresh. For this, I’d recommend just sticking with the most recent 7.x release.</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">npm <span class="nb">install </span>gulp-imagemin@7.1.0 <span class="nt">--save-exact</span> <span class="nt">--save-dev</span></code></pre>
+</figure>
+
+<h2 id="deprecation-and-removal-of-jpegtran">Deprecation and removal of jpegtran</h2>
+
+<p><code class="language-plaintext highlighter-rouge">gulp-imagemin</code> stopped being bundled with jpegtran in the 7.0.0 update, being replaced by mozjpeg. If you’re updating a pre-7.0.0 version of <code class="language-plaintext highlighter-rouge">gulp-imagemin</code> to a newer version, you will likely need to change your Gulp configuration to instead reference mozjpeg.</p>
+
+<p>If you have previously installed jpegtran as an independent package, as described in the instructions below, you will also need to uninstall jpegtran.</p>
+
+<h2 id="installation-errors-relating-to-jpegtran-gifsicle-optipng-or-svgo">Installation errors relating to jpegtran, gifsicle, optipng or svgo</h2>
+
+<p>You might get errors relating to jpegtran, gifsicle, optipng or svgo. These are all image compression engines which are dependencies of <code class="language-plaintext highlighter-rouge">gulp-imagemin</code>. The installation and compilation of these can fail for quite a few reasons.</p>
+
+<p>Try fixing it by uninstalling and reinstalling gulp-imagemin:</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">npm uninstall gulp-imagemin <span class="nt">--save-dev</span>
+npm <span class="nb">install </span>gulp-imagemin <span class="nt">--save-dev</span></code></pre>
+</figure>
+
+<p>If this fails, try installing each of the packages independently:</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">npm <span class="nb">install </span>jpegtran gifsicle optipng svgo <span class="nt">--save-dev</span></code></pre>
+</figure>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

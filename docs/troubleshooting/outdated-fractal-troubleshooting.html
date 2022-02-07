@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fractal troubleshooting | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/troubleshooting/outdated-fractal-troubleshooting.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Fractal troubleshooting</h1>
+				<p><a href="https://fractal.build">Fractal</a> is the tool that we use on most projects to manage design systems. We typically use it with <a href="https://fractal.build/guide/web/default-theme.html">Mandelbrot</a>—the default theme—and the <a href="https://github.com/frctl/fractal/tree/main/packages/nunjucks">Nunjucks adaptor</a>.</p>
+
+<h2 id="mandelbrot-errors-on-startbuild">Mandelbrot errors on start/build</h2>
+
+<p>Mandelbrot is the name of the default theme supplied with Fractal. At one point in our history we used a customised fork of Mandelbrot that added new functionality, such as simplified theming, search capabilities and build metadata. We stopped using this fork when most of these features were added to base Mandelbrot.</p>
+
+<p>As this old fork has not been maintained, it is no longer compatible with newer versions of Fractal, and will create errors when trying to start or build Fractal. You can tell if this is the case if the @frctl/mandelbrot dependency in <code class="language-plaintext highlighter-rouge">package.json</code> uses a GitHub URL.</p>
+
+<figure class="highlight">
+  <pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"@frctl/mandelbrot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/querkmachine/mandelbrot.git"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</figure>
+
+<p>To switch to the standard version of Mandelbrot, uninstall the current version, then re-install it.</p>
+
+<figure class="highlight">
+  <pre><code class="language-shell" data-lang="shell">npm uninstall <span class="nt">--save-dev</span> @frctl/mandelbrot
+npm <span class="nb">install</span> <span class="nt">--save-dev</span> @frctl/mandelbrot</code></pre>
+</figure>
+
+<p>You will also have to update the Fractal Gulpfile to remove features that only existed in the forked version.</p>
+
+<figure class="highlight">
+  <pre><code class="language-js" data-lang="js"><span class="c1">// Old options (example)</span>
+<span class="nx">fractal</span><span class="p">.</span><span class="nx">web</span><span class="p">.</span><span class="nx">theme</span><span class="p">(</span>
+  <span class="nx">mandelbrot</span><span class="p">({</span>
+	<span class="na">nav</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">docs</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">components</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">assets</span><span class="dl">"</span><span class="p">],</span>
+	<span class="na">panels</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">notes</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">view</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">params</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">html</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">resources</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">info</span><span class="dl">"</span><span class="p">],</span>
+  <span class="p">})</span>
+<span class="p">);</span>
+
+<span class="c1">// New options (example)</span>
+<span class="c1">// "params" panel removed, new nav options added</span>
+<span class="nx">fractal</span><span class="p">.</span><span class="nx">web</span><span class="p">.</span><span class="nx">theme</span><span class="p">(</span>
+  <span class="nx">mandelbrot</span><span class="p">({</span>
+    <span class="na">nav</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">search</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">docs</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">components</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">assets</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">information</span><span class="dl">"</span><span class="p">],</span>
+    <span class="na">panels</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">notes</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">view</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">html</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">resources</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">info</span><span class="dl">"</span><span class="p">],</span>
+  <span class="p">})</span>
+<span class="p">);</span></code></pre>
+</figure>
+
+<h2 id="all-files-are-listed-in-the-sidebar-navigation-not-just-preview-files">All files are listed in the sidebar navigation, not just preview files</h2>
+
+<p>Normally, Fractal’s navigation is automatically built by taking files that are named in the same manner as their containing folders; for example, a file at <code class="language-plaintext highlighter-rouge">tabs/tabs.njk</code> would become a navigation item named “Tabs”, with any other files in the <code class="language-plaintext highlighter-rouge">tabs/</code> folder being ignored.</p>
+
+<p>This issue presents itself as multiple files in the directory being listed, usually with their extensions; for example, you might end up with a “Tabs” folder containing “Tabs Njk”, “Template Njk”, “Macro Njk”, etc.</p>
+
+<p>This is a side effect of a Fractal configuration option not being fully compatible with newer versions of Fractal.</p>
+
+<p>Locate the Gulpfile that contains the Fractal configuration and edit it.</p>
+
+<figure class="highlight">
+  <pre><code class="language-js" data-lang="js"><span class="c1">// Find this line. It defines multiple allowed file extensions.</span>
+<span class="nx">fractal</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">"</span><span class="s2">ext</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">.(njk|html)</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// Change it so that only .njk files are accepted.</span>
+<span class="nx">fractal</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">"</span><span class="s2">ext</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">.njk</span><span class="dl">"</span><span class="p">);</span></code></pre>
+</figure>
+
+<p>Stop and restart the serve task.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Security | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/concepts/security.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Security</h1>
+				<p>Security doesn’t much sound like a front-end problem, but like seemingly everything else technological, there are some crossover points that you should probably be aware of.</p>
+
+<h2 id="https">HTTPS</h2>
+
+<p>A number of browsers prevent access to some HTML5 APIs unless accessed via HTTPS, particularly if these can be used to obtain personal information about a user. This currently includes geolocation lookup and WebRTC.</p>
+
+<p>Other APIs that may soon become HTTPS-only include: device motion and orientation, fullscreen capabilities, and Encrypted Media Extensions (EME).</p>
+
+<p>As of January 2017, Google Chrome and Mozilla Firefox will mark pages that request password or credit card information as insecure if they are not explicitly served over HTTPS.</p>
+
+<ul>
+  <li><a href="https://w3c.github.io/webappsec-secure-contexts/">Secure Contexts specification</a></li>
+  <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/2LXKVWYkOus/gT-ZamfwAKsJ">Intent to deprecate: Insecure usage of powerful features</a></li>
+  <li><a href="https://arstechnica.com/information-technology/2017/01/firefox-chrome-start-calling-http-connections-insecure/">Firefox, Chrome start calling HTTP connections insecure</a> on Ars Technica</li>
+</ul>
+
+<h2 id="visited-links"><code class="language-plaintext highlighter-rouge">:visited</code> links</h2>
+<p>Certain browsers will not allow comprehensive styling of <code class="language-plaintext highlighter-rouge">:visited</code> links, and the <code class="language-plaintext highlighter-rouge">getComputedStyle()</code> JavaScript function will often ‘lie’ about the state of <code class="language-plaintext highlighter-rouge">:visited</code> links. This is to prevent webpages being able to detect what webpages the user has previously visited, as this may disclose personal information.</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Privacy_and_the_:visited_selector">Privacy and the <code class="language-plaintext highlighter-rouge">:visited</code> selector</a></li>
+</ul>
+
+<h2 id="target_blank-and-relnoopener"><code class="language-plaintext highlighter-rouge">target="_blank"</code> and <code class="language-plaintext highlighter-rouge">rel="noopener"</code></h2>
+
+<p>Did you know that pages pass information about themselves through JavaScript when you click on a link? Did you know that information includes a cross-origin reference to the <code class="language-plaintext highlighter-rouge">window.opener</code> object, which the new webpage can manipulate to change the previous page, such as redirecting it to a malicious site?</p>
+
+<p>‌<strong>It’s true! Terrifying and true!</strong> Luckily, this behaviour can be prevented by adding <code class="language-plaintext highlighter-rouge">rel="noopener"</code> to any <code class="language-plaintext highlighter-rouge">target="_blank"</code> links. This can even bring <a href="https://jakearchibald.com/2016/performance-benefits-of-rel-noopener/">some performance benefits</a> for pages on the same domain, too!</p>
+
+<p>This only needs to be applied to links with <code class="language-plaintext highlighter-rouge">target="_blank"</code>. Also note that IE/Edge doesn’t support <code class="language-plaintext highlighter-rouge">rel="noopener"</code> at this time.</p>
+
+<ul>
+  <li><a href="https://mathiasbynens.github.io/rel-noopener/">About <code class="language-plaintext highlighter-rouge">rel=noopener</code></a></li>
+</ul>
+
+<h2 id="cross-site-scriping-xss">Cross-Site Scriping (XSS)</h2>
+
+<p><em>Any</em> user input that is manipulated by JavaScript or output on the page should include code to strip any malicious JavaScript or HTML injection attempts. The <a href="http://html5sec.org">HTML5 Security Cheatsheet</a> has a list of some common attack vectors and ways to prevent them.</p>
+
+<p>In an ideal world, <strong>user inputs should be transmitted to and sanitised on the server side</strong> before being output on the page.</p>
+
+<h2 id="cross-origin-resource-sharing-cors">Cross-Origin Resource Sharing (CORS)</h2>
+
+<p>When creating or modifying a CORS configuration on a separate server or domain, never resort to <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Origin: *</code>. <strong>Always specify specific domains</strong>, otherwise an attacker can manipulate information from outside of your website.</p>
+
+<p>For example, an attacker could create their own webpage that references your JavaScript files which are hosted on a CDN. They can then send whatever data they want to web services or AJAX requests in those scripts, potentially to manipulate database information or to enact a <abbr title="Denial of Service">DOS</abbr> attack.</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">HTTP access control (CORS)</a></li>
+</ul>
+
+<h2 id="sensitive-data">Sensitive data</h2>
+
+<p>Do not store sensitive data (such as passwords) unencrypted. Do not store them in client accessible means such as cookies (which are vulnerable to XSS and CORS attacks) or using local storage.</p>
+
+<p>Additionally be aware that <a href="https://github.com/anttiviljami/browser-autofill-phishing">some browser autofill features submit more than just the data requested</a>. There’s not much you can do about it, but be aware that it happens.</p>
+
+<ul>
+  <li><a href="http://blog.teamtreehouse.com/how-to-create-totally-secure-cookies">How to Create Totally Secure Cookies</a></li>
+</ul>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

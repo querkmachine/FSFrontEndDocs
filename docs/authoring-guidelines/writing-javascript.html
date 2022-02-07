@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Writing JavaScript | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/authoring-guidelines/writing-javascript.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Writing JavaScript</h1>
+				<p>The JavaScript ecosystem has exploded pretty significantly over the last decade or so, and part of the reason this has been possible is because the language has been heavily added to and browsers are finally <em>(mostly)</em> consistent in how they implement JavaScript features.</p>
+
+<p>Libraries like jQuery, MooTools, and script.aculo.us—originally built to pave over the cracks and differences in browser implementations—are largely unnecessary now, and we haven’t used them for quite some time. Instead, we mainly write vanilla JavaScript, using drop-in-able libraries (such as <a href="http://vuejs.org">Vue</a>,  <a href="http://alpinejs.dev">Alpine</a>, and <a href="https://axios-http.com">Axios</a>) where more complex functionality is needed.</p>
+
+<h2 id="variables">Variables</h2>
+
+<p>Function and variable names should be written in camelCase.</p>
+
+<p><strong>If the value of a variable is a HTML element, prefix the variable name with a <code class="language-plaintext highlighter-rouge">$</code> sign</strong> to make it clear this is the case.</p>
+
+<figure class="highlight">
+  <pre><code class="language-js" data-lang="js"><span class="c1">// Yes</span>
+<span class="kd">const</span> <span class="nx">$header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// No</span>
+<span class="kd">const</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// This is okay because the value isn't an HTML element</span>
+<span class="kd">const</span> <span class="nx">searchTerm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">q</span><span class="dl">"</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span></code></pre>
+</figure>
+
+<p>This is a bit of a layover from the jQuery days, where it was conventional to prefix jQuery objects with a dollar to indicate that jQuery methods could be used with them. I’ve since continued doing this, but to HTML elements that DOM manipulation methods can be used instead.</p>
+
+<aside class="aside aside--tangent">
+
+  <p>Dollar signs don’t have any intrinsic meaning in JavaScript, they’re just part of the variable name.</p>
+
+</aside>
+
+<h3 id="const-let-or-var"><code class="language-plaintext highlighter-rouge">const</code>, <code class="language-plaintext highlighter-rouge">let</code> or <code class="language-plaintext highlighter-rouge">var</code></h3>
+
+<p>For many years we’ve only had <code class="language-plaintext highlighter-rouge">var</code> for defining variables, but ES6 has brought with it <code class="language-plaintext highlighter-rouge">const</code>, for constants, and <code class="language-plaintext highlighter-rouge">let</code>, which is <code class="language-plaintext highlighter-rouge">var</code> with stricter scoping rules.</p>
+
+<p>Our general rule is to <strong>use <code class="language-plaintext highlighter-rouge">const</code> if the value will never change, and <code class="language-plaintext highlighter-rouge">let</code> if it will</strong>. 99.9% of the time you won’t need to use <code class="language-plaintext highlighter-rouge">var</code> at all, and the decidedly more liberal scoping rules it has will more often trip you up than help.</p>
+
+<h2 id="values">Values</h2>
+
+<p>Strings should be surrounded by double quotes, unless using string interpolation with backticks.</p>
+
+<h2 id="indentation">Indentation</h2>
+
+<p>JavaScript indentation can be roughly boiled down to having a new line for each variable, function, assignment or other. This is generally consistent with <a href="https://en.wikipedia.org/wiki/Indent_style#Variant:_Stroustrup">Stroustrup style indentation</a>.</p>
+
+<h2 id="classes">Classes</h2>
+
+<p>Felinesoft’s preferred method for writing code in recent years has been to use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">classes</a>. This way, code for individual components can easily be silo’d, avoiding conflicts if a component appears on the page multiple times, along with the other benefits of using classes over inline code and immediately-invoked function expressions.</p>
+
+<p>These classes are typically packaged as <a href="https://flaviocopes.com/es-modules/">ES modules</a>.</p>
+
+<p>See <a href="https://github.com/querkmachine/felafel/blob/master/src/js/components/tabs.js">Felafel’s Tabs component</a> for an example of how these work.</p>
+
+<h2 id="third-party-libraries">Third-party libraries</h2>
+
+<p>It is preferred that third-party JavaScript libraries be incorporated via npm and incorporated into the dependent ES modules, rather than by copying the files directly into the current project. This allows the latest bugfix version of the library to always be in use without having to update it manually, whilst creating <a href="https://www.smashingmagazine.com/2021/05/tree-shaking-reference-guide/">a dependency tree that can be shaken</a> easily.</p>
+
+<h2 id="transpiling-for-older-browsers">Transpiling for older browsers</h2>
+
+<p>Modern JavaScript is wonderful. It introduces enough syntactic sugar to make writing JavaScript just that little bit easier and more pleasant.</p>
+
+<p>Unfortunately, we live in a world where old browsers don’t get always get updated for stuff in a timely way, and JavaScript is one of those things. Client support requirements almost always cover a browser or two that isn’t entirely up to speed. The use of <a href="https://babeljs.io">Babel</a> and <a href="https://babeljs.io/docs/en/babel-preset-env">@babel/preset-env</a> to transpile code down to supported browsers is recommended.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

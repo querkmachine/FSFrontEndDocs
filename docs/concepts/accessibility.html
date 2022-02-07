@@ -1,0 +1,518 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Accessibility | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/concepts/accessibility.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Accessibility</h1>
+				<p>When some people think of web accessibility they think of high contrast colour schemes and screen readers. Those are important, of course, but the discipline of accessibility is much further reaching than that. Dyslexia, motor issues and autism all things that affect how people use a website, and they are just as important to accommodate as the blind and hard of sight.</p>
+
+<p>For website projects we aim to, as much as is practical, fulfil the requirements of <a href="https://www.w3.org/WAI/WCAG21/quickref/"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1 Level AA</a>. Many projects, in fact, require this level of support for legal compliance with the Equality Act, so it’s a good idea to get into the practice of coding for it regardless of whether the spec explicitly mentions it or not.</p>
+
+<p>One thing to keep in mind throughout this page is that <strong>accessibility is not just about permanent disabilities</strong>. A person with glasses may zoom into a page to be able to read easier; a person with a strain injury will struggle to use a mouse and keyboard; a person who is in a crisis will struggle to read long or complex instructions; and for most people functions like eyesight will degrade with age. <a href="https://uxmag.com/articles/we-re-just-temporarily-abled">We’re all just temporarily abled</a>, and making things work for those with the greatest need often benefits everyone, even those without disabilities.</p>
+
+<aside class="aside aside--tangent">
+
+  <p>This is a very long page. It has to be, as accessibility is simultaneously a very wide and very deep subject matter—there’s a reason there are entire companies that specialise at this.</p>
+
+  <p>If you’re short on time or patience, skim the Dos and Don’ts, most of the stuff you need to know is in there.</p>
+
+</aside>
+
+<h2 id="quick-wins">Quick wins</h2>
+
+<p>Some quick wins to achieving Level AA compatibility. These are all simple changes that go a long way to helping out.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Write semantic and logically ordered HTML.</li>
+      <li>Give interactive elements (links, buttons, inputs) clear focus states.</li>
+      <li>Associate form inputs with text labels.</li>
+      <li>Provide skip links for screen readers.</li>
+      <li>Add <code class="language-plaintext highlighter-rouge">alt</code> text to images.</li>
+      <li>Make JavaScript event handlers device independent.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Rely solely on colour to convey information or state.</li>
+      <li>Hijack or override browser functionality, keyboard behaviour or mouse behaviour.</li>
+      <li>Strictly enforce a certain appearance. Allow user-defined stylesheets and browser settings to override your styles.</li>
+      <li>Hide content in a way that requires interaction to view it (modals, carousels, accordions, etc.)</li>
+      <li>Hide content in a way that the user has to change their device or how they are using their device to view it (e.g. forcing users to rotate their phone, making functionality only available on desktop computers).</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="automated-accessibility-testing">Automated accessibility testing</h3>
+
+<p>It is impossible to test for complete accessibility compliance through automated means, as many of the WCAG requirements require human judgement to determine suitability—a computer cannot easily determine if an image’s <code class="language-plaintext highlighter-rouge">alt</code> text accurately describes the image or if a piece of help text is associated to the correct input, those require human intervention.</p>
+
+<p>Tools that can be used to assist with accessibility testing include <a href="http://wave.webaim.org">WAVE</a> and the <a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse audit in Chrome devtools</a>.</p>
+
+<p><strong>You should never depend on “automatic” accessibility overlays.</strong> Like automated testing tools, it is not possible to make a website accessibility compliant through automated means. <a href="https://overlayfactsheet.com">Disabled users don’t find them useful</a> and accessibility professionals overwhelmingly <a href="https://shouldiuseanaccessibilityoverlay.com">consider them to be more harmful than doing nothing</a> at all.</p>
+
+<p>Advice and resources for testing specific scenarios and disabilities are listed in the following sections.</p>
+
+<h2 id="designing-for-blindness-and-screen-reader-users">Designing for blindness and screen reader users</h2>
+
+<p>Screen readers are an assistive software tool typically used by people with visual impairments that allow them to use computers. It does so by reading aloud user interface text when it is interacted with, either with a keyboard or a mouse. Many first- and third-party screen readers exist, with varying functionality between them. Approximately 76% of screen reader users are completely blind, with another 18.5% having some form of visual impairment (<a href="http://webaim.org/projects/screenreadersurvey8/">statistics on screen reader usage</a>).</p>
+
+<p>Many blind users will only use a keyboard as an input device, while others may use specialised braille displays.</p>
+
+<p>Interfaces can be improved for blind users by writing semantic and logically ordered code, with elements marked up with <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">ARIA attributes</a> indicating their role and state. Additionally avoid conveying information through mediums other than text, as these are inaccessible to blind users.</p>
+
+<p>Be aware that screen readers typically include functions that summarise the contents of a page into a list of headers or interactive elements—such as links and form inputs—so users may never ‘see’ or interact with the majority of the page contents.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Provide text-based alternatives to video, audio and other multimedia content.</li>
+      <li>Write code and content in a linear, logical manner that makes sense when read aloud.</li>
+      <li>Build and test for keyboard-only navigation.</li>
+      <li>Use descriptive UI labels and headers that make sense when read outside of the surrounding context.</li>
+      <li>Provide header rows and captions for tables.</li>
+      <li>Use ARIA attributes to link related elements together, if HTML semantics don’t already link them.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Rely solely on appearance to determine hierarchy or state.</li>
+      <li>Expect the user to know what comes before or after their currently focused element.</li>
+      <li>Use other text document formats to convey information (PDFs, Word documents, etc.)</li>
+      <li>Spread content around the page.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-for-blindness-and-screen-reader-users">Testing for blindness and screen reader users</h3>
+
+<p>All major operating systems come with screen reader software built in, including <a href="https://support.microsoft.com/en-gb/windows/hear-text-read-aloud-with-narrator-040f16c1-4632-b64e-110a-da4a0ac56917">Narrator on Windows</a>, <a href="https://support.apple.com/en-gb/guide/voiceover/welcome/mac">VoiceOver on macOS</a>, <a href="https://support.apple.com/en-gb/guide/iphone/iph3e2e415f/ios">VoiceOver on iOS</a>, and <a href="https://support.google.com/accessibility/android/answer/6283677">TalkBack on Android</a>. Many third-party screen readers also exist, the most popular of which are <a href="http://www.freedomscientific.com/Products/Blindness/JAWS">JAWS</a> and <a href="https://www.nvaccess.org/download/">NVDA</a>. You can use any of these yourselves by donning some headphones, closing your eyes (or turning off your monitor) and trying to use the webpage.</p>
+
+<p>Some users may have specialised hardware that translates text onto a braille display that the user can then read, and sometimes interact with, using their hands. You can see an example of a braille display in use with Android (along with TalkBack and <a href="https://support.google.com/accessibility/android/answer/3535226">BrailleBack</a>) <a href="https://www.youtube.com/watch?v=TDyJ6NswyuU">in this video</a>.</p>
+
+<h2 id="designing-for-vision-impairment">Designing for vision impairment</h2>
+
+<p>Many people with impaired vision do not use screen readers as their eyesight is still good enough for most day-to-day activities, however may struggle with small or long passages of text. This group includes people with relatively little impairment, such as people who wear glasses for reading, who may modify browser settings or use reader modes to create a more comfortable reading experience.</p>
+
+<p>Interfaces can be improved for people with low vision by making sure that content is displayed at a suitable size and contrast. Additionally, make sure that the page can be zoomed, font sizes can be increased, and that the interface does not break or become obscured as a result. A user may also use a custom stylesheet or have a browser extension that changes the text and colours on the page in order to make it easier for them to read.</p>
+
+<p>Note that all web browsers have independent zoom and text size options. Zooming increases all elements on the page proportionally, whereas text sizing <em>only</em> increases the size of copy. Both of these must be accommodated for WCAG compliance.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Use strongly contrasting colours (at least 4.5:1).</li>
+      <li>Use a reasonable default font size, at least 16px for body content.</li>
+      <li>Allow the page to be zoomed, the design should accommodate up to 200% zoom.</li>
+      <li>Allow users to complete a task by phone or by mail as an alternative.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Use a font size smaller than 14px, even for small print.</li>
+      <li>Separate actions and notifications from their related contexts (a zoomed in user may not see a modal or menu appearing elsewhere on the page.)</li>
+      <li>Create <code class="language-plaintext highlighter-rouge">!important</code> styles that can override user stylesheets.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-with-vision-impairment">Testing with vision impairment</h3>
+
+<p>All mainstream web browsers support zooming, typically accessed through a menu option or using the <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> and <kbd>+</kbd>/<kbd>-</kbd> keys. Font size settings are usually harder to find, but will likely be grouped with other accessibility features in the settings.</p>
+
+<p>In place of, or in addition to, browser-specific features, a user may also use their operating system’s magnifier tool, such as <a href="https://support.microsoft.com/en-us/windows/use-magnifier-to-make-things-on-the-screen-easier-to-see-414948ba-8b1c-d3bd-8615-0e5e32204198">Magnifier on Windows</a>, <a href="https://support.apple.com/en-us/HT210978">Zoom on macOS</a>, <a href="https://support.apple.com/en-gb/guide/iphone/iph3e2e367e/ios">Zoom on iOS</a>, and <a href="https://support.google.com/accessibility/android/answer/6006949">Magnification on Android</a>.</p>
+
+<p>The contrast of colours can be tested using online tools, such as the <a href="http://webaim.org/resources/contrastchecker/">one-on-one contrast checker from WebAIM</a> or <a href="https://abc.useallfive.com">UseAllFive’s Accessible Brand Colors tool</a>. <a href="https://whocanuse.com/">WhoCanUse</a> is a contrast checking tool that includes tests for vision deficiencies, colour blindness, and situational lighting conditions.</p>
+
+<h2 id="designing-for-colour-blindness">Designing for colour blindness</h2>
+
+<p>Colour blindness is a genetic condition wherein the eye develops either without the photoreceptive cones necessary to perceive a colour, or with those cones being deformed or unequally distributed, creating a deficiency in perceiving a colour. ‌Colour blindness does not necessarily mean a complete inability to perceive colour, just a deficiency in doing so. Colour blindness can cause absent colours to become darker or make otherwise differing colours appear indistinguishable.</p>
+
+<p>There are seven major types of colour blindness. It is possible, but rare, for a person to have more than one type of colour blindness at once.</p>
+
+<dl>
+  <dt>Protanopia</dt>
+  <dd>A complete absence of red cones. Red appears as black, purple as blue, and orange and green all appearing as muted yellow.</dd>
+  <dt>Deuteranopia</dt>
+  <dd>An absence of green cones. Green appears as pale orange, purple as blue, and orange and green as muted yellow.</dd>
+  <dt>Tritanopia</dt>
+  <dd>An absence of blue cones. Blue is instead percevied as being green, yellows and oranges as pink, and purple as deep red.</dd>
+  <dt>Protanomaly</dt>
+  <dd>A deficiency of red receptors, which makes red hues appear closer to green.</dd>
+  <dt>Deuteranomaly</dt>
+  <dd>A deficiency of green receptors, which makes green appear as an orange-red colour.</dd>
+  <dt>Tritanomaly</dt>
+  <dd>A deficiency of blue receptors, which causes blue to appear similar to green.</dd>
+  <dt>Monochromacy</dt>
+  <dd>An absence or significant deficiency of all three cone types. All colours are absent or significantly washed out, with vision effectively appearing in greyscale.</dd>
+</dl>
+
+<p>Many (but not all) types of colour blindness are hereditary and result from a genetic mutation on the X chromosome; making colour blindness much more common in men than in women. Approximately 9% of the male population and 0.45% of the female population have <a href="http://www.colour-blindness.com/general/prevalence/">some form of colour blindness</a>. Due to the hereditary nature, prevalence also varies by country. Colour blindness can also be acquired, temporarily or permanently, from eye diseases, age-related conditions, and as a side effect from prescription medications.</p>
+
+<p>Deuteranomaly is the most common type of colour blindness, affecting about 5% of men.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Ensure that the colours of interactive elements don’t cause them to blend into the surroundings.</li>
+      <li>Use bright warm/dark cool colour combinations, these tend to have naturally higher contrast.</li>
+      <li>Consider using multiple shades of the same colour, rather than different colours, in graphs and charts.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Rely solely on colour to convey information or state.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-with-colour-blindness">Testing with colour blindness</h3>
+
+<p><a href="https://whocanuse.com/">WhoCanUse</a> is a contrast checking tool that includes tests for vision deficiencies, colour blindness, and situational lighting conditions. <a href="http://paletton.com">Paletton</a> is a colour scheme generation tool with colour blindness simulation features.</p>
+
+<p>As of March 2020, Google Chrome’s devtools include <a href="https://developer.chrome.com/blog/new-in-devtools-83/#vision-deficiencies">an emulator for some forms of colour blindness</a>. The Chrome extension <a href="https://chrome.google.com/webstore/detail/colorblindly/floniaahmccleoclneebhhmnjgdfijgg">Colorblindly</a> can simulate more forms.</p>
+
+<h2 id="designing-for-the-deaf-and-hard-of-hearing">Designing for the deaf and hard of hearing</h2>
+
+<p>Hearing impairment is a partial or total inability to hear or perceive sound. Hearing loss can be caused by a number of factors both medical and external and can be temporary or permanent. Hearing loss becomes more common through ageing due to natural degeneration of the eardrums. Approximately 15% of people aged 18 and over have some sort of trouble hearing.</p>
+
+<p>Interfaces can be improved for users who are hard of hearing by providing text alternatives to audio.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Provide text alternatives to video, audio and other multimedia content.</li>
+      <li>Allow users to choose methods of communication, including non-auditory mediums.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Solely use sounds as notifications or prompts, provide a visual accompaniment too.</li>
+      <li>Default to or only allow contact or support services by phone.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-for-the-deaf-and-hard-of-hearing">Testing for the deaf and hard of hearing</h3>
+
+<p>There aren’t really any automated tools for testing against hearing issues due to the scope of the problem and myriad circumstances in which they might appear.</p>
+
+<p>Ensure that video and audio content includes either a transcript—displayed or linked proximate to the media content—or closed captioning in the case of videos. Failing to provide at least one of these is an immediate WCAG compliance failure.</p>
+
+<p>Ensure that any audible notifications include a visual component.</p>
+
+<h2 id="designing-for-physical-and-motor-disabilities">Designing for physical and motor disabilities</h2>
+
+<p>There are <a href="https://webaim.org/articles/motor/motordisabilities">a great number of motor disabilities</a>: some permanent, some temporary, some genetic, some obtained. For the purposes of this document, physical and motor disability refers to conditions that would prevent a person from being able to comfortably use traditional input devices (such as a keyboard or mouse) dextrously. This can range from relatively minor issues, like a repetative strain injurity; to persistent and uncontrollable movements, which is common amongst sufferers of Parkinson’s disease and Multiple Sclerosis; to complete immobility, as may result from paralysis or amputation.</p>
+
+<p>Users with motor disabilities may still use a keyboard and mouse, but struggle to use them easily. Those with more severe motor issues may opt to use voice controls (which are described in the next section), switch controls, or head tracking technology.</p>
+
+<p>Interactive elements should have reasonably large interactive areas. If multiple interactive elements are in close proximity, adequate space should be placed between them to avoid accidentally activating the wrong element.</p>
+
+<p>Interfaces can be improved for users with physical and motor disabilities by creating simple interfaces that do not require a significant amount of interaction to achieve tasks. Saving the user’s progress automatically, or providing frequent save points, may also be beneficial in helping users recover from unintended inputs the user may make.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Make interactive elements large (at least 42-48 pixels in both dimensions) and put sufficient empty space around them.</li>
+      <li>Design with touch screens and voice control in mind.</li>
+      <li>Autofill form inputs wherever possible.</li>
+      <li>Provide mechanisms to jump directly to parts of the page (e.g. skiplinks, tables of contents) to reduce the need to scroll.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Design interfaces that require significant amounts of movement to use (e.g. dropdown navigation menus).</li>
+      <li>Design interfaces that require precise cursor movement to use (e.g. elements that only appear on hover).</li>
+      <li>Design interfaces that depend upon multiple simultaneous interactions (e.g. pinch to zoom).</li>
+      <li>Require significant amounts of typing or scrolling to achieve common tasks.</li>
+      <li>Have time-restricted functionality (e.g. logging people out after periods of inactivity).</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-for-physical-and-motor-disabilities">Testing for physical and motor disabilities</h3>
+
+<p>Switch controls are a highly specialised hardware element and typically cost a significant amount of money. Switch controls come in a variety of form factors, and may be controlled using the hands, feet, mouth, tongue, or via head movements. <a href="https://www.youtube.com/watch?v=kj9UodcwIes">This video shows a person controlling an iPhone using switch controls with his mouth</a>, while this one shows both <a href="https://www.youtube.com/watch?v=NL0x-b6zZ8Y">head switches and facial tracking controls being used on macOS</a>.</p>
+
+<h2 id="designing-for-voice-control-users">Designing for voice control users</h2>
+
+<p>Several types of people may use voice control software to interact with an app or website. This can include those with physical or motor disabilities, who cannot use a mouse or keyboard easily; those with learning disabilities, who may struggle to type; the vision impaired, who may use it in conjunction with a screen reader; or those with persistent conditions (such as chronic pain) who need to limit their keyboard usage.</p>
+
+<p>Voice control software allows a user to navigate apps and webpages by issuing vocal commands to the software, such as “scroll down”, “click ‘Place Order’”, or dictating their response to form fields.</p>
+
+<p>Voice control is becoming increasingly common for all users, as digital assistants such as Siri allow a user to perform tasks such as creating, dictating and sending an email without having to touch a screen or keyboard.</p>
+
+<p>Interfaces can be improved for voice control users by avoiding duplication of controls and clearly labelling what each control does. Unlabelled controls become open to interpretation—a button with a trash can icon might be named “trash”, “bin”, “delete”, “remove”, “dismiss”, another name, or no name at all—with it unknowable to a user which one is correct. A button that just says “delete” is immediately obvious by comparison.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Give controls like links, buttons and inputs unique labels that clearly describe what they do.</li>
+      <li>Ensure that form inputs always have an associated label that is visibly displayed.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Design controls that only provide an icon or graphic to indicate what it does. </li>
+      <li>Duplicate the same label for multiple controls (e.g. having “Read more” on multiple cards).</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-with-voice-control">Testing with voice control</h3>
+
+<p>All major operating systems have voice control software built-in, such as <a href="https://support.apple.com/en-gb/HT210539">Voice Control on macOS</a>, <a href="https://support.apple.com/en-gb/guide/iphone/iph2c21a3c88/ios">Voice Control on iOS</a>, <a href="https://support.google.com/accessibility/android/answer/6151848">Voice Access on Android</a>, and <a href="https://support.microsoft.com/en-gb/windows/how-to-use-speech-recognition-in-windows-d7ab205a-1f83-eba1-d199-086e4a69a49a">Speech Recognition on Windows</a>.</p>
+
+<p>Voice Control on macOS and iOS includes features that make it easier to interact with unnamed elements via grids or numerical designations, however these take extra steps to activate and use, and are best avoided for the best user experience, especially for frequent or repetative actions.</p>
+
+<h2 id="designing-for-autism-and-adhd">Designing for autism and ADHD</h2>
+
+<p>Autism is the umbrella name for a group of highly variable, but related, neurodevelopmental disorders, typically covering difficulty with social interaction, communication and behavioural skills. Attention deficit hyperactivity disorder (ADHD) is a neurodevelopmental disorder characterised by problems paying attention, excessive activity and difficulty controlling behaviour. ADHD is generally not considered to be on the autistic spectrum, however people with autism and ADHD exhibit many similar traits, which is why they are grouped together here.</p>
+
+<p>People with autism may exhibit repeated behaviours, aversion to changes in routine, hypersensitivity to stimuli (e.g. textures, noises, or tastes), hyperfocus on specific interests, difficulty making eye-contact, and difficulty with social and verbal communication. These can manifest as issues managing schedules, aversion to loud or busy environments, “picky” eating habits, and difficulty initiating and sustaining jobs and relationships.</p>
+
+<p>People with ADHD tend to have difficulty with executive function, issues paying attention to “boring” activities, hyperfocus on specific activities, and problems controlling emotions and behaviour. These can manifest as laziness or forgetfulness, bring prone to distraction, emotional outbursts and mood swings, and difficulty managing time or performing certain activities.</p>
+
+<p>Approximately 1.5% of the population suffers from a form of autism. Approximately 2.6% of the adult population has ADHD, rising to 7% for people aged 18 and under.</p>
+
+<p>Interfaces can be improved for users with autism and ADHD by removing distracting elements to make content consumption easier and making interactive systems work in a simple, easily explainable way.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Use a simple colour palette.</li>
+      <li>Use lots of negative space (whitespace) when breaking up sections.</li>
+      <li>Use descriptive labelling on controls and buttons.</li>
+      <li>Design simple layouts with a clear, linear reading flow and content hierarchy.</li>
+      <li>Maintain a consistent navigation and page structure.</li>
+      <li>Use images and diagrams to convey complex information or instructions.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Use lots of branching paths. Keep processes as linear as possible.</li>
+      <li>Use distracting or bright colours, or loud and uncontrollable audio or video.</li>
+      <li>Use ambiguous language, sarcasm, figures of speech or metaphors.</li>
+      <li>Force users to remember information.</li>
+      <li>Force users to use direct communication methods (such as phone calls or in-person meetings) to achieve tasks.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-for-autism-and-adhd">Testing for autism and ADHD</h3>
+
+<p>As the autism spectrum contains so much diversity, and due to the nature of the condition, there is no automated method to test that an interface is easy to use by people with autism or ADHD, and testing with only one or two people will usually fail to represent the entire spectrum of possible experiences. The general difficulty with communicating or engaging in testing may also make qualitative testing of autistic and ADHD individuals difficult to carry out on a large scale.</p>
+
+<h2 id="designing-for-dyslexia">Designing for dyslexia</h2>
+
+<p>Dyslexia is a cognitive disorder variously related to issues with the language processing or visual processing centres of the brain. Dyslexia is often attributed to similar issues with number processing (dyscalculia) and distinguishing directions. People with dyslexia often say their difficulty stems from text appearing to shift position or rotate while they’re reading, leading to problems determining letter order, letter shapes and distinguishing between similar looking letters. Because of their (often lifelong) difficulty reading, people with dyslexia may also have problems with spellings (often speling frazes as they sound) and will generally struggle to review or correct mistakes.</p>
+
+<p>Approximately 10% of people in the UK have dyslexia.</p>
+
+<p>Interfaces can be improved for users with dyslexia through appropriate typesetting, such as having wide spacing between words so that they cannot ‘blend together’ and using typefaces with visually distinct glyphs—particularly the letters b, d, q; and I, l, 1. Avoid using underlines, italics and capitalisation for emphasis, as these change the visual appearance of the glyph and make the letters harder to distinguish from one another. If possible, reduce the reliance on text content to convey information, and utilise other mediums such as diagrams or video.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Use a simple, logical navigation structure.</li>
+      <li>Use a large, sans-serif typeface.</li>
+      <li>Use images and diagrams to convey complex information or instructions.</li>
+      <li>Keep text left aligned, with a consistent left margin.</li>
+      <li>Keep content short and to the point.</li>
+      <li>Use bold for emphasis, or some other method that doesn’t significantly distort the visual appearance of text.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Try to convey complex information in long paragraphs.</li>
+      <li>Put too much information in one place.</li>
+      <li>Use underlines, italics or capitals for emphasis.</li>
+      <li>Force users to remember information.</li>
+      <li>Rely on accurate spelling to achieve tasks.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-for-dyslexia">Testing for dyslexia</h3>
+
+<p>Like other cognitive issues, testing for dyslexia is difficult because the experience is different for different people, and cannot be easily or accurately replicated or automated. There are <a href="http://geon.github.io/programming/2016/03/03/dsxyliea">some simulations</a> of dyslexia that use shifting letter positions in an attempt to invoke the sensation of constantly movement, however this is only one such experience, and not everyone experiences dyslexia in this way.</p>
+
+<h2 id="designing-for-photosensitive-epilepsy">Designing for photosensitive epilepsy</h2>
+
+<p>Photosensitive epilepsy is a form of epilepsy which is triggered by visual stimuli such as flashing lights or regular moving patterns. The effects can be limited to nausea or dizziness but can be as severe as seizures. Approximately 4% of people have photosensitive epilepsy.</p>
+
+<p>Most web content is harmless to people who suffer with photosensitive epilepsy, however, some visual effects—from full-screen jumps to obnoxiously flashing banner ads—can cause issues for some people. Interfaces can be improved by reducing the use of these effects.</p>
+
+<p>The WCAG defines flashing or strobing as being <a href="https://www.w3.org/TR/WCAG20/#seizure-does-not-violate">more than three times a second</a>.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Provide a way of disabling intrusive UI animation. </li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Use rapidly flashing, flickering or strobing visual effects.</li>
+      <li>Rapidly transition between highly contrasting colours.</li>
+      <li>Use images with tight, high contrast parallel lines, as these tend to flicker on many monitors.</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-for-photosensitive-epilepsy">Testing for photosensitive epilepsy</h3>
+
+<h2 id="designing-for-motion-sensitivity-and-vestibular-dysfunction">Designing for motion sensitivity and vestibular dysfunction</h2>
+
+<p>Motion sensitivity (also known as motion sickness) is a condition in which there is a disconnect between visually perceived movement and the vestibular system’s sense of movement—either from a physical movement that cannot be seen, or visual movement that cannot be felt. In a digital context, this can also be caused by a disconnect between the user’s expected motion and the actual motion that results (e.g. moving down on the mouse wheel scrolling the page right). Motion sickness is capable of affecting anyone, however, those with vestibular dysfunction are much more prone to it. People with vestibular dysfunction are also more prone to lightheadedness, nausea, and vertigo.</p>
+
+<p>Vestibular dysfunctions can be acquired through a variety of illnesses, including ear infections, strokes and Parkinson’s disease.</p>
+
+<p>Awareness of motion sickness caused by digital user interfaces became prominent with the launch of <a href="http://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea">iOS 7’s constantly moving home screen and full-screen animations</a>, which made a significant number of people feel ill.</p>
+
+<p>Interfaces can be improved for users with motion sensitivity by avoiding large scrolling and zooming effects, such as parallax animation and scrolljacking, as well as reducing the amount of uncontrollable visual animation used.</p>
+
+<div class="grid">
+  <div>
+    <p><em>Do:</em></p>
+
+    <ul>
+      <li>Use animation and transitions in a subtle way.</li>
+      <li>Confine animated visual effects to small portions of the page.</li>
+      <li>Provide a way of disabling intrusive UI animation and hijacked controls.</li>
+    </ul>
+  </div>
+  <div>
+    <p><em>Don’t:</em></p>
+
+    <ul>
+      <li>Use auto playing carousels or videos that take up significant portions of the screen.</li>
+      <li>Animate large portions of the page in general (e.g. large sliders or carousels)</li>
+      <li>Change the default scroll behaviour (scrolljacking).</li>
+    </ul>
+  </div>
+</div>
+
+<h3 id="testing-for-motion-sensitivity-and-vestibular-dysfunction">Testing for motion sensitivity and vestibular dysfunction</h3>
+
+<p>Most major operating systems include a toggle to reduce the amount of motion in the user interface. <a href="https://webkit.org/blog/7551/responsive-design-for-motion/">Developers can read this toggle via the <code class="language-plaintext highlighter-rouge">prefers-reduced-motion</code> media query</a> and should ideally disable animations and autoplaying video in their code if it is set.</p>
+
+<p>Most automated testing tools cannot or do not test for animations or features such as videos or scrolljacking. It is thus necessary to check these manually.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

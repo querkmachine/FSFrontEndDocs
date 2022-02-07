@@ -3,6 +3,13 @@ layout: default
 title: Changelog
 ---
 
+## 2022-02-07
+
+Part four and a bit.
+
+* Reworked how build/deployment works because GitHub Pages doesn't like custom Liquid tags apparently.
+* Writing CSS/Sass: Added various asides.
+
 ## 2022-02-04
 
 Part four.

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Progressive enhancement | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/concepts/progressive-enhancement.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Progressive enhancement</h1>
+				<p>Progressive enhancement. What is there to say about progressive enhancement other than it is <strong>absolutely the only way in which 99% of websites should work</strong>.</p>
+
+<p>Progressive enhancement isn’t just about making things work without JavaScript. To build with progressive enhancement is to automatically include considerations for accessibility, search engine optimisation, performance and the mobile web. Progressively enhanced websites are inherently more stable, with fewer <a href="http://kryogenix.org/code/browser/everyonehasjs.html">bottlenecks and dependencies</a> to accessing the really important stuff: the content.</p>
+
+<blockquote>
+  <p>It’s called the world-wide web, not the wealthy-western web.</p>
+</blockquote>
+
+<p>Use <a href="https://modernizr.com/">Modernizr</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports"><code class="language-plaintext highlighter-rouge">@supports</code></a> statements to feature detect any complex functionality. A List Apart has a short series of articles from 2008 on <a href="http://alistapart.com/article/understandingprogressiveenhancement">understanding</a>, <a href="http://alistapart.com/article/progressiveenhancementwithcss">implementing</a>, and <a href="http://alistapart.com/article/progressiveenhancementwithjavascript">working with JavaScript</a> whilst working with progressive enhancement.</p>
+
+<p>In the rare situation where progressive enhancement is not possible due to functional requirements, make sure to <a href="http://blog.teamtreehouse.com/unobtrusive-javascript-important">keep your JavaScript unobtrusive</a> and provide fallback content or messaging. (Yes, I said rare, <strong><a href="https://en.wikipedia.org/wiki/Progressive_web_app">progressive web apps</a> are a thing</strong>.)</p>
+
+<p>Other than that, just write sensible, semantic HTML and it should all come together nicely.</p>
+
+<h2 id="further-reading">Further reading</h2>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Progressive_enhancement">Progressive enhancement</a> on Wikipedia</li>
+  <li><a href="https://www.gov.uk/service-manual/technology/using-progressive-enhancement">Using progressive enhancement</a> in the GOV.UK Service Manual</li>
+  <li><a href="https://www.smashingmagazine.com/2009/04/progressive-enhancement-what-it-is-and-how-to-use-it/">Progressive Enhancement: What It Is, And How To Use It?</a> on Smashing Magazine</li>
+  <li><a href="https://www.w3.org/wiki/Graceful_degradation_versus_progressive_enhancement">Graceful degradation versus progressive enhancement</a> on the W3C</li>
+</ul>
+
+<h2 id="related">Related</h2>
+
+<ul>
+  <li><a href="https://gds.blog.gov.uk/2013/10/21/how-many-people-are-missing-out-on-javascript-enhancement/">How many people are missing out on JavaScript enhancement?</a> on the Government Digital Service blog</li>
+  <li><a href="https://www.androidpolice.com/2018/08/23/chrome-android-may-start-disabling-javascript-2g-connections/">Chrome for Android may start disabling JavaScript on 2G connections</a> on Android Police</li>
+</ul>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Using webfonts on Azure hosting | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/troubleshooting/azure-webfonts-troubleshooting.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Using webfonts on Azure hosting</h1>
+				<aside class="aside aside--tangent">
+
+  <p>This actually works for all files with a non-standard extension, such as Handlebars templates. It’s not just for fonts!</p>
+
+</aside>
+
+<p>Many of our projects, all the way from integration environments to QA to UAT to the live site, run on <a href="https://azure.microsoft.com">Microsoft Azure</a>. Azure provides a hosting environment similar to the default set up of Internet Information Services (IIS) on your development machine; the problem is this set up doesn’t cover all the bases.</p>
+
+<p>For example, IIS and Azure will automatically 404 any request for a file with a MIME type it doesn’t understand (aka, your fonts won’t load). And what MIME types does it not know by default? Why, the ones for fonts, of course!</p>
+
+<p>If the project you’re on has a <code class="language-plaintext highlighter-rouge">web.config</code> file, which practically everything hosted on Azure will, you can fix this by adding the following snippet of code.</p>
+
+<figure class="highlight">
+  <pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;system.webServer&gt;</span>
+    <span class="nt">&lt;staticContent&gt;</span>
+        <span class="nt">&lt;remove</span> <span class="na">fileExtension=</span><span class="s">".eot"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;mimeMap</span> <span class="na">fileExtension=</span><span class="s">".eot"</span> <span class="na">mimeType=</span><span class="s">"application/vnd.ms-fontobject"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;remove</span> <span class="na">fileExtension=</span><span class="s">".otf"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;mimeMap</span> <span class="na">fileExtension=</span><span class="s">".otf"</span> <span class="na">mimeType=</span><span class="s">"application/font-sfnt"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;remove</span> <span class="na">fileExtension=</span><span class="s">".svg"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;mimeMap</span> <span class="na">fileExtension=</span><span class="s">".svg"</span> <span class="na">mimeType=</span><span class="s">"image/svg+xml"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;remove</span> <span class="na">fileExtension=</span><span class="s">".ttf"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;mimeMap</span> <span class="na">fileExtension=</span><span class="s">".ttf"</span> <span class="na">mimeType=</span><span class="s">"application/font-sfnt"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;remove</span> <span class="na">fileExtension=</span><span class="s">".woff"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;mimeMap</span> <span class="na">fileExtension=</span><span class="s">".woff"</span> <span class="na">mimeType=</span><span class="s">"application/font-woff"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;remove</span> <span class="na">fileExtension=</span><span class="s">".woff2"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;mimeMap</span> <span class="na">fileExtension=</span><span class="s">".woff2"</span> <span class="na">mimeType=</span><span class="s">"font/woff2"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/staticContent&gt;</span>
+<span class="nt">&lt;/system.webServer&gt;</span></code></pre>
+</figure>
+
+<aside class="aside aside--correction">
+
+  <p>You probably don’t need all of these, but there’s no harm in adding them all, just in case!</p>
+
+</aside>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

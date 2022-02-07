@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Design systems | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/tools/design-systems.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Design systems</h1>
+				<p>Design systems are a tool that nearly every Felinesoft project utilises. Usually consisting of a central repository of information, components and documentation for each project; the design system simultaneously acts as a front-end developer’s main involvement within a project, a back-end developer’s guide to implementation of the front-end, and the client’s touchpoint for approving UIs before they are integrated.</p>
+
+<p>Design systems can be seen as an extension of the client’s brand guidelines, showing how the principles of the brand have been turned into a functional user interface.</p>
+
+<aside class="aside aside--tangent">
+
+  <p>The phrases “component library” or “pattern library” are commonly used interchangably with “design system”. These are related but distinct terms:</p>
+
+  <p>A component library typically only contains UI components.</p>
+
+  <p>A pattern library will include components and examples of how they work together to create fuller experiences (aka, patterns).</p>
+
+  <p>A design system includes both of these, plus information about assets, the wider design language (such as typography and acceptable colour combinations), desired brand perception, tone of voice, etc.</p>
+
+</aside>
+
+<h2 id="why-use-a-design-system">Why use a design system?</h2>
+
+<p>exist to solve three of the biggest problems in user interface development: consistency, reusability, and maintainability.</p>
+
+<h3 id="consistency">Consistency</h3>
+
+<p>Barring only the smallest of projects, every website we build at Felinesoft is going to be developed by multiple people over a period stretching from a few months to several years, add that many of those projects are vast in scope and complexity and you have a recipe for messy code, inconsistent designs and a poor user experience.</p>
+
+<p>Design systems rectify this by <strong>creating a collated, authoritarian source</strong> for how brand and components should look, behave and be implemented without having to manually trawl for examples in the codebase.</p>
+
+<h3 id="reusability">Reusability</h3>
+
+<p>Large projects often result in developers reimplementing already existing features, reinventing an already formed wheel, or just creating the twenty-third variant of a button to use in that one place on that one page. This is not only a horrible way to do things, it costs us time and money. Design systems rectify this by enabling developers unfamiliar with the project to find what features already exist and extend or build according to the already established rules, instead of reimplementing things anew.</p>
+
+<p>Design systems can even be reusable across projects, allowing multiple websites under the same umbrella to follow a consistent design language. The centralised location also means it only takes one developer to create a new component before it is available for use by everyone on every project. Design systems need not be constrained to just websites, you can theoretically use the same design system across websites, apps, print design, and more.</p>
+
+<h3 id="maintainability">Maintainability</h3>
+
+<p>Having a consistent design system that everybody works from makes maintenance easier too. It’s much easier for a developer to work on other people’s code when it is consistently written and categorised.</p>
+
+<p>New developers can also get up to speed much quicker by looking at the design system, while back-end developers will be able to pull together new functionality without needing front-end to build each and every template for them.</p>
+
+<h2 id="making-a-design-system">Making a design system</h2>
+
+<p>At Felinesoft, we’ve long used <a href="http://fractal.build/">Fractal</a> with the <a href="https://github.com/frctl/fractal/tree/main/packages/nunjucks">Nunjucks adaptor</a> for our design system management. Nunjucks is a fair amount more powerful than the Handlebars adaptor that Fractal ships with, and it allows for the use of macros, which are themselves a bit more flexible than Fractal’s own render system.</p>
+
+<p>See Kickstart 8 on <a href="/tools/felinesoft-frameworks.html">the frameworks page</a> for the Fractal/Nunjucks architecture we’ve used on most of our projects in recent years.</p>
+
+<h3 id="what-to-include">What to include</h3>
+
+<p>Our design systems typically include some of the following information. Depending on time (or lack thereof) and the nature of the project, not all of these pages may exist, but ideally they should.</p>
+
+<dl>
+  <dt>Overview</dt>
+  <dd>A page introducing the user to the design system, providing some background on the project, and detailing what the current status of the system is.</dd>
+  <dt>Design principles documentation</dt>
+  <dd>This includes the more conceptual aspects of the design system. What is the goal of the redesign (if there is one)? What feelings does the brand want to invoke? What was the thinking behind feature X, Y and Z? This information helps situate a designer/developer, and helps them understand what the design system is <em>supposed</em> to do, not just what it <em>can</em> do.</dd>
+  <dt>Visual language documentation</dt>
+  <dd>This is the practical and visual aspects of the design system. This includes design tokens, colour palettes, acceptable colour usage, type hierarchy, iconography, spacing systems, and other parts of the system that are simultaneously part of every component, but also not components in themselves. They should be listed alongside the relevant reference in code (usually a Sass variable), so a developer can easily find and use them.</dd>
+  <dt>Technical documentation</dt>
+  <dd>Any documentation about the technical architecture of the project. Namespaces, modularisation, browser compatibility tables, and so forth. These help a developer understand how things are structured and may guide them as to why certain decisions have been made in the past.</dd>
+  <dt>Content guidelines</dt>
+  <dd>Details on tone of voice, spelling, words or phrases to avoid, photography and art direction, and so on. As most of our projects have content manageable UI labels this may seem irrelevant, but language in the design system prototypes often carries through to the final product, so it’s good to get it right from the start.</dd>
+</dl>
+
+<h3 id="tips-on-starting-a-design-system">Tips on starting a design system</h3>
+
+<dl>
+  <dt>Start early</dt>
+  <dd>Plan out the components based on the wireframes before active development has begun. Think about how templates can be broken down into smaller, nested parts.</dd>
+  <dt>Tokenise everything</dt>
+  <dd>Every colour, typeface, font size, or other element in the client’s brand guide should be available in your code (usually as a Sass variable).</dd>
+  <dt>Plan for components</dt>
+  <dd>When planning work make a note (whether mentally or in writing) of what components each user story will need. Consider creating tasks for any that have not been developed yet.</dd>
+  <dt>Library first, website later</dt>
+  <dd>Build everything in the library first before integrating it with the larger site. This allows you to work and test separately, isolated from any issues the main project may be having.</dd>
+  <dt>Minimise the number of components you have</dt>
+  <dd>If you’ve already implemented (for example) a custom select dropdown, think very, very hard about whether you need to create another one just because the UX or UI appears to use a different one. Everything in the design system should exist to fill a purpose that nothing else can do—do you really need a new dropdown, or will the existing one still work?</dd>
+  <dt>Keep it updated</dt>
+  <dd>A pattern library is all but useless if the information in it is wrong. It’s meant to be the one authoritative source—<strong>keep it that way!</strong></dd>
+</dl>
+
+<h2 id="examples">Examples</h2>
+
+<p>Some very nice design systems (or component/pattern libraries) from the biggest brands around the world.</p>
+
+<ul>
+  <li><a href="https://atlassian.design">Atlassian Design System</a></li>
+  <li><a href="https://www.audi.com/ci/en/renewed-brand.html">Audi CI</a></li>
+  <li><a href="https://www.carbondesignsystem.com">Carbon Design System</a> (IBM)</li>
+  <li><a href="https://clarity.design">Clarity Design System</a> (VMWare)</li>
+  <li><a href="https://patterns.boston.gov">Fleet Pattern Library</a> (City of Boston)</li>
+  <li><a href="https://developer.microsoft.com/en-us/fluentui/">Fluent UI</a> (Microsoft)</li>
+  <li><a href="https://storybook.futurelearn.com/">FutureLearn Design System</a></li>
+  <li><a href="https://www.bbc.co.uk/gel">GEL</a> (BBC)</li>
+  <li><a href="https://gold.designsystemau.org">GOLD Design System</a> (Australian government)</li>
+  <li><a href="https://design-system.service.gov.uk">GOV.UK Design System</a> (UK government)</li>
+  <li><a href="https://edgallois.bitbucket.io/kubrick/index.html">Kubrick Design System</a> (Arranger)</li>
+  <li><a href="https://ux.mailchimp.com">Mailchimp Pattern Library</a></li>
+  <li><a href="https://material.io">Material Design</a> (Google)</li>
+  <li><a href="https://www.lightningdesignsystem.com">Lightning Design System</a> (Salesforce)</li>
+  <li><a href="https://polaris.shopify.com">Polaris Design System</a> (Shopify)</li>
+  <li><a href="https://theguardian.design/">Source Design System</a> (The Guardian)</li>
+  <li><a href="https://spectrum.adobe.com">Spectrum Design System</a> (Adobe)</li>
+  <li><a href="https://www.starbucks.com/developer/pattern-library">Starbucks Pattern Library</a></li>
+  <li><a href="https://designsystem.digital.gov">U.S. Web Design System</a> (US federal government)</li>
+</ul>
+
+<p>Many more examples can be found on <a href="http://styleguides.io/">styleguides.io</a>.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

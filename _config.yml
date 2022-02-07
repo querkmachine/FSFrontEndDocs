@@ -7,6 +7,7 @@ url: "http://querkmachine.github.io" # the base hostname & protocol for your sit
 pemalink: /:title
 
 # Build settings
+destination: docs
 markdown: kramdown
 highlighter: rouge
 kramdown:

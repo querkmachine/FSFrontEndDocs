@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Writing microcopy | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/authoring-guidelines/writing-microcopy.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Writing microcopy</h1>
+				<p>Microcopy is those little bits of text that litter your typical user interface—log in links, form labels, error messages, things like that. These pieces of text are often hardcoded, so it is up to you, dear developer, to make sure it’s up to par. Quality microcopy is pivotal in creating an easy to use and accessible user experience.</p>
+
+<aside class="aside aside--opinion">
+
+  <p>This page is <em>very</em> opinionated. There are no hard and fast rules for microcopy, and what rules there are might differ on a project by project basis. Either way, this is a good baseline to work from.</p>
+
+</aside>
+
+<p>This page is inspired by <a href="https://storybook.futurelearn.com/?path=/story/design-system_design-system-core-styles-microcopy--page">FutureLearn’s page on microcopy</a>.</p>
+
+<h2 id="capitalisation">Capitalisation</h2>
+
+<p>Interface labels should be <strong>written in sentence case</strong>, with the first word capitalised and other words lowercase, unless they are proper nouns or proper adjectives.</p>
+
+<p>This is the way most things are written, and users can read sentence case much faster and with more ease than all caps or title case.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>Log in (not ‘Log In’)</li>
+  <li>Terms and conditions (not ‘Terms and Conditions’)</li>
+  <li>RSVP to this event (not ‘RSVP to this Event’)</li>
+</ul>
+
+<h2 id="labelling">Labelling</h2>
+
+<p>Labels should be clear and easy to understand. Try and be as specific as possible about <strong>what things do from a user’s perspective</strong>—these will typically involve verbs and actions—and not from a technical perspective. Aim for short, concise labels, however do not sacrifice clarity for brevity. A longer label that adequately describes a function is better than a shorter label that doesn’t.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>Send details (not ‘Submit query’)</li>
+  <li>Dismiss message (not ‘Close’)</li>
+  <li>Proceed to payment (not ‘Next step’)</li>
+</ul>
+
+<h2 id="abbreviations">Abbreviations</h2>
+
+<p>Acronyms and abbreviations are helpful for brevity, but can be confusing if users don’t know what they mean. It’s therefore important that abbreviations are used consistently and in a context where their meaning can be easily determined. If the same acronym appears multiple times in a page, and space allows, define the meaning of the acronym or abbreviation in first usage.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>6 mins ago (not ‘6 mins’)</li>
+  <li>the Central Intelligence Agency (CIA) (not just ‘CIA’)</li>
+</ul>
+
+<h2 id="dates-and-times">Dates and times</h2>
+
+<p>Dates should be written in full. Times should use the 12 hour clock. Times relative to the current time should clarify this with the word ‘ago’. No time measures should use leading zeroes.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>22nd September 2017 (not ‘22/9/17’ or ‘22 Sep 2017’)</li>
+  <li>1:34pm (not ‘13:34’ or ‘01:34pm’)</li>
+  <li>28 minutes ago (not ‘28 min’ or ‘28m’)</li>
+</ul>
+
+<h2 id="this-vs-that">This vs. that</h2>
+
+<p>Think of the user interface as a medium by which <strong>we have a dialogue with the user</strong>. When talking to or requesting information from the user, use ‘you’. When the user is talking to us, use ‘I’, ‘me’ and ‘my’.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>Enter your email address (not ‘Enter email address’)</li>
+  <li>Email me when my application status changes (not ‘Email when application status changes’)</li>
+</ul>
+
+<h2 id="error-messaging">Error messaging</h2>
+
+<h3 id="dont-use-redundant-words">Don’t use redundant words</h3>
+
+<p>Avoid using words that don’t add value to the message. Avoid overusing ‘please’—be direct and to the point.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>That password doesn’t meet the requirements (not ‘Please make sure your password meets the requirements’)</li>
+</ul>
+
+<h3 id="use-contractions">Use contractions</h3>
+
+<p>Say thanks, not ‘thank you’. Say we’ve, not ‘we have’. Using fully expanded phrases should overly formal and robotic (it’s literally how Data talks in <em>Star Trek: The Next Generation</em>!)</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>Thanks for contacting us! We’ll be in touch. (not ‘Thank you for getting in touch. You will hear back from us soon.’)</li>
+</ul>
+
+<h3 id="avoid-using-the-passive-voice">Avoid using the passive voice</h3>
+
+<p>Passive voice sounds impersonal and robotic.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>We couldn’t change your password (not ‘Your password could not be changed’)</li>
+</ul>
+
+<h3 id="talk-like-a-human">Talk like a human…</h3>
+
+<p>Write how a human would talk. It’s not that hard.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>You’ve been logged out (not ‘Your session has been terminated’)</li>
+</ul>
+
+<h3 id="just-dont-be-too-informal">…Just don’t be <em>too</em> informal</h3>
+
+<p>Being too jokey or light-hearted can seem patronising to a user, particularly if something has just gone wrong.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>That password and username combination doesn’t match (not ‘We couldn’t log you in! You must’ve typed something wrong, silly!’)</li>
+</ul>
+
+<h3 id="when-something-goes-wrong-take-responsibility">When something goes wrong, take responsibility</h3>
+
+<p><strong>Users don’t like being blamed for things.</strong> Even if they’re at fault, take responsibility and perhaps change things to make input errors easier to prevent.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>We couldn’t log you in (not ‘Your password is incorrect’)</li>
+  <li>We couldn’t find that page (not ‘You typed an incorrect URL’)</li>
+</ul>
+
+<h3 id="when-something-goes-right-give-credit-to-the-user">When something goes right, give credit to the user</h3>
+
+<p>Conversely, giving user’s credit for things working out makes them happy. (Even if they didn’t do much!)</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>You’ve changed your email address (not ‘We’ve changed your email address’)</li>
+  <li>You successfully logged out (not ‘We logged you out’)</li>
+</ul>
+
+<h3 id="use-sentences">Use sentences</h3>
+
+<p>Write errors and feedback messages as though they were standard copy, using sentence case and full, correct punctuation.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>We couldn’t change your password.  (not ‘We Couldn’t Change Your Password’)</li>
+</ul>
+
+<h3 id="tell-them-what-to-do">Tell them what to do</h3>
+
+<p>If an error is displayed, <strong>tell the user what they can do</strong> to rectify the error in addition to the cause of the error.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>That email address isn’t valid. Make sure it contains an ‘@’ symbol. (not just ‘That email address isn’t valid.’)</li>
+  <li>An error occurred when trying to load things. Try refreshing the page and try again. (not just ‘An error occurred.’)</li>
+</ul>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

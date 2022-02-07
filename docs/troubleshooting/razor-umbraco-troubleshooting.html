@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Razor and Umbraco troubleshooting | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/troubleshooting/razor-umbraco-troubleshooting.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Razor and Umbraco troubleshooting</h1>
+				<p>Life is hard for front-end developers in the Microsoft world. Razor (the templating language used by ASP.NET) and, to a degree, Umbraco were made to convenience back-end developers, not provide flexibility or ease of use for front-enders. In the rare situation that you have to deal with it directly, be aware of these pitfalls.</p>
+
+<h2 id="by-default-everything-is-bootstrap">By default, everything is Bootstrap</h2>
+
+<p>By default everything is written to work with <a href="http://getbootstrap.com">Bootstrap</a>. The boilerplate resources are Bootstrap, example pages are Bootstrap, Umbraco Grid is Bootstrap, Umbraco Forms is Bootstrap. Welcome to Bootstrap. Welcome to <em>hell</em>.</p>
+
+<p>Enjoy spending time ripping everything apart and putting it back together again without Bootstrap.</p>
+
+<h2 id="checkboxes-arent-just-checkboxes">Checkboxes aren’t just checkboxes</h2>
+
+<p>Checkboxes are never just checkboxes. A hidden input gets inserted alongside <strong>every single checkbox</strong>, so if you try to use direct sibling selectors for anything (such as making a label change appearance depending on whether the input is checked or not), this won’t work.</p>
+
+<figure class="highlight">
+  <pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"example"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="na">id=</span><span class="s">"example"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"example"</span> <span class="na">value=</span><span class="s">"false"</span><span class="nt">&gt;</span><span class="c">&lt;!-- Inserted by .NET --&gt;</span>
+<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example"</span><span class="nt">&gt;</span>Do you like checkboxes?<span class="nt">&lt;/label&gt;</span></code></pre>
+</figure>
+
+<p>You’ll need to use more generalised sibling selectors instead.</p>
+
+<h2 id="adding-html-attributes-to-html-helpers-is-weird">Adding HTML attributes to HTML helpers is weird</h2>
+
+<p>HTML attributes can be added to most (but not all) of the HTML helpers in Razor, typically contained within an object right at the end of the helper: <code class="language-plaintext highlighter-rouge">new {}</code>.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">class</code> is a reserved word in C#, so CSS classes are added with the <code class="language-plaintext highlighter-rouge">@class</code> keyword instead.</strong></p>
+
+<p>Hyphens are apparently only for maths too, so hyphens in attribute names are replaced with underscores. In this example, <code class="language-plaintext highlighter-rouge">data-autocomplete</code> becomes <code class="language-plaintext highlighter-rouge">data_autocomplete</code>.</p>
+
+<figure class="highlight">
+  <pre><code class="language-c#" data-lang="c#"><span class="n">@Html</span><span class="p">.</span><span class="nf">TextBoxFor</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Postcode</span><span class="p">,</span> <span class="k">new</span> <span class="p">{</span> <span class="n">@class</span> <span class="p">=</span> <span class="s">"a-input"</span><span class="p">,</span> <span class="n">data_autocomplete</span> <span class="p">=</span> <span class="s">"postal-code"</span> <span class="p">})</span></code></pre>
+</figure>
+
+<h2 id="adding-some-html-attributes-to-some-html-helpers-is-significantly-more-weird">Adding some HTML attributes to some HTML helpers is significantly more weird</h2>
+
+<p>Are you using a cool, hip, modern library like <a href="http://vuejs.org">Vue</a> which adds logic via namespaced HTML attributes? Nice! Shame that colons can’t be used inside C# objects, though.</p>
+
+<p>Instead you’re going to have to be a lot more verbose, and use a format incompatible with the one above.</p>
+
+<figure class="highlight">
+  <pre><code class="language-c#" data-lang="c#"><span class="n">@Html</span><span class="p">.</span><span class="nf">TextBoxFor</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Postcode</span><span class="p">,</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">{</span> <span class="s">"class"</span><span class="p">,</span> <span class="s">"a-input"</span> <span class="p">},</span> <span class="p">{</span> <span class="s">"data-autocomplete"</span><span class="p">,</span> <span class="s">"postal-code"</span> <span class="p">},</span> <span class="p">{</span> <span class="s">"v-on:change"</span><span class="p">,</span> <span class="s">"postcodeChanged()"</span> <span class="p">},</span> <span class="p">{</span> <span class="s">":value"</span><span class="p">,</span> <span class="s">"postcode"</span> <span class="p">}</span> <span class="p">})</span></code></pre>
+</figure>
+
+<h2 id="basically-nothing-is-accessible">Basically nothing is accessible</h2>
+
+<p>Building something that needs to strictly meet accessibility compliance guidelines? Good luck using any of the HTML helpers then. You’ll need custom implementations of virtually all of the form and validation helpers if you want to make the appropriate <code class="language-plaintext highlighter-rouge">aria-invalid</code>, <code class="language-plaintext highlighter-rouge">aria-describedby</code>, <code class="language-plaintext highlighter-rouge">role</code>, etc. attributes to appear when they should.</p>
+
+<h2 id="umbraco-forms-exists">Umbraco Forms exists</h2>
+
+<p>Take everything you knew about good practice and throw it under the bus.</p>
+
+<p>Umbraco Forms enforces the use of certain JavaScript libraries, enforces where they need to be loaded into the page (fun fact: it’s not at the bottom <a href="/concepts/performance.html#css-and-javascript-includes">where they should be</a>), will unnecessarily import libraries multiple times, loads unnecessary stylesheets, loads unnecessary libraries (if you’re already rolling your own client-side validation or using the built-in browser validation) and requires the use of certain class names if it is to work at all, <a href="/authoring-guidelines/writing-css-sass.html#bem-syntax">desecrating your entire naming scheme in the process</a>.</p>
+
+<p>Many of our projects use a custom Umbraco Forms theme which tries (and is successful, mostly) to pull it in-line with our coding standards. Consider copying that across to make your life at least a little bit easier.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

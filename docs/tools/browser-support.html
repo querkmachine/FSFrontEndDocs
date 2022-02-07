@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Browser and device support | Felinesoft Front-End Guidelines</title>
+	<meta name="description" content="Made with️ 😻️ in Bristol.">
+	<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cousine:400,400i,700,700i">
+	<link rel="canonical" href="http://localhost:4000/tools/browser-support.html">
+</head>
+
+	<body>
+		<div class="wrapper">
+			<main class="content" role="main">
+				<h1>Browser and device support</h1>
+				<h2 id="browser-support">Browser support</h2>
+
+<p>Browser support requirements differ depending on the needs and wants of the client, however, our default support grid is based on some easily digestible rules. To be supported, an application must be:</p>
+
+<ul>
+  <li>one of the last two versions,</li>
+  <li>released in the last two years,</li>
+  <li>and still be supported by the manufacturer.</li>
+</ul>
+
+<p>These rules were determined on the basis that it would include the latest and greatest version of each browser, and the second most recent release—necessary for if a new version has only just been released but not widely downloaded yet—whilst also filtering out those that have been officially abandoned or quietly left to rot without being officially made obsolete, as was the case for Internet Explorer for about eight years.</p>
+
+<h3 id="use-with-browserslist-and-build-tools">Use with Browserslist and build tools</h3>
+
+<p>Not coincidentally, the above requirements cleanly translate to a <a href="https://github.com/browserslist/browserslist">Browserslist</a> configuration string. Adding <code class="language-plaintext highlighter-rouge">"browserslist": "last 2 versions and last 2 years and not dead"</code> to a project’s <code class="language-plaintext highlighter-rouge">package.json</code> file will allow this configuration to automatically be picked up by a variety of front-end tools, including Autoprefixer, postcss-preset-env and @babel/preset-env.</p>
+
+<p>For which browsers this query currently incorporates, <a href="https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25zIGFuZCBsYXN0IDIgeWVhcnMgYW5kIG5vdCBkZWFk">see the query results on the Browserslist.dev site</a>.</p>
+
+<h3 id="potential-issues">Potential issues</h3>
+
+<p>This query isn’t without faults. The “last two versions” rule especially falls apart when faced with the increasingly fast-paced release cycles of browsers like Chrome, where the most widely-used version of the browser may actually be three or four versions behind latest.</p>
+
+<p>Extending it to more than two versions can have the reverse effect, however, as the query then starts including much older versions of slow-cycle browsers, such as Safari. That might be desirable, it’s up to you.</p>
+
+<p>The “still supported by manufacturer” rule may also present issues in the event that a browser’s support is discontinued with little notice, as it will drop off the support list regardless of current real-world usage.</p>
+
+<aside class="aside aside--tangent">
+
+  <p>Browserslist will automatically mark a browser version as being unsupported if it hasn’t been updated for more than 24 months. This muddies the distinction between being supported and being released in the last two years a little, but the two queries ultimately return different results.</p>
+
+</aside>
+
+<h2 id="device-support">Device support</h2>
+
+<p>Our support grid is generally more focused on browsers than it is on device types, though this may change depending on the nature of the individual project. The office has various iOS and Android devices available for hands-on testing. Ask the QA team if you want to access them.</p>
+
+<h2 id="testing">Testing</h2>
+
+<p>It’s a smart idea to have the latest versions of the common desktop browsers—Edge, Chrome, Firefox, and (on macOS) Safari—installed on your work computer, so you can devtest them easily. For older browsers and devices we don’t have easy access to, we use <a href="http://browserstack.com">Browserstack</a> for browser testing. Ask the QA team for access credentials.</p>
+
+			</main>
+			<nav class="navigation" role="navigation">
+	<ul>
+		<li><a href="/">Introduction</a></li>
+		<li>Authoring guidelines
+			<ul>
+				<li><a href="/authoring-guidelines/authoring-guidelines.html">General guidelines</a></li>
+				<li><a href="/authoring-guidelines/writing-html.html">Writing HTML</a></li>
+				<li><a href="/authoring-guidelines/writing-css-sass.html">Writing CSS/Sass</a></li>
+				<li><a href="/authoring-guidelines/writing-javascript.html">Writing JavaScript</a></li>
+				<li><a href="/authoring-guidelines/writing-microcopy.html">Writing microcopy</a></li>
+			</ul>
+		</li>
+		<li>Tools
+			<ul>
+				<li><a href="/tools/felinesoft-frameworks.html">Our front-end frameworks</a></li>
+				<li><a href="/tools/browser-support.html">Browser support and testing</a></li>
+				<li><a href="/tools/build-tools.html">Build tools and Gulp</a></li>
+				<li><a href="/tools/design-systems.html">Design systems</a></li>
+				<li><a href="/tools/version-control.html">Git version control</a></li>
+				<li><a href="/tools/submodules.html">Git submodules</a></li>
+			</ul>
+		</li>
+		<li>Front-end concepts
+			<ul>
+				<li><a href="/concepts/responsive-design.html">Responsive design</a></li>
+				<li><a href="/concepts/accessibility.html">Accessibility</a></li>
+				<li><a href="/concepts/progressive-enhancement.html">Progressive enhancement</a></li>
+				<li><a href="/concepts/performance.html">Performance</a></li>
+				<li><a href="/concepts/security.html">Security</a></li>
+			</ul>
+		</li>
+		<li>Troubleshooting
+			<ul>
+				<li><a href="/troubleshooting/azure-webfonts-troubleshooting.html">Using webfonts on Azure hosting</a></li>
+				<li>Updating old projects/dependencies:
+					<ul>
+						<li><a href="/troubleshooting/outdated-browserslist-troubleshooting.html">Browserslist troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-fractal-troubleshooting.html">Fractal troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-imagemin-troubleshooting.html"><code>gulp-imagemin</code> troubleshooting</a></li>
+						<li><a href="/troubleshooting/outdated-sass-troubleshooting.html">Sass troubleshooting</a></li>
+					</ul>
+				</li>
+				<li>Visual Studio weirdsies:
+					<ul>
+						<li><a href="/troubleshooting/gulp-vs2015-troubleshooting.html">Using Gulp in Visual Studio</a></li>
+						<li><a href="/troubleshooting/vs-bom-troubleshooting.html">Weird/unexplained spaces in layouts</a></li>
+						<li><a href="/troubleshooting/visual-studio-html-parsing-troubleshooting.html">HTML parsing issues in Visual Studio</a></li>
+						<li><a href="/troubleshooting/razor-umbraco-troubleshooting.html">Razor/Umbraco pain points</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+			<footer class="footer" role="contentinfo">
+	Made with️ 😻️ in Bristol.<br>
+	Built on <a href="https://jekyllrb.com">Jekyll</a>. 
+	Make or suggest changes on <a href="https://github.com/querkmachine/FSFrontEndDocs">the GitHub repo</a>. <a href="/changelog.html">Changelog</a>.
+</footer>
+		</div>
+		<script src="/assets/scripts.js"></script>
+	</body>
+</html>

@@ -27,7 +27,7 @@ git submodule add <url> <path>
 
 `url` is the cloning path of the Git repo you're using as a submodule. 
 
-`path` is the directory path of where you want this submodule to live in the superproject. For design systems, you will almost certainly want this to be in a sub-directory of the UI/presentation directory of the project. 
+`path` is the directory path of where you want this submodule to live in the superproject. This must be a directory that is publicly accessible when the project is deployed, usually a sub-directory of the UI/presentation directory of the project. 
 
 ## Getting the submodule
 
@@ -74,12 +74,27 @@ To ensure you don't accidentally overwrite things, consider always running the s
 
 Rarely you may need to remove a submodule, such as if it's been misconfigured or you're attempting a clean install in order to resolve a problem. Removing a submodule is relatively labour intensive, compared to creating one, so get your command line hats on.
 
-In all of the below, replace "path/to/submodule" to match the path defined when the submodule was added. 
+In all of the below, replace `path/to/submodule` to match the path defined when the submodule was added. If you're not sure what this is, look in the `.gitmodules` file. 
 
-1. Open the `.gitmodules` file in a text editor and delete the section for the submodule. This will start with `[submodule "path/to/submodule"]`, and includes any indented lines under this heading.
-2. Stage the change. {% highlight shell %}git add .gitmodules{% endhighlight %}
-3. Open the file located at `.git/config` and delete the section for the submodule. This is formatted the same way as in the `.gitmodules` file. 
-4. Unstage the submodule directory from Git. {% highlight shell %}git rm --cached path/to/submodule{% endhighlight %}
-5. Delete the submodule configuration. {% highlight shell %}rm -rf .git/modules/path/to/submodule{% endhighlight %}
-6. Commit your changes. 
-7. Finally, delete the submodule directory. {% highlight shell %}rm -rf path/to/submodule{% endhighlight %}
+### Step 1
+Before starting, make sure that you have no staged, uncommitted changes, and that your repo version is aligned with any remote versions. This will help avoid merging issues later on.
+
+Firstly, navigate to the root of the project (where the `.git` directory is, but not the directory itself) and open the `.gitmodules` file in a text editor.
+
+Find the section relevant to the submodule. This will start with `[submodule "path/to/submodule"]`, and includes any indented lines under this heading. Delete the entire section and save the file. 
+
+Stage the change. {% highlight shell %}git add .gitmodules{% endhighlight %}
+
+### Step 2
+Open the file located at `.git/config` in a text editor and delete the section for the submodule. This will be formatted in the same way as the section in the `.gitmodules` file. 
+
+### Step 3
+Remove the submodule directory from Git. {% highlight shell %}git rm --cached path/to/submodule{% endhighlight %}
+
+### Step 4
+Delete the submodule configuration. {% highlight shell %}rm -rf .git/modules/path/to/submodule{% endhighlight %}
+
+Add and commit all of the changes made so far.
+
+### Step 5
+Finally, delete the submodule directory. {% highlight shell %}rm -rf path/to/submodule{% endhighlight %}

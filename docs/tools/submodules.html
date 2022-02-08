@@ -47,7 +47,7 @@
 
 <p><code class="language-plaintext highlighter-rouge">url</code> is the cloning path of the Git repo you’re using as a submodule.</p>
 
-<p><code class="language-plaintext highlighter-rouge">path</code> is the directory path of where you want this submodule to live in the superproject. For design systems, you will almost certainly want this to be in a sub-directory of the UI/presentation directory of the project.</p>
+<p><code class="language-plaintext highlighter-rouge">path</code> is the directory path of where you want this submodule to live in the superproject. This must be a directory that is publicly accessible when the project is deployed, usually a sub-directory of the UI/presentation directory of the project.</p>
 
 <h2 id="getting-the-submodule">Getting the submodule</h2>
 
@@ -98,35 +98,39 @@ git submodule update</code></pre>
 
 <p>Rarely you may need to remove a submodule, such as if it’s been misconfigured or you’re attempting a clean install in order to resolve a problem. Removing a submodule is relatively labour intensive, compared to creating one, so get your command line hats on.</p>
 
-<p>In all of the below, replace “path/to/submodule” to match the path defined when the submodule was added.</p>
+<p>In all of the below, replace <code class="language-plaintext highlighter-rouge">path/to/submodule</code> to match the path defined when the submodule was added. If you’re not sure what this is, look in the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file.</p>
 
-<ol>
-  <li>Open the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file in a text editor and delete the section for the submodule. This will start with <code class="language-plaintext highlighter-rouge">[submodule "path/to/submodule"]</code>, and includes any indented lines under this heading.</li>
-  <li>Stage the change.</li>
-</ol>
+<h3 id="step-1">Step 1</h3>
+<p>Before starting, make sure that you have no staged, uncommitted changes, and that your repo version is aligned with any remote versions. This will help avoid merging issues later on.</p>
+
+<p>Firstly, navigate to the root of the project (where the <code class="language-plaintext highlighter-rouge">.git</code> directory is, but not the directory itself) and open the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file in a text editor.</p>
+
+<p>Find the section relevant to the submodule. This will start with <code class="language-plaintext highlighter-rouge">[submodule "path/to/submodule"]</code>, and includes any indented lines under this heading. Delete the entire section and save the file.</p>
+
+<p>Stage the change.</p>
 <figure class="highlight">
   <pre><code class="language-shell" data-lang="shell">git add .gitmodules</code></pre>
 </figure>
 
-<ol>
-  <li>Open the file located at <code class="language-plaintext highlighter-rouge">.git/config</code> and delete the section for the submodule. This is formatted the same way as in the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file.</li>
-  <li>Unstage the submodule directory from Git.</li>
-</ol>
+<h3 id="step-2">Step 2</h3>
+<p>Open the file located at <code class="language-plaintext highlighter-rouge">.git/config</code> in a text editor and delete the section for the submodule. This will be formatted in the same way as the section in the <code class="language-plaintext highlighter-rouge">.gitmodules</code> file.</p>
+
+<h3 id="step-3">Step 3</h3>
+<p>Remove the submodule directory from Git.</p>
 <figure class="highlight">
   <pre><code class="language-shell" data-lang="shell">git <span class="nb">rm</span> <span class="nt">--cached</span> path/to/submodule</code></pre>
 </figure>
 
-<ol>
-  <li>Delete the submodule configuration.</li>
-</ol>
+<h3 id="step-4">Step 4</h3>
+<p>Delete the submodule configuration.</p>
 <figure class="highlight">
   <pre><code class="language-shell" data-lang="shell"><span class="nb">rm</span> <span class="nt">-rf</span> .git/modules/path/to/submodule</code></pre>
 </figure>
 
-<ol>
-  <li>Commit your changes.</li>
-  <li>Finally, delete the submodule directory.</li>
-</ol>
+<p>Add and commit all of the changes made so far.</p>
+
+<h3 id="step-5">Step 5</h3>
+<p>Finally, delete the submodule directory.</p>
 <figure class="highlight">
   <pre><code class="language-shell" data-lang="shell"><span class="nb">rm</span> <span class="nt">-rf</span> path/to/submodule</code></pre>
 </figure>

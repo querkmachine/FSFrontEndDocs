@@ -1,5 +1,7 @@
 # FS Front End Docs
 
+**⚠️ I no longer work at Felinesoft. This documentation is unlikely to receive any new updates.**
+
 A quick reference guide to front-end authoring and architecture at [Felinesoft](https://felinesoft.com), or at least how it was during my tenure there. 
  
 ## Updating and building
